@@ -14,7 +14,6 @@ public class PlayerInput : MonoBehaviour
     public bool isCrouching;
     public bool isInteracting;
 
-
     private void Awake()
     {
         Cursor.lockState = CursorLockMode.Locked;

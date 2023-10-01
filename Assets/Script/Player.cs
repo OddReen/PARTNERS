@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [Header("Speed")]
     [SerializeField] float speed;
     [SerializeField] float runningSpeed;
+    [SerializeField] float runMultiplier;
 
     [Header("Camera")]
     [SerializeField] Transform cinemachineCameraTarget;
@@ -56,7 +57,6 @@ public class Player : MonoBehaviour
     [SerializeField] float interactArea;
     [SerializeField] Vector3 interactHit;
 
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
     }
 
     //Movement
-    private void Move()
+    private void Movetweak()
     {
         Vector3 cameraForward = Camera.main.transform.forward;
         Vector3 cameraRight = Camera.main.transform.right;
@@ -88,7 +88,34 @@ public class Player : MonoBehaviour
 
         Vector3 direction = cameraForward * _input.direction.z + cameraRight * _input.direction.x;
         Vector3 move;
+
+        float dotProduct = Vector3.Dot(transform.forward, direction);
+        Debug.Log(dotProduct);
+
         float speedType = _input.isRunning ? runningSpeed : speed;
+        move = new Vector3(direction.x * speedType * Time.deltaTime, rb.velocity.y, direction.z * speedType * Time.deltaTime);
+        rb.velocity = move;
+    }
+    private void Move()
+    {
+        Vector3 cameraForward = Camera.main.transform.forward;
+        Vector3 cameraRight = Camera.main.transform.right;
+
+        cameraForward.y = 0f;
+        cameraRight.y = 0f;
+
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        Vector3 direction = cameraForward * _input.direction.z + cameraRight * _input.direction.x;
+
+        float dotProduct = Vector3.Dot(transform.forward, direction);
+        runMultiplier = Mathf.Lerp(1.25f, 2f, Mathf.InverseLerp(-0.5f, 1f, dotProduct));
+        Debug.Log(dotProduct);
+        runningSpeed = speed * runMultiplier;
+
+        float speedType = _input.isRunning ? runningSpeed : speed;
+        Vector3 move;
         move = new Vector3(direction.x * speedType * Time.deltaTime, rb.velocity.y, direction.z * speedType * Time.deltaTime);
         rb.velocity = move;
     }
@@ -157,6 +184,7 @@ public class Player : MonoBehaviour
         isUnder = Physics.SphereCast(cinemachineCameraCrouchTarget.position, isUnderVerifier_Radius, transform.up, out hitInfo, isUnderVerifier_Height, layerMask);
         return isUnder;
     }
+
     //Interact
     public void Interact()
     {
