@@ -34,10 +34,6 @@ public class PlayerController : MonoBehaviour
     public float TopClamp = 85f;
     public float BottomClamp = -85f;
 
-    [Header("Rotation")]
-    [Range(0.0f, 0.3f)]
-    [SerializeField] float RotationSmoothTime = 0.12f;
-
     [Header("Jump")]
     [SerializeField] float jumpForce = 250f;
     [SerializeField] bool isGrounded = false;
@@ -48,7 +44,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject capsule;
     [SerializeField] GameObject sphere;
     [SerializeField] bool isUnder = false;
-    [SerializeField] float isUnderVerifier_Height = 0.5f;
+    [SerializeField] float isUnderVerifier_Height = 1f;
     [SerializeField] float isUnderVerifier_Radius = 0.4f;
     [SerializeField] LayerMask layerMask;
 
@@ -56,6 +52,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float interactDistance = 3f;
     [SerializeField] float interactArea = 0.2f;
     [SerializeField] Vector3 interactHit;
+
+    [Header("Gravity")]
+    [SerializeField] float gravityForce = 3f;
 
     void Start()
     {
