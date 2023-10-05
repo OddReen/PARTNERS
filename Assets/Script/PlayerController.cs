@@ -6,10 +6,23 @@ public class PlayerController : MonoBehaviour
     PlayerInput _input;
     Rigidbody rb;
 
+    [Header("Movement States")]
+    [SerializeField] MovementState movementState;
+    enum MovementState
+    {
+        Idle,
+        Walk,
+        Run,
+        Crouch
+    }
+
     [Header("Speed")]
     [SerializeField] float speed = 150f;
-    [SerializeField] float runningSpeed;
-    [SerializeField] float runMultiplier;
+    [Range(0,1)]
+    [SerializeField] float speedDebuffMultiplier = .75f;
+    [SerializeField] float runMultiplier = 2f;
+    [Range(0, 1)]
+    [SerializeField] float crouchMultiplier = .5f;
 
     [Header("Camera")]
     [SerializeField] Transform cameraTarget;
@@ -53,9 +66,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float interactArea = 0.2f;
     [SerializeField] Vector3 interactHit;
 
-    [Header("Gravity")]
-    [SerializeField] float gravityForce = 3f;
-
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -63,6 +73,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate()
     {
+        MoveStates();
         Jump();
         Crouch();
         Interact();
@@ -76,8 +87,10 @@ public class PlayerController : MonoBehaviour
     //Movement
     private void Move()
     {
+        //Camera Relative Direction
         Vector3 cameraForward = Camera.main.transform.forward;
         Vector3 cameraRight = Camera.main.transform.right;
+
         cameraForward.y = 0f;
         cameraRight.y = 0f;
 
@@ -86,15 +99,41 @@ public class PlayerController : MonoBehaviour
 
         Vector3 direction = cameraForward * _input.direction.z + cameraRight * _input.direction.x;
 
+        //Dot Product of Foward and Direction
         float dotProduct = Vector3.Dot(transform.forward, direction);
-        runMultiplier = Mathf.Lerp(1.25f, 2f, Mathf.InverseLerp(-0.5f, 1f, dotProduct));
-        Debug.Log(dotProduct);
-        runningSpeed = speed * runMultiplier;
+        float currentSpeed = Mathf.Lerp(speed * 0.5f, speed, Mathf.InverseLerp(-0.5f, 1f, dotProduct));
 
-        float speedType = _input.isRunning ? runningSpeed : speed;
-        Vector3 move;
-        move = new Vector3(direction.x * speedType * Time.deltaTime, rb.velocity.y, direction.z * speedType * Time.deltaTime);
-        rb.velocity = move;
+        switch (movementState)
+        {
+            case MovementState.Crouch:
+                currentSpeed *= crouchMultiplier;
+                break;
+            case MovementState.Run:
+                currentSpeed *= runMultiplier;
+                break;
+            default:
+                break;
+        }
+        rb.velocity = new Vector3(direction.x * currentSpeed * Time.deltaTime, rb.velocity.y, direction.z * currentSpeed * Time.deltaTime);
+    }
+    private void MoveStates()
+    {
+        if (_input.isCrouching)
+        {
+            movementState = MovementState.Crouch;
+        }
+        else if (_input.isRunning)
+        {
+            movementState = MovementState.Run;
+        }
+        else if (_input.direction != Vector3.zero)
+        {
+            movementState = MovementState.Walk;
+        }
+        else
+        {
+            movementState = MovementState.Idle;
+        }
     }
 
     //Camera

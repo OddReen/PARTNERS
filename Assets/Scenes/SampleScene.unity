@@ -3838,7 +3838,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 75
+  field of view: 65
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -49937,7 +49937,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 1428913945}
   m_Lens:
-    FieldOfView: 75
+    FieldOfView: 65
     OrthographicSize: 5
     NearClipPlane: 0.3
     FarClipPlane: 1000
@@ -63851,9 +63851,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b72c746be394a4ba73eccaae01d090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movementState: 0
   speed: 150
-  runningSpeed: 0
-  runMultiplier: 0
+  speedDebuffMultiplier: 0.75
+  runMultiplier: 2
+  crouchMultiplier: 0.5
   cameraTarget: {fileID: 1428913945}
   cameraCrouchTarget: {fileID: 1320518125}
   cinemachineCamera: {fileID: 781345995}
@@ -64005,7 +64007,7 @@ RectTransform:
   - {fileID: 255258703}
   - {fileID: 283358258}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -67232,7 +67234,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1802615543
 Mesh:
