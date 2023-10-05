@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Speed")]
     [SerializeField] float speed = 150f;
-    [Range(0,1)]
+    [Range(0, 1)]
     [SerializeField] float speedDebuffMultiplier = .75f;
     [SerializeField] float runMultiplier = 2f;
     [Range(0, 1)]
@@ -63,8 +63,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interact")]
     [SerializeField] float interactDistance = 3f;
-    [SerializeField] float interactArea = 0.2f;
-    [SerializeField] Vector3 interactHit;
+    [SerializeField] GameObject interactHint;
 
     void Start()
     {
@@ -76,6 +75,7 @@ public class PlayerController : MonoBehaviour
         MoveStates();
         Jump();
         Crouch();
+        InteractHint();
         Interact();
         Move();
     }
@@ -204,13 +204,47 @@ public class PlayerController : MonoBehaviour
     //Interact
     public void Interact()
     {
-        if (_input.isInteracting)
+        if (Input.GetKeyDown(KeyCode.E))
         {
             RaycastHit hitInfo;
-            if (Physics.SphereCast(Camera.main.transform.position, interactArea, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
+            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
             {
-                interactHit = hitInfo.point;
+                //PlaceHolder
+                switch (hitInfo.collider.tag)
+                {
+                    case "Door":
+                        hitInfo.collider.GetComponent<Door>().ExecuteAction();
+                        break;
+                    case "Console":
+                        break;
+                    default:
+                        break;
+                }
             }
+        }
+    }
+    public void InteractHint()
+    {
+        RaycastHit hitInfo;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
+        {
+            //PlaceHolder
+            switch (hitInfo.collider.tag)
+            {
+                case "Door":
+                    interactHint.SetActive(true);
+                    break;
+                case "Console":
+                    interactHint.SetActive(true);
+                    break;
+                default:
+                    interactHint.SetActive(false);
+                    break;
+            }
+        }
+        else
+        {
+            interactHint.SetActive(false);
         }
     }
 
@@ -227,11 +261,5 @@ public class PlayerController : MonoBehaviour
         //Interact Ray Cast
         Gizmos.color = Color.green;
         Gizmos.DrawLine(Camera.main.transform.position, Camera.main.transform.position + Camera.main.transform.forward * interactDistance);
-
-        //Interact Hit
-        if (interactHit != null)
-        {
-            Gizmos.DrawSphere(interactHit, interactArea);
-        }
     }
 }
