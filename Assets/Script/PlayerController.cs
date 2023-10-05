@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
     }
     private void MoveStates()
     {
-        if (_input.isCrouching)
+        if (_input.isCrouching || IsUnder())
         {
             movementState = MovementState.Crouch;
         }
