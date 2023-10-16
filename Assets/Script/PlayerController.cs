@@ -101,7 +101,7 @@ public class PlayerController : MonoBehaviour
 
         //Dot Product of Foward and Direction
         float dotProduct = Vector3.Dot(transform.forward, direction);
-        float currentSpeed = Mathf.Lerp(speed * 0.5f, speed, Mathf.InverseLerp(-0.5f, 1f, dotProduct));
+        float currentSpeed = Mathf.Lerp(speed * speedDebuffMultiplier, speed, Mathf.InverseLerp(-0.5f, 1f, dotProduct));
 
         switch (movementState)
         {
@@ -216,6 +216,10 @@ public class PlayerController : MonoBehaviour
                         hitInfo.collider.GetComponent<Door>().ExecuteAction();
                         break;
                     case "Console":
+                        break;
+                    case "MusicBox":
+                        break;
+                    case "Player":
                         break;
                     default:
                         break;

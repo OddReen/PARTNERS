@@ -1,5 +1,133 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-7985241801248971292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Players/Walk
+  m_EditorClassIdentifier: 
+  Path: event:/Players/Walk
+  Guid:
+    Data1: -72439558
+    Data2: 1153891566
+    Data3: 1449251754
+    Data4: 2000034436
+  Banks:
+  - {fileID: 802346831702938341}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 4000
+--- !u!114 &-6946402963843271669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Players/Interact_with_camera
+  m_EditorClassIdentifier: 
+  Path: event:/Players/Interact_with_camera
+  Guid:
+    Data1: 673807294
+    Data2: 1087051757
+    Data3: -1674562625
+    Data4: -1570467740
+  Banks:
+  - {fileID: 802346831702938341}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 205
+--- !u!114 &-6321114919807568319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Audio-Projeto/Build/Desktop/Master.strings.bank
+  Name: Master.strings
+  StudioPath: bank:/Master.strings
+  lastModified: 638330044556785509
+  FileSizes:
+  - Name: Desktop
+    Value: 1040
+  Exists: 1
+--- !u!114 &-6194854174887691232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/First-Creature/Music-When-Walking
+  m_EditorClassIdentifier: 
+  Path: event:/First-Creature/Music-When-Walking
+  Guid:
+    Data1: 1732390973
+    Data2: 1173838037
+    Data3: 650518661
+    Data4: -164919123
+  Banks:
+  - {fileID: 802346831702938341}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 11054
+--- !u!114 &-2002256873792798171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/First-Creature/Music-Box
+  m_EditorClassIdentifier: 
+  Path: event:/First-Creature/Music-Box
+  Guid:
+    Data1: -1752533792
+    Data2: 1126951206
+    Data3: -702713717
+    Data4: -371198168
+  Banks:
+  - {fileID: 802346831702938341}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 39500
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12,10 +140,94 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d32cf7c32a3ed8347bac48ef5ed56d82, type: 3}
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
-  EditorBanks: []
-  EditorEvents: []
+  EditorBanks:
+  - {fileID: -6321114919807568319}
+  - {fileID: 802346831702938341}
+  EditorEvents:
+  - {fileID: 8562070470093721132}
+  - {fileID: -6194854174887691232}
+  - {fileID: 2413592936285892952}
+  - {fileID: -6946402963843271669}
+  - {fileID: -2002256873792798171}
+  - {fileID: -7985241801248971292}
   EditorParameters: []
-  MasterBanks: []
-  StringsBanks: []
-  cacheTime: 0
+  MasterBanks:
+  - {fileID: 802346831702938341}
+  StringsBanks:
+  - {fileID: -6321114919807568319}
+  cacheTime: 638330044556785509
   cacheVersion: 131607
+--- !u!114 &802346831702938341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Master.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Audio/Audio-Projeto/Build/Desktop/Master.bank
+  Name: Master
+  StudioPath: bank:/Master
+  lastModified: 638330044556749844
+  FileSizes:
+  - Name: Desktop
+    Value: 1163552
+  Exists: 1
+--- !u!114 &2413592936285892952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Players/Change_Camera
+  m_EditorClassIdentifier: 
+  Path: event:/Players/Change_Camera
+  Guid:
+    Data1: 1860056137
+    Data2: 1077292252
+    Data3: 1521986472
+    Data4: -561051134
+  Banks:
+  - {fileID: 802346831702938341}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 600
+--- !u!114 &8562070470093721132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/First-Creature/Walking
+  m_EditorClassIdentifier: 
+  Path: event:/First-Creature/Walking
+  Guid:
+    Data1: -374821319
+    Data2: 1075054799
+    Data3: -929419864
+    Data4: 635476302
+  Banks:
+  - {fileID: 802346831702938341}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 620
