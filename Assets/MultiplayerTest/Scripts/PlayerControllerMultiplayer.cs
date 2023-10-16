@@ -85,7 +85,7 @@ public class PlayerControllerMultiplayer : NetworkBehaviour
     void FixedUpdate()
     {
         //Se não for o dono de este object não executar o codigo
-        if (!IsOwner) return;
+        //if (!IsOwner) return;
             
         MoveStates();
         Jump();
@@ -96,7 +96,7 @@ public class PlayerControllerMultiplayer : NetworkBehaviour
     }
     void LateUpdate()
     {
-        if (!IsOwner) return;
+        //if (!IsOwner) return;
 
         CameraRotation();
     }
