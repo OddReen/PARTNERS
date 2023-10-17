@@ -118,7 +118,7 @@
 	<object class="MixerBusPanner" id="{c01094bb-23da-49ba-995e-0e4baab05bd9}" />
 	<object class="SingleSound" id="{6d141c45-45f4-4033-be1f-cee4560a1a24}">
 		<property name="length">
-			<value>16.5</value>
+			<value>10</value>
 		</property>
 		<property name="timelockedOffset">
 			<value>1</value>
@@ -129,13 +129,13 @@
 	</object>
 	<object class="SingleSound" id="{7f7bd30e-b858-447d-bff2-4cf33b025178}">
 		<property name="start">
-			<value>16.5</value>
+			<value>10</value>
 		</property>
 		<property name="length">
-			<value>9.5</value>
+			<value>5.5606405075659033</value>
 		</property>
 		<property name="timelockedOffset">
-			<value>2.25</value>
+			<value>3.3730700631986199</value>
 		</property>
 		<property name="pitch">
 			<value>-12</value>
@@ -146,7 +146,7 @@
 	</object>
 	<object class="SingleSound" id="{7b39e26c-cbc1-4169-a1a6-5adf38ad2cbc}">
 		<property name="start">
-			<value>26</value>
+			<value>15.560640507565903</value>
 		</property>
 		<property name="length">
 			<value>2</value>
@@ -163,7 +163,7 @@
 	</object>
 	<object class="SingleSound" id="{e66ffb70-386c-4923-916b-239198f57a7a}">
 		<property name="start">
-			<value>28</value>
+			<value>17.560640507565903</value>
 		</property>
 		<property name="length">
 			<value>1.5</value>
@@ -180,7 +180,7 @@
 	</object>
 	<object class="SingleSound" id="{50ff0553-63e4-47cf-a7c9-ed9ff18883c9}">
 		<property name="start">
-			<value>29.5</value>
+			<value>19.060640507565903</value>
 		</property>
 		<property name="length">
 			<value>2</value>
@@ -197,7 +197,7 @@
 	</object>
 	<object class="SingleSound" id="{45fdd038-e7b1-4fff-9efd-b671e2ed9651}">
 		<property name="start">
-			<value>31.5</value>
+			<value>21.060640507565903</value>
 		</property>
 		<property name="length">
 			<value>3.077885325558789</value>
@@ -214,10 +214,10 @@
 	</object>
 	<object class="SingleSound" id="{7dfc1f1f-4020-4527-8ee4-9e37e23e180f}">
 		<property name="start">
-			<value>34.577885325558789</value>
+			<value>24.138525833124692</value>
 		</property>
 		<property name="length">
-			<value>4.922114674441211</value>
+			<value>5.8614741668753076</value>
 		</property>
 		<property name="timelockedOffset">
 			<value>1.6055286686103027</value>
@@ -245,7 +245,7 @@
 	</object>
 	<object class="SingleSound" id="{d0de9cd8-b94b-4053-8096-9113eaa19c03}">
 		<property name="start">
-			<value>28.5</value>
+			<value>18.060640507565903</value>
 		</property>
 		<property name="length">
 			<value>2.077885325558789</value>
@@ -262,7 +262,7 @@
 	</object>
 	<object class="SingleSound" id="{33eafded-1bcc-4601-ae08-126d5a200c08}">
 		<property name="start">
-			<value>26.5</value>
+			<value>16.060640507565903</value>
 		</property>
 		<property name="length">
 			<value>2</value>
@@ -279,7 +279,7 @@
 	</object>
 	<object class="SingleSound" id="{da71d34f-e5cb-444a-8ef7-1c9e462e7e80}">
 		<property name="start">
-			<value>30.577885325558789</value>
+			<value>20.138525833124692</value>
 		</property>
 		<property name="length">
 			<value>2</value>
@@ -296,7 +296,7 @@
 	</object>
 	<object class="SingleSound" id="{012a4b30-624c-4da7-a1ba-8f877547e589}">
 		<property name="start">
-			<value>32.577885325558789</value>
+			<value>22.138525833124692</value>
 		</property>
 		<property name="length">
 			<value>2</value>
