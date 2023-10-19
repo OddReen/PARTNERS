@@ -70,13 +70,22 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         _input = GetComponent<PlayerInput>();
     }
+    private void OnEnable()
+    {
+        PlayerInput.DoInteract += Interact;
+        PlayerInput.StopInteract += Interact;
+    }
+    private void OnDisable()
+    {
+        PlayerInput.DoInteract -= Interact;
+        PlayerInput.StopInteract -= Interact;
+    }
     void FixedUpdate()
     {
         MoveStates();
         Jump();
         Crouch();
         InteractHint();
-        Interact();
         Move();
     }
     void LateUpdate()
@@ -202,31 +211,6 @@ public class PlayerController : MonoBehaviour
     }
 
     //Interact
-    public void Interact()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            RaycastHit hitInfo;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
-            {
-                //PlaceHolder
-                switch (hitInfo.collider.tag)
-                {
-                    case "Door":
-                        hitInfo.collider.GetComponent<Door>().ExecuteAction();
-                        break;
-                    case "Console":
-                        break;
-                    case "MusicBox":
-                        break;
-                    case "Player":
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-    }
     public void InteractHint()
     {
         RaycastHit hitInfo;
@@ -235,10 +219,13 @@ public class PlayerController : MonoBehaviour
             //PlaceHolder
             switch (hitInfo.collider.tag)
             {
-                case "Door":
+                case "MusicBox":
                     interactHint.SetActive(true);
                     break;
                 case "Console":
+                    interactHint.SetActive(true);
+                    break;
+                case "Door":
                     interactHint.SetActive(true);
                     break;
                 default:
@@ -251,7 +238,34 @@ public class PlayerController : MonoBehaviour
             interactHint.SetActive(false);
         }
     }
+    public void Interact()
+    {
+        RaycastHit hitInfo;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
+        {
+            switch (hitInfo.collider.tag)
+            {
+                case "Door":
+                    hitInfo.collider.GetComponent<Door>().ExecuteAction();
+                    break;
+                case "MusicBox":
+                    hitInfo.collider.GetComponent<MonsterBehaviour>().MusicBoxRestart();
+                    break;
+                case "Console":
+                    break;
+                case "Player":
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
 
+    //Debug
+    void OnGUI()
+    {
+        GUILayout.Label(speed.ToString());
+    }
     private void OnDrawGizmos()
     {
         //IsGrounded SphereCast

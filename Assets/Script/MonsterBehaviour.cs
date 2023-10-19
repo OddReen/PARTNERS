@@ -1,14 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using FMOD;
 using FMOD.Studio;
 using FMODUnity;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UI;
 
 public class MonsterBehaviour : MonoBehaviour
 {
     public EventReference ClearSongEvent;
     EventInstance clearSong;
+    [SerializeField] Image countdownImage;
 
     [SerializeField] State state;
 
@@ -60,16 +60,18 @@ public class MonsterBehaviour : MonoBehaviour
         }
     }
 
-    void MusicBoxStart()
+    public void MusicBoxRestart()
     {
-        
+        clearSong.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+        clearSong.start();
     }
     IEnumerator EnergyLoss()
     {
-        while (true)
+        while (energyCharge <= 1f)
         {
-            yield return new WaitForSeconds(energyLossTimer);
-            energyCharge -= energyLoss;
+            countdownImage.fillAmount = energyCharge;
+            energyCharge += Time.deltaTime / energyLossTimer;
+            yield return null;
         }
     }
     //Press and hold Interaction On The Music Box

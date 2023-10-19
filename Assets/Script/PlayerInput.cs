@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System;
 
 public class PlayerInput : MonoBehaviour
 {
@@ -13,6 +12,10 @@ public class PlayerInput : MonoBehaviour
     public bool isJumping;
     public bool isCrouching;
     public bool isInteracting;
+
+    public delegate void ClickAction();
+    public static event ClickAction DoInteract;
+    public static event ClickAction StopInteract;
 
     private void Awake()
     {
@@ -83,8 +86,14 @@ public class PlayerInput : MonoBehaviour
     public void InteractionInput(InputAction.CallbackContext context)
     {
         if (context.performed)
+        {
+            DoInteract?.Invoke();
             isInteracting = true;
+        }
         else if (context.canceled)
+        {
+            StopInteract?.Invoke();
             isInteracting = false;
+        }
     }
 }
