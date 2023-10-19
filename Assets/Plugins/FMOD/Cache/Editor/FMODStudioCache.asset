@@ -1,5 +1,32 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8722693103737051039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Players/step1
+  m_EditorClassIdentifier: 
+  Path: event:/Players/step1
+  Guid:
+    Data1: 344696310
+    Data2: 1241340075
+    Data3: 1332351933
+    Data4: -815310625
+  Banks:
+  - {fileID: 802346831702938341}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 235
 --- !u!114 &-7985241801248971292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26,7 +53,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 4000
+  Length: 200
 --- !u!114 &-6946402963843271669
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,10 +96,10 @@ MonoBehaviour:
   Path: Assets/Audio/Audio-Projeto/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638330044556785509
+  lastModified: 638333285264331357
   FileSizes:
   - Name: Desktop
-    Value: 1040
+    Value: 1184
   Exists: 1
 --- !u!114 &-6194854174887691232
 MonoBehaviour:
@@ -101,6 +128,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 11054
+--- !u!114 &-5850545682814530032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Players/step3
+  m_EditorClassIdentifier: 
+  Path: event:/Players/step3
+  Guid:
+    Data1: 985132907
+    Data2: 1259116146
+    Data3: -540108907
+    Data4: -1539073830
+  Banks:
+  - {fileID: 802346831702938341}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 190
 --- !u!114 &-2002256873792798171
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +181,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 39500
+  Length: 30000
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,12 +204,16 @@ MonoBehaviour:
   - {fileID: -6946402963843271669}
   - {fileID: -2002256873792798171}
   - {fileID: -7985241801248971292}
+  - {fileID: 6474570622863643729}
+  - {fileID: -5850545682814530032}
+  - {fileID: 6293412722345954677}
+  - {fileID: -8722693103737051039}
   EditorParameters: []
   MasterBanks:
   - {fileID: 802346831702938341}
   StringsBanks:
   - {fileID: -6321114919807568319}
-  cacheTime: 638330044556785509
+  cacheTime: 638333285264331357
   cacheVersion: 131607
 --- !u!114 &802346831702938341
 MonoBehaviour:
@@ -172,10 +230,10 @@ MonoBehaviour:
   Path: Assets/Audio/Audio-Projeto/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638330044556749844
+  lastModified: 638333285264331357
   FileSizes:
   - Name: Desktop
-    Value: 1163552
+    Value: 1169664
   Exists: 1
 --- !u!114 &2413592936285892952
 MonoBehaviour:
@@ -204,6 +262,60 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 600
+--- !u!114 &6293412722345954677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Players/step4
+  m_EditorClassIdentifier: 
+  Path: event:/Players/step4
+  Guid:
+    Data1: -1081205631
+    Data2: 1193457247
+    Data3: 54752444
+    Data4: 2113186530
+  Banks:
+  - {fileID: 802346831702938341}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 270
+--- !u!114 &6474570622863643729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Players/step2
+  m_EditorClassIdentifier: 
+  Path: event:/Players/step2
+  Guid:
+    Data1: 749340235
+    Data2: 1084662221
+    Data3: 1593308817
+    Data4: -1761932616
+  Banks:
+  - {fileID: 802346831702938341}
+  IsStream: 1
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 220
 --- !u!114 &8562070470093721132
 MonoBehaviour:
   m_ObjectHideFlags: 0
