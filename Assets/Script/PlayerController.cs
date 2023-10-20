@@ -73,12 +73,12 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         PlayerInput.DoInteract += Interact;
-        PlayerInput.StopInteract += Interact;
+        //PlayerInput.StopInteract += Interact;
     }
     private void OnDisable()
     {
         PlayerInput.DoInteract -= Interact;
-        PlayerInput.StopInteract -= Interact;
+        //PlayerInput.StopInteract -= Interact;
     }
     void FixedUpdate()
     {
