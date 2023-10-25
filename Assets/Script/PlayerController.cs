@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    PlayerInput _input;
+    [SerializeField] Animator animator;
+    PlayerInput playerInput;
     Rigidbody rb;
 
     [Header("Movement States")]
@@ -65,10 +66,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float interactDistance = 3f;
     [SerializeField] GameObject interactHint;
 
+    [Header("Animation")]
+    [SerializeField] float currentMoveIndex;
+    [SerializeField] float targetMoveIndex;
+    [SerializeField] float changeMoveIndexSpeed = 5;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        _input = GetComponent<PlayerInput>();
+        playerInput = GetComponent<PlayerInput>();
     }
     private void OnEnable()
     {
@@ -83,6 +89,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         MoveStates();
+        Animate();
         Jump();
         Crouch();
         InteractHint();
@@ -106,7 +113,7 @@ public class PlayerController : MonoBehaviour
         cameraForward.Normalize();
         cameraRight.Normalize();
 
-        Vector3 direction = cameraForward * _input.direction.z + cameraRight * _input.direction.x;
+        Vector3 direction = cameraForward * playerInput.direction.z + cameraRight * playerInput.direction.x;
 
         //Dot Product of Foward and Direction
         float dotProduct = Vector3.Dot(transform.forward, direction);
@@ -127,33 +134,43 @@ public class PlayerController : MonoBehaviour
     }
     private void MoveStates()
     {
-        if (_input.isCrouching || IsUnder())
+        if (playerInput.isCrouching || IsUnder())
         {
             movementState = MovementState.Crouch;
         }
-        else if (_input.isRunning)
+        else if (playerInput.isRunning)
         {
             movementState = MovementState.Run;
+            targetMoveIndex = 1;
         }
-        else if (_input.direction != Vector3.zero)
+        else if (playerInput.direction != Vector3.zero)
         {
             movementState = MovementState.Walk;
+            targetMoveIndex = 0.5f;
         }
         else
         {
             movementState = MovementState.Idle;
+            targetMoveIndex = 0;
         }
+    }
+
+    //Animation
+    private void Animate()
+    {
+        currentMoveIndex = Mathf.MoveTowards(currentMoveIndex, targetMoveIndex, Time.deltaTime * changeMoveIndexSpeed);
+        animator.SetFloat("Movement", currentMoveIndex);
     }
 
     //Camera
     private void CameraRotation()
     {
-        if (_input.look.sqrMagnitude >= _threshold)
+        if (playerInput.look.sqrMagnitude >= _threshold)
         {
             float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-            _cinemachineTargetPitch += -_input.look.y * RotationSpeed * deltaTimeMultiplier;
-            _rotationVelocity = _input.look.x * RotationSpeed * deltaTimeMultiplier;
+            _cinemachineTargetPitch += -playerInput.look.y * RotationSpeed * deltaTimeMultiplier;
+            _rotationVelocity = playerInput.look.x * RotationSpeed * deltaTimeMultiplier;
 
             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
             cameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
@@ -171,7 +188,7 @@ public class PlayerController : MonoBehaviour
     //Jump
     public void Jump()
     {
-        if (IsGrounded() && _input.isJumping)
+        if (IsGrounded() && playerInput.isJumping)
         {
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce);
@@ -188,7 +205,7 @@ public class PlayerController : MonoBehaviour
     public void Crouch()
     {
         IsUnder();
-        if (_input.isCrouching)
+        if (playerInput.isCrouching)
         {
             //Crouch
             capsule.SetActive(false);
@@ -262,10 +279,6 @@ public class PlayerController : MonoBehaviour
     }
 
     //Debug
-    void OnGUI()
-    {
-        GUILayout.Label(speed.ToString());
-    }
     private void OnDrawGizmos()
     {
         //IsGrounded SphereCast

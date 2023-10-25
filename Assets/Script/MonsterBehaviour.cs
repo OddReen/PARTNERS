@@ -10,17 +10,23 @@ public class MonsterBehaviour : MonoBehaviour
     EventInstance clearSong;
     [SerializeField] Image countdownImage;
 
+    [SerializeField] Light light;
+    [SerializeField] Color greenLight;
+    [SerializeField] Color yellowLight;
+    [SerializeField] Color redLight;
+
     [SerializeField] State state;
 
-    [SerializeField] float energyCharge = 100;
-    [SerializeField] float maxEnergyCharge = 100;
-
-    [SerializeField] float maxEnergyYellow = 65;
-    [SerializeField] float maxEnergyRed = 35;
-
-    [SerializeField] float energyLoss = 10;
-    [SerializeField] float energyLossTimer = 30;
-
+    [SerializeField] float energyCharge = 30;
+    float EnergyCharge
+    {
+        get { return energyCharge; }
+        set { energyCharge = Mathf.Clamp(value, 0, maxEnergyCharge); }
+    }
+    [SerializeField] float maxEnergyCharge = 30;
+    [SerializeField] float maxEnergyYellow = 20;
+    [SerializeField] float maxEnergyRed = 10;
+    
     enum State
     {
         Green,
@@ -37,6 +43,23 @@ public class MonsterBehaviour : MonoBehaviour
     {
         clearSong.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
         StateUpdate();
+        ColorUpdate();
+    }
+    void ColorUpdate()
+    {
+        var gradient = new Gradient();
+
+        var colors = new GradientColorKey[3];
+        colors[0] = new GradientColorKey(greenLight, 1f);
+        colors[1] = new GradientColorKey(yellowLight, .5f);
+        colors[2] = new GradientColorKey(redLight, 0f);
+
+        var alphas = new GradientAlphaKey[1];
+        alphas[0] = new GradientAlphaKey(1.0f, 0.0f);
+
+        gradient.SetKeys(colors, alphas);
+
+        light.color = (gradient.Evaluate(energyCharge / maxEnergyCharge));
     }
     void StateUpdate()
     {
@@ -44,43 +67,31 @@ public class MonsterBehaviour : MonoBehaviour
         {
             //Red
             state = State.Red;
-            //Play "Clear Song"
         }
         else if (energyCharge < maxEnergyYellow)
         {
             //Yellow
             state = State.Yellow;
-            //Play "Song Distortions"
         }
         else
         {
             //Green
             state = State.Green;
-            //Play "Faulty Song"
         }
     }
-
     public void MusicBoxRestart()
     {
+        energyCharge = maxEnergyCharge;
         clearSong.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
         clearSong.start();
     }
     IEnumerator EnergyLoss()
     {
-        while (energyCharge <= 1f)
+        while (true)
         {
-            countdownImage.fillAmount = energyCharge;
-            energyCharge += Time.deltaTime / energyLossTimer;
+            countdownImage.fillAmount = EnergyCharge / maxEnergyCharge;
+            EnergyCharge -= Time.deltaTime;
             yield return null;
         }
-    }
-    //Press and hold Interaction On The Music Box
-    void MusicBoxInteraction()
-    {
-
-    }
-    void MusicBoxCancel()
-    {
-
     }
 }
