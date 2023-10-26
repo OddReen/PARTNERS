@@ -35,6 +35,7 @@ public class MonsterBehaviour : MonoBehaviour
     }
     void Start()
     {
+        energyCharge = maxEnergyCharge;
         clearSong = RuntimeManager.CreateInstance(ClearSongEvent);
         clearSong.start();
         StartCoroutine(EnergyLoss());

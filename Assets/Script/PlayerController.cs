@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         MoveStates();
-        Animate();
+        //Animate();
         Jump();
         Crouch();
         InteractHint();
