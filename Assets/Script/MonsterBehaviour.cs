@@ -6,17 +6,20 @@ using UnityEngine.UI;
 
 public class MonsterBehaviour : MonoBehaviour
 {
+    LineRenderer lineRenderer;
     public EventReference ClearSongEvent;
     EventInstance clearSong;
     [SerializeField] Image countdownImage;
 
+    Vector3 defaultPosition;
+    Quaternion defaultRotation;
+    [SerializeField] Transform grabPos;
     [SerializeField] Light light;
-    [SerializeField] Color greenLight;
-    [SerializeField] Color yellowLight;
-    [SerializeField] Color redLight;
+    [SerializeField] Gradient gradient;
 
     [SerializeField] State state;
 
+    [SerializeField] float pullDistance = 3;
     [SerializeField] float energyCharge = 30;
     float EnergyCharge
     {
@@ -26,7 +29,7 @@ public class MonsterBehaviour : MonoBehaviour
     [SerializeField] float maxEnergyCharge = 30;
     [SerializeField] float maxEnergyYellow = 20;
     [SerializeField] float maxEnergyRed = 10;
-    
+
     enum State
     {
         Green,
@@ -35,6 +38,8 @@ public class MonsterBehaviour : MonoBehaviour
     }
     void Start()
     {
+        defaultPosition = transform.position;
+        defaultRotation = transform.rotation;
         energyCharge = maxEnergyCharge;
         clearSong = RuntimeManager.CreateInstance(ClearSongEvent);
         clearSong.start();
@@ -46,20 +51,12 @@ public class MonsterBehaviour : MonoBehaviour
         StateUpdate();
         ColorUpdate();
     }
+    private void LateUpdate()
+    {
+        DrawLine();
+    }
     void ColorUpdate()
     {
-        var gradient = new Gradient();
-
-        var colors = new GradientColorKey[3];
-        colors[0] = new GradientColorKey(greenLight, 1f);
-        colors[1] = new GradientColorKey(yellowLight, .5f);
-        colors[2] = new GradientColorKey(redLight, 0f);
-
-        var alphas = new GradientAlphaKey[1];
-        alphas[0] = new GradientAlphaKey(1.0f, 0.0f);
-
-        gradient.SetKeys(colors, alphas);
-
         light.color = (gradient.Evaluate(energyCharge / maxEnergyCharge));
     }
     void StateUpdate()
@@ -80,11 +77,12 @@ public class MonsterBehaviour : MonoBehaviour
             state = State.Green;
         }
     }
-    public void MusicBoxRestart()
+    void DrawLine()
     {
-        energyCharge = maxEnergyCharge;
-        clearSong.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
-        clearSong.start();
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, defaultPosition);
+        lineRenderer.SetPosition(1, transform.position);
     }
     IEnumerator EnergyLoss()
     {
@@ -93,6 +91,32 @@ public class MonsterBehaviour : MonoBehaviour
             countdownImage.fillAmount = EnergyCharge / maxEnergyCharge;
             EnergyCharge -= Time.deltaTime;
             yield return null;
+        }
+    }
+    public void ExecuteAction(PlayerInput playerInput)
+    {
+        StartCoroutine(CordPull(playerInput));
+    }
+    IEnumerator CordPull(PlayerInput playerInput)
+    {
+        while (Vector3.Distance(defaultPosition, transform.position) < pullDistance && playerInput.isInteracting)
+        {
+            transform.position = grabPos.position;
+            transform.LookAt(defaultPosition);
+            yield return null;
+        }
+        if (!playerInput.isInteracting)
+        {
+            transform.position = defaultPosition;
+            transform.rotation = defaultRotation;
+        }
+        else
+        {
+            transform.position = defaultPosition;
+            transform.rotation = defaultRotation;
+            energyCharge = maxEnergyCharge;
+            clearSong.stop(FMOD.Studio.STOP_MODE.IMMEDIATE);
+            clearSong.start();
         }
     }
 }

@@ -87,13 +87,13 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
-            DoInteract?.Invoke();
             isInteracting = true;
+            DoInteract?.Invoke();
         }
         else if (context.canceled)
         {
-            StopInteract?.Invoke();
             isInteracting = false;
+            StopInteract?.Invoke();
         }
     }
 }

@@ -8,24 +8,40 @@ public class CameraConsole : MonoBehaviour
 
     [SerializeField] int currentCameraIndex = 0;
 
+    Camera lastCamera;
+
     private void Start()
     {
-        if (cctv.Length > 0)
+        lastCamera = cctv[0];
+    }
+    public void ButtonPressed(string name)
+    {
+        switch (name)
         {
-            cctv[currentCameraIndex].gameObject.SetActive(true);
+            case "Button1":
+                Debug.Log("Yeah");
+                CameraHandler(0);
+                break;
+            case "Button2":
+                CameraHandler(1);
+                break;
+            case "Button3":
+                CameraHandler(2);
+                break;
+            case "Button4":
+                CameraHandler(3);
+                break;
+            case "Button5":
+                CameraHandler(4);
+                break;
+            default:
+                break;
         }
     }
-
-    private void Update()
+    void CameraHandler(int cameraIndex)
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            cctv[currentCameraIndex].gameObject.SetActive(false);
-
-            currentCameraIndex = (currentCameraIndex + 1) % cctv.Length;
-
-            cctv[currentCameraIndex].gameObject.SetActive(true);
-
-        }
+        lastCamera.gameObject.SetActive(false);
+        lastCamera = cctv[cameraIndex];
+        cctv[cameraIndex].gameObject.SetActive(true);
     }
 }

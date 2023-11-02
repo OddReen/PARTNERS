@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] bool gizmos;
+
     [SerializeField] Animator animator;
     PlayerInput playerInput;
     Rigidbody rb;
+    [SerializeField] CameraConsole cameraConsole;
 
     [Header("Movement States")]
     [SerializeField] MovementState movementState;
@@ -44,7 +47,7 @@ public class PlayerController : MonoBehaviour
 #endif
         }
     }
-    public float RotationSpeed = 50f;
+    public float cameraRotationSpeed = 50f;
     public float TopClamp = 85f;
     public float BottomClamp = -85f;
 
@@ -169,8 +172,8 @@ public class PlayerController : MonoBehaviour
         {
             float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-            _cinemachineTargetPitch += -playerInput.look.y * RotationSpeed * deltaTimeMultiplier;
-            _rotationVelocity = playerInput.look.x * RotationSpeed * deltaTimeMultiplier;
+            _cinemachineTargetPitch += -playerInput.look.y * cameraRotationSpeed * deltaTimeMultiplier;
+            _rotationVelocity = playerInput.look.x * cameraRotationSpeed * deltaTimeMultiplier;
 
             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
             cameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
@@ -266,9 +269,10 @@ public class PlayerController : MonoBehaviour
                     hitInfo.collider.GetComponent<Door>().ExecuteAction();
                     break;
                 case "MusicBox":
-                    hitInfo.collider.GetComponent<MonsterBehaviour>().MusicBoxRestart();
+                    hitInfo.collider.GetComponent<MonsterBehaviour>().ExecuteAction(playerInput);
                     break;
                 case "Console":
+                    cameraConsole.ButtonPressed(hitInfo.collider.name);
                     break;
                 case "Player":
                     break;
@@ -281,16 +285,19 @@ public class PlayerController : MonoBehaviour
     //Debug
     private void OnDrawGizmos()
     {
-        //IsGrounded SphereCast
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position + -transform.up * isGroundedVerifier_Height, isGroundedVerifier_Radius);
+        if (gizmos)
+        {
+            //IsGrounded SphereCast
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position + -transform.up * isGroundedVerifier_Height, isGroundedVerifier_Radius);
 
-        //IsUnder SphereCast
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position + transform.up * isUnderVerifier_Height, isUnderVerifier_Radius);
+            //IsUnder SphereCast
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(transform.position + transform.up * isUnderVerifier_Height, isUnderVerifier_Radius);
 
-        //Interact Ray Cast
-        Gizmos.color = Color.green;
-        Gizmos.DrawLine(Camera.main.transform.position, Camera.main.transform.position + Camera.main.transform.forward * interactDistance);
+            //Interact Ray Cast
+            Gizmos.color = Color.green;
+            Gizmos.DrawLine(Camera.main.transform.position, Camera.main.transform.position + Camera.main.transform.forward * interactDistance);
+        }
     }
 }
