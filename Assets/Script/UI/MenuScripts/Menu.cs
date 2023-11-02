@@ -2,13 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenu : MonoBehaviour
+public class Menu : MonoBehaviour
 {
-    Stack<GameObject> navigationStack = new Stack<GameObject>();
-    [SerializeField] GameObject mainMenu;
+    //Main script usado para navegação de menus 
+    protected Stack<GameObject> navigationStack = new Stack<GameObject>();
+    [SerializeField] GameObject firstMenu;
     private void Start()
     {
-        navigationStack.Push(mainMenu);
+        VirtualStart();
+    }
+    protected virtual void VirtualStart()
+    {
+        navigationStack.Push(firstMenu);
     }
     public void GoToPreviousMenu()
     {
@@ -25,10 +30,5 @@ public class MainMenu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
-    }
-
-    public void DebugCloseMenu()
-    {
-        gameObject.SetActive(false);
     }
 }

@@ -106,12 +106,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6684604719412659223}
-  - component: {fileID: 6684604719412659218}
   - component: {fileID: 6684604719412659217}
   - component: {fileID: 1638155935708494797}
   - component: {fileID: 2545296577000076513}
   - component: {fileID: -862899624272145026}
   - component: {fileID: -3108145376052020195}
+  - component: {fileID: 2405749580840564596}
   m_Layer: 6
   m_Name: --Player--
   m_TagString: Player
@@ -138,24 +138,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6684604719412659218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6684604719412659222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c456bd180e6579f4c866563e517faacd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  direction: {x: 0, y: 0, z: 0}
-  look: {x: 0, y: 0}
-  isRunning: 0
-  isJumping: 0
-  isCrouching: 0
-  isInteracting: 0
 --- !u!54 &6684604719412659217
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -210,9 +192,9 @@ MonoBehaviour:
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
@@ -248,7 +230,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementState: 0
   speed: 150
-  speedDebuffMultiplier: 0.75
   runMultiplier: 2
   crouchMultiplier: 0.5
   cameraTarget: {fileID: 6684604719577221213}
@@ -272,6 +253,24 @@ MonoBehaviour:
     m_Bits: 55
   interactDistance: 3
   interactHint: {fileID: 0}
+--- !u!114 &2405749580840564596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6684604719412659222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d690d97457b518141afd7af127bd805c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  direction: {x: 0, y: 0, z: 0}
+  look: {x: 0, y: 0}
+  isRunning: 0
+  isJumping: 0
+  isCrouching: 0
+  isInteracting: 0
 --- !u!1 &6684604719577221212
 GameObject:
   m_ObjectHideFlags: 0

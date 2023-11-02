@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MultyplayerUI : MonoBehaviour
+public class MultiplayerUI : MonoBehaviour
 {
     [SerializeField] private Button hostBT;
     [SerializeField] private Button serverBT;

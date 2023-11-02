@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class PlayerControllerMultiplayer : NetworkBehaviour
+public class MultiplayerPlayerController : NetworkBehaviour
 {
-    PlayerInput _input;
+    MultiplayerPlayerInput _input;
     Rigidbody rb;
 
     [Header("Movement States")]
@@ -22,7 +22,7 @@ public class PlayerControllerMultiplayer : NetworkBehaviour
     [Header("Speed")]
     [SerializeField] float speed = 150f;
     [Range(0, 1)]
-    [SerializeField] float speedDebuffMultiplier = .75f;
+    //[SerializeField] float speedDebuffMultiplier = .75f;
     [SerializeField] float runMultiplier = 2f;
     [Range(0, 1)]
     [SerializeField] float crouchMultiplier = .5f;
@@ -70,33 +70,45 @@ public class PlayerControllerMultiplayer : NetworkBehaviour
     [SerializeField] float interactDistance = 3f;
     [SerializeField] GameObject interactHint;
 
-    void Start()
+    public override void OnNetworkSpawn()
     {
-        rb = GetComponent<Rigidbody>();
-        _input = GetComponent<PlayerInput>();
         if (IsOwner)
         {
+            rb = GetComponent<Rigidbody>();
+            _input = GetComponent<MultiplayerPlayerInput>();
             PlayerCamera camera = Instantiate(playerCameraPrefab);
             playerCamera = camera.playerCamera;
             cinemachineCamera = camera.virtualCamera;
-            //SpawnCameraServerRpc(OwnerClientId);
         }
     }
+    private void Awake()
+    {
+        //Cringe eu sei mas so fasso uma maneira mais complexas se valer a pena also yes tem que estar obrigatoriamente aqui parte tudo 
+        //quando esta em outro lado 
+        interactHint = GameObject.Find("Interaction");
+    }
+    private void Start()
+    {
+        //I can change this to a normal event if you want
+        MultiplayerPlayerInput.Instance.InteractAction += PlayerInput_InteractAction;
+    }
+
+
+
     void FixedUpdate()
     {
         //Se não for o dono de este object não executar o codigo
-        //if (!IsOwner) return;
-            
+        if (!IsOwner) return;
+
         MoveStates();
         Jump();
         Crouch();
         InteractHint();
-        Interact();
         Move();
     }
     void LateUpdate()
     {
-        //if (!IsOwner) return;
+        if (!IsOwner) return;
 
         CameraRotation();
     }
@@ -185,12 +197,22 @@ public class PlayerControllerMultiplayer : NetworkBehaviour
             rb.AddForce(Vector3.up * jumpForce);
         }
     }
+
+    #region IsChecks
     public bool IsGrounded()
     {
         RaycastHit hitInfo;
         isGrounded = Physics.SphereCast(transform.position, isGroundedVerifier_Radius, -transform.up, out hitInfo, isGroundedVerifier_Height, layerMask);
         return isGrounded;
     }
+
+    public bool IsUnder()
+    {
+        RaycastHit hitInfo;
+        isUnder = Physics.SphereCast(cameraCrouchTarget.position, isUnderVerifier_Radius, transform.up, out hitInfo, isUnderVerifier_Height, layerMask);
+        return isUnder;
+    }
+    #endregion
 
     //Crouch
     public void Crouch()
@@ -211,57 +233,34 @@ public class PlayerControllerMultiplayer : NetworkBehaviour
             cinemachineCamera.Follow = cameraTarget;
         }
     }
-    public bool IsUnder()
+
+    #region Interaction
+    private void PlayerInput_InteractAction(object sender, System.EventArgs e)
     {
         RaycastHit hitInfo;
-        isUnder = Physics.SphereCast(cameraCrouchTarget.position, isUnderVerifier_Radius, transform.up, out hitInfo, isUnderVerifier_Height, layerMask);
-        return isUnder;
-    }
-
-    //Interact
-    public void Interact()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
         {
-            RaycastHit hitInfo;
-            if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
+            if (hitInfo.collider.CompareTag("Interactable"))
             {
-                //PlaceHolder
-                switch (hitInfo.collider.tag)
-                {
-                    case "Door":
-                        hitInfo.collider.GetComponent<Door>().ExecuteAction();
-                        break;
-                    case "Console":
-                        break;
-                    default:
-                        break;
-                }
+                hitInfo.collider.GetComponent<Interactable>().Interact();
             }
         }
     }
     public void InteractHint()
     {
-        //RaycastHit hitInfo;
-        //if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
-        //{
-        //    //PlaceHolder
-        //    switch (hitInfo.collider.tag)
-        //    {
-        //        case "Door":
-        //            interactHint.SetActive(true);
-        //            break;
-        //        case "Console":
-        //            interactHint.SetActive(true);
-        //            break;
-        //        default:
-        //            interactHint.SetActive(false);
-        //            break;
-        //    }
-        //}
-        //else
-        //{
-        //    interactHint.SetActive(false);
-        //}
+        RaycastHit hitInfo;
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
+        {
+            if (hitInfo.transform.CompareTag("Interactable"))
+            {
+                interactHint.SetActive(true);
+            }
+        }
+        else
+        {
+            interactHint.SetActive(false);
+        }
     }
+    #endregion
+
 }
