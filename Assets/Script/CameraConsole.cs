@@ -6,8 +6,6 @@ public class CameraConsole : MonoBehaviour
 {
     [SerializeField] Camera[] cctv;
 
-    [SerializeField] int currentCameraIndex = 0;
-
     Camera lastCamera;
 
     private void Start()

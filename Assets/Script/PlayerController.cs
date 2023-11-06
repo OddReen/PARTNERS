@@ -248,6 +248,9 @@ public class PlayerController : MonoBehaviour
                 case "Door":
                     interactHint.SetActive(true);
                     break;
+                case "CP Energy":
+                    interactHint.SetActive(true);
+                    break;
                 default:
                     interactHint.SetActive(false);
                     break;
@@ -273,6 +276,9 @@ public class PlayerController : MonoBehaviour
                     break;
                 case "Console":
                     cameraConsole.ButtonPressed(hitInfo.collider.name);
+                    break;
+                case "CP Energy":
+                    hitInfo.collider.GetComponent<CPEnergy>().Fix(hitInfo.collider.name);
                     break;
                 case "Player":
                     break;

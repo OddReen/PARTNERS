@@ -18,6 +18,7 @@ public class TestDotProd : MonoBehaviour
 
     private void Update()
     {
+        Rotation();
         DotProd();
         JumpScare();
     }
@@ -26,7 +27,6 @@ public class TestDotProd : MonoBehaviour
         float dotProduct = Vector3.Dot(player.transform.forward, (jumpScareObject.transform.position - player.transform.position).normalized);
         isInView = dotProduct > fieldOfView;
     }
-
     void JumpScare()
     {
         if (isInView)
@@ -37,11 +37,12 @@ public class TestDotProd : MonoBehaviour
         {
             distanceTeleported = Random.Range(minDistanceTeleported, maxDistanceTeleported);
             canTeleport = false;
-            Vector3 playerBackNormalized = player.transform.position + (player.transform.position - jumpScareObject.transform.position).normalized;
             jumpScareObject.transform.position = player.transform.position + (player.transform.position - jumpScareObject.transform.position).normalized * distanceTeleported;
-            //Vector3 playerBackNormalized = -player.transform.forward.normalized;
-            //jumpScareObject.transform.position = new Vector3(player.transform.position.x + (playerBackNormalized.x * distanceTeleported), player.transform.position.y, player.transform.position.z + (playerBackNormalized.z * distanceTeleported));
         }
+    }
+    void Rotation()
+    {
+        transform.LookAt(player.transform.position, transform.up);
     }
     private void OnDrawGizmos()
     {
