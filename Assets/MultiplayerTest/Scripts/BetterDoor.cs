@@ -1,27 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class BetterDoor : Interactable
+public class BetterDoor : NetworkBehaviour
 {
-
-    Quaternion initialRotation;
     [SerializeField] bool isOpened = false;
 
-    private void Start()
+    [SerializeField] GameObject door;
+
+    [ServerRpc(RequireOwnership = false)]
+    public void InteractDoorServerRpc()
     {
-        initialRotation = transform.rotation;
+        InteractDoorClientRpc();
     }
-    public override void Interact()
+    [ClientRpc]
+    private void InteractDoorClientRpc()
     {
         isOpened = !isOpened;
         if (isOpened)
         {
-           transform.rotation = Quaternion.Euler(initialRotation.x, initialRotation.y + 90f, initialRotation.z);
+            door.SetActive(false);
         }
         else
-        { 
-            transform.rotation = Quaternion.Euler(initialRotation.x, initialRotation.y, initialRotation.z);  
+        {
+            door.SetActive(true);
         }
+
     }
 }

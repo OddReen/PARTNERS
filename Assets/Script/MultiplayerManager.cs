@@ -8,7 +8,8 @@ public class MultiplayerManager : NetworkBehaviour
 {
     //Known bugs list 
     //If host leaves and the client exits and joins a new game it will soflock
-    //I
+    //If host starts and presses ready in lobby and then a client joins it will not show the ready above the host. Purely visual bug
+    //Defered message warning fuck if i know desativei todos os objetos e ainda fucking aparece
 
 
     public static MultiplayerManager Instance;

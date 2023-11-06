@@ -6,6 +6,8 @@ using Unity.Netcode;
 
 public class MultiplayerPlayerController : NetworkBehaviour
 {
+    public static MultiplayerPlayerController OwnerInstance;
+
     MultiplayerPlayerInput _input;
     Rigidbody rb;
 
@@ -68,7 +70,8 @@ public class MultiplayerPlayerController : NetworkBehaviour
 
     [Header("Interact")]
     [SerializeField] float interactDistance = 3f;
-    [SerializeField] GameObject interactHint;
+    GameObject interactHint;
+    public Transform grabPosition;
 
     public override void OnNetworkSpawn()
     {
@@ -76,24 +79,14 @@ public class MultiplayerPlayerController : NetworkBehaviour
         {
             rb = GetComponent<Rigidbody>();
             _input = GetComponent<MultiplayerPlayerInput>();
+            _input.InteractAction += PlayerInput_InteractAction;
             PlayerCamera camera = Instantiate(playerCameraPrefab);
             playerCamera = camera.playerCamera;
             cinemachineCamera = camera.virtualCamera;
+            interactHint = AssetsReference.Instance.interactionHint;
+            OwnerInstance = this;
         }
     }
-    private void Awake()
-    {
-        //Cringe eu sei mas so fasso uma maneira mais complexas se valer a pena also yes tem que estar obrigatoriamente aqui parte tudo 
-        //quando esta em outro lado 
-        interactHint = GameObject.Find("Interaction");
-    }
-    private void Start()
-    {
-        //I can change this to a normal event if you want
-        MultiplayerPlayerInput.Instance.InteractAction += PlayerInput_InteractAction;
-    }
-
-
 
     void FixedUpdate()
     {
@@ -237,8 +230,7 @@ public class MultiplayerPlayerController : NetworkBehaviour
     #region Interaction
     private void PlayerInput_InteractAction(object sender, System.EventArgs e)
     {
-        RaycastHit hitInfo;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hitInfo, interactDistance, layerMask))
         {
             if (hitInfo.collider.CompareTag("Interactable"))
             {
@@ -248,8 +240,7 @@ public class MultiplayerPlayerController : NetworkBehaviour
     }
     public void InteractHint()
     {
-        RaycastHit hitInfo;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hitInfo, interactDistance, layerMask))
         {
             if (hitInfo.transform.CompareTag("Interactable"))
             {

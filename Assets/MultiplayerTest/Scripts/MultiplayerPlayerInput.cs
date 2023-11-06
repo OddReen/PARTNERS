@@ -7,7 +7,7 @@ using Unity.Netcode;
 
 public class MultiplayerPlayerInput : NetworkBehaviour
 {
-    public static MultiplayerPlayerInput Instance;
+    public static MultiplayerPlayerInput OwnerInstance;
 
     InputController inputController;
 
@@ -19,15 +19,11 @@ public class MultiplayerPlayerInput : NetworkBehaviour
     public bool isCrouching;
     public bool isInteracting;
 
-    //public delegate void ClickAction();
-    //public static event ClickAction StopInteract;
-
     public event EventHandler InteractAction;
 
     public event EventHandler PauseAction;
     private void Awake()
     {
-
         Cursor.lockState = CursorLockMode.Locked;
         inputController = new InputController();
         inputController.Gameplay.Enable();
@@ -35,7 +31,7 @@ public class MultiplayerPlayerInput : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         if (!IsOwner) return;
-        Instance = this;
+        OwnerInstance = this;
         inputController.Gameplay.Move.performed += MoveInput;
         inputController.Gameplay.Move.canceled += MoveInput;
         inputController.Gameplay.Look.performed += LookInput;
@@ -103,19 +99,18 @@ public class MultiplayerPlayerInput : NetworkBehaviour
     {
         if (context.performed)
         {
+            //is interacting devia estar em cima da porra do evento seu burro de merda.
+            //Esta mensagem é para mim não estou te a insultar nardo 2
+            isInteracting = true;
             InteractAction?.Invoke(this,EventArgs.Empty);
-            //isInteracting = true;
+        }else if (context.canceled)
+        {
+            isInteracting = false;
         }
-        //else if (context.canceled)
-        //{
-        //    StopInteract?.Invoke();
-        //    //isInteracting = false;
-        //}
     }
-    //Evento é lido no ClientGameManager
+    //Evento é lido no InGameManager
     public void PauseInput(InputAction.CallbackContext context)
     {
-        Debug.Log("Pause Input");
         PauseAction?.Invoke(this, EventArgs.Empty);
     }
     //Do be like that
