@@ -8,7 +8,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator animator;
     PlayerInput playerInput;
     Rigidbody rb;
+
     [SerializeField] CameraConsole cameraConsole;
+    [SerializeField] CPEnergy _CPEnergy;
+    [SerializeField] CPGas _CPGas;
 
     [Header("Movement States")]
     [SerializeField] MovementState movementState;
@@ -239,16 +242,22 @@ public class PlayerController : MonoBehaviour
             //PlaceHolder
             switch (hitInfo.collider.tag)
             {
+                case "Door":
+                    interactHint.SetActive(true);
+                    break;
                 case "MusicBox":
                     interactHint.SetActive(true);
                     break;
                 case "Console":
                     interactHint.SetActive(true);
                     break;
-                case "Door":
+                case "CP Energy":
                     interactHint.SetActive(true);
                     break;
-                case "CP Energy":
+                case "CP Gas":
+                    interactHint.SetActive(true);
+                    break;
+                case "Player":
                     interactHint.SetActive(true);
                     break;
                 default:
@@ -278,7 +287,10 @@ public class PlayerController : MonoBehaviour
                     cameraConsole.ButtonPressed(hitInfo.collider.name);
                     break;
                 case "CP Energy":
-                    hitInfo.collider.GetComponent<CPEnergy>().Fix(hitInfo.collider.name);
+                    _CPEnergy.PatternMiniGame(hitInfo.collider.name);
+                    break;
+                case "CP Gas":
+                    _CPGas.ColorMiniGame(hitInfo.collider.name);
                     break;
                 case "Player":
                     break;

@@ -96,10 +96,10 @@ MonoBehaviour:
   Path: Assets/Audio/Audio-Projeto/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638331356259066562
+  lastModified: 638353589358818531
   FileSizes:
   - Name: Desktop
-    Value: 1184
+    Value: 1316
   Exists: 1
 --- !u!114 &-6194854174887691232
 MonoBehaviour:
@@ -208,12 +208,14 @@ MonoBehaviour:
   - {fileID: -5850545682814530032}
   - {fileID: 6293412722345954677}
   - {fileID: -8722693103737051039}
+  - {fileID: 5940276153824473755}
+  - {fileID: 8101783904967110331}
   EditorParameters: []
   MasterBanks:
   - {fileID: 802346831702938341}
   StringsBanks:
   - {fileID: -6321114919807568319}
-  cacheTime: 638331356259066562
+  cacheTime: 638353589358818531
   cacheVersion: 131607
 --- !u!114 &802346831702938341
 MonoBehaviour:
@@ -230,10 +232,10 @@ MonoBehaviour:
   Path: Assets/Audio/Audio-Projeto/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638331356258966548
+  lastModified: 638353589358788413
   FileSizes:
   - Name: Desktop
-    Value: 1169664
+    Value: 1206656
   Exists: 1
 --- !u!114 &2413592936285892952
 MonoBehaviour:
@@ -262,6 +264,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 600
+--- !u!114 &5940276153824473755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Debug/mixkit-losing-bleeps-2026
+  m_EditorClassIdentifier: 
+  Path: event:/Debug/mixkit-losing-bleeps-2026
+  Guid:
+    Data1: -1996346518
+    Data2: 1119943740
+    Data3: -1735800654
+    Data4: -1301376650
+  Banks:
+  - {fileID: 802346831702938341}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1992
 --- !u!114 &6293412722345954677
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +345,33 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 220
+--- !u!114 &8101783904967110331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Debug/mixkit-retro-game-notification-212
+  m_EditorClassIdentifier: 
+  Path: event:/Debug/mixkit-retro-game-notification-212
+  Guid:
+    Data1: -1244015122
+    Data2: 1304985818
+    Data3: -1696397162
+    Data4: 1015061033
+  Banks:
+  - {fileID: 802346831702938341}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 1466
 --- !u!114 &8562070470093721132
 MonoBehaviour:
   m_ObjectHideFlags: 0

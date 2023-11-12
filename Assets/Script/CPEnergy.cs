@@ -3,48 +3,77 @@ using UnityEngine;
 
 public class CPEnergy : MonoBehaviour
 {
-    [SerializeField] float patternQuantity;
+    [SerializeField] int patternQuantity;
     [SerializeField] int targetArrowIndex;
-    [SerializeField] string targetArrow;
+    [SerializeField] string targetArrowString;
     [SerializeField] Transform grid;
-    [SerializeField] GameObject[] spritePrefs;
-    [SerializeField] List<GameObject> sprites;
-    [SerializeField] List<string> arrowOrder;
-    [SerializeField] GameObject[] buttons;
+    [SerializeField] GameObject[] arrowPrefs;
+    [SerializeField] List<GameObject> arrowPattern;
 
     private void Start()
     {
+        //Instantiate Pattern
         targetArrowIndex = 0;
         for (int i = 0; i < patternQuantity; i++)
         {
-            GameObject gameObject = Instantiate(spritePrefs[Random.Range(0, spritePrefs.Length - 1)], grid);
-            sprites.Add(gameObject);
-            arrowOrder.Add(gameObject.name);
+            int randomNum = Random.Range(0, arrowPrefs.Length - 1);
+            GameObject gameObject = Instantiate(arrowPrefs[randomNum], grid);
+            gameObject.name = arrowPrefs[randomNum].name;
+
+            arrowPattern.Add(gameObject);
         }
-        targetArrow = arrowOrder[0];
+        targetArrowString = arrowPattern[0].name;
     }
-    public void Fix(string button)
+    public void PatternMiniGame(string button)
     {
-        if (button == targetArrow)
+        bool correctButton = button == targetArrowString;
+        if (correctButton)
         {
-            targetArrow = arrowOrder[targetArrowIndex];
+            Correct();
             targetArrowIndex++;
+            if (targetArrowIndex == patternQuantity)
+            {
+                Fix();
+                RestartPatternMinigame();
+                return;
+            }
+            targetArrowString = arrowPattern[targetArrowIndex].name;
         }
         else
         {
-            for (int i = 0; i < sprites.Count; i++)
-            {
-                Destroy(sprites[i]);
-            }
-            for (int i = 0; i < patternQuantity; i++)
-            {
-                GameObject gameObject = Instantiate(spritePrefs[Random.Range(0, spritePrefs.Length - 1)], grid);
-                sprites.Add(gameObject);
-                arrowOrder.Add(gameObject.name);
-            }
-            targetArrowIndex = 0;
-            targetArrow = arrowOrder[targetArrowIndex];
+            Wrong();
+            RestartPatternMinigame();
         }
+    }
+    void Fix()
+    {
+        Debug.Log("Fixed");
+    }
+    void Correct()
+    {
+        Debug.Log("Correct");
+    }
+    void Wrong()
+    {
+        Debug.Log("Wrong");
+    }
+    void RestartPatternMinigame()
+    {
+        for (int i = 0; i < arrowPattern.Count; i++)
+        {
+            Destroy(arrowPattern[i]);
+        }
+        arrowPattern.Clear();
+        for (int i = 0; i < patternQuantity; i++)
+        {
+            int randomNum = Random.Range(0, arrowPrefs.Length - 1);
+            GameObject gameObject = Instantiate(arrowPrefs[randomNum], grid);
+            gameObject.name = arrowPrefs[randomNum].name;
+
+            arrowPattern.Add(gameObject);
+        }
+        targetArrowIndex = 0;
+        targetArrowString = arrowPattern[targetArrowIndex].name;
     }
     void Break()
     {
@@ -52,4 +81,5 @@ public class CPEnergy : MonoBehaviour
         //CameraConsole deixa de funcionar
         //A porta que fica no corredor ficará sempre fechada e não poderá ser aberta
     }
+
 }
