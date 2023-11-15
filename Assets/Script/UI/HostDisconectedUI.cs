@@ -13,6 +13,7 @@ public class HostDisconectedUI : MonoBehaviour
 
         quit_BT.onClick.AddListener(() =>
         {
+            Time.timeScale = 1f;
             Loader.Load(Loader.Scene.MainMenu);
         });
 

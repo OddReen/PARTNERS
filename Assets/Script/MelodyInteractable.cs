@@ -12,6 +12,7 @@ public class MelodyInteractable : Interactable
     [SerializeField] float pullDistance = 3;
 
     [SerializeField] MelodyMonster melody;
+
     private void Start()
     {
         defaultPosition = transform.position;

@@ -3147,7 +3147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ca0075c41611d46b6816e54c1ad869, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugAllowHostStart: 0
+  debugAllowHostStart: 1
 --- !u!114 &473803270
 MonoBehaviour:
   m_ObjectHideFlags: 0

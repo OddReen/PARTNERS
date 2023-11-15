@@ -46,13 +46,11 @@ public class CameraConsoleHandler : NetworkBehaviour
         }
         ChangeCameraServerRpc(currentCamIndex);
     }
-
     [ServerRpc(RequireOwnership = false)]
     public void ChangeCameraServerRpc(int cameraIndex)
     {
         ChangeCameraClientRpc(cameraIndex);
     }
-
     [ClientRpc]
     private void ChangeCameraClientRpc(int cameraIndex)
     {

@@ -24,12 +24,10 @@ public class MenuPause : Menu
     }
     public void Hide()
     {
-        Debug.Log("Hide PauseMenu");
         gameObject.SetActive(false);
     }
     public void Show()
     {
-        Debug.Log("Show PauseMenu");
         gameObject.SetActive(true);
     }
 }

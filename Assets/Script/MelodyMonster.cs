@@ -62,7 +62,6 @@ public class MelodyMonster : NetworkBehaviour
     [ClientRpc]
     void ColorUpdateClientRpc()
     {
-        Debug.Log("Gradient Client Rpc");
         statelight.color = (gradient.Evaluate(energyCharge.Value / maxEnergyCharge));
     }
 

@@ -244,12 +244,13 @@ public class MultiplayerPlayerController : NetworkBehaviour
         {
             if (hitInfo.transform.CompareTag("Interactable"))
             {
+                Debug.Log("Hit");
                 interactHint.SetActive(true);
             }
-        }
-        else
-        {
-            interactHint.SetActive(false);
+            else
+            {
+                interactHint.SetActive(false);
+            }
         }
     }
     #endregion
