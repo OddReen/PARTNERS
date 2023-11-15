@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] CameraConsole cameraConsole;
     [SerializeField] CPEnergy _CPEnergy;
     [SerializeField] CPGas _CPGas;
+    [SerializeField] CPSewer _CPSewer;
 
     [Header("Movement States")]
     [SerializeField] MovementState movementState;
@@ -239,31 +240,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
         {
-            //PlaceHolder
-            switch (hitInfo.collider.tag)
-            {
-                case "Door":
-                    interactHint.SetActive(true);
-                    break;
-                case "MusicBox":
-                    interactHint.SetActive(true);
-                    break;
-                case "Console":
-                    interactHint.SetActive(true);
-                    break;
-                case "CP Energy":
-                    interactHint.SetActive(true);
-                    break;
-                case "CP Gas":
-                    interactHint.SetActive(true);
-                    break;
-                case "Player":
-                    interactHint.SetActive(true);
-                    break;
-                default:
-                    interactHint.SetActive(false);
-                    break;
-            }
+            interactHint.SetActive(hitInfo.collider.CompareTag("Interactable"));
         }
         else
         {
@@ -275,27 +252,9 @@ public class PlayerController : MonoBehaviour
         RaycastHit hitInfo;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
         {
-            switch (hitInfo.collider.tag)
+            if (hitInfo.collider.CompareTag("Interactable"))
             {
-                case "Door":
-                    hitInfo.collider.GetComponent<Door>().ExecuteAction();
-                    break;
-                case "MusicBox":
-                    hitInfo.collider.GetComponent<MonsterBehaviour>().ExecuteAction(playerInput);
-                    break;
-                case "Console":
-                    cameraConsole.ButtonPressed(hitInfo.collider.name);
-                    break;
-                case "CP Energy":
-                    _CPEnergy.PatternMiniGame(hitInfo.collider.name);
-                    break;
-                case "CP Gas":
-                    _CPGas.ColorMiniGame(hitInfo.collider.name);
-                    break;
-                case "Player":
-                    break;
-                default:
-                    break;
+                hitInfo.collider.GetComponent<Interactable>().Interact();
             }
         }
     }
