@@ -1,63 +1,65 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Netcode;
 
-public class TaskManager : NetworkBehaviour
+public class TaskManager_Singleplayer : MonoBehaviour
 {
-    public static TaskManager Instance;
+    public static TaskManager_Singleplayer Instance;
 
     //Não tem maneira de dar scroll no ui de task e 7 é o numero maximo que cabe se for mais ele fica fora do UI
     const int maxTasks = 7;
     int TaskCount { get { return activeTasksStatusList.Count; } }
 
-    [SerializeField] List<Task> possibleTasksList;
+    [SerializeField] List<Task_Singleplayer> possibleTasksList;
 
-    List<TaskStatus> activeTasksStatusList = new List<TaskStatus>();
+    List<TaskStatus_Singleplayer> activeTasksStatusList = new List<TaskStatus_Singleplayer>();
 
     [SerializeField] float timeToCreateTask;
 
-    [SerializeField] TaskStatus activeTask_Prefab;
+    [SerializeField] TaskStatus_Singleplayer activeTask_Prefab;
     [SerializeField] Transform activeTask_Container;
-    public override void OnNetworkSpawn()
-    {
 
+    [Header("Debug")]
+    [SerializeField] bool noTasksStart = false;
+    private void Awake()
+    {
         Instance = this;
-        if (IsServer)
+        if (noTasksStart)
         {
-            StartCoroutine(TaskCreator());
+            Debug.Log("DebugTasksOn");
+            return;
         }
+        StartCoroutine(TaskCreator());
     }
-    //Isto tem que ser com tempos que podem variar find a way to do that later
+
     IEnumerator TaskCreator()
     {
         Debug.Log("Task Creator Start");
         while (true)
         {
             yield return new WaitForSeconds(timeToCreateTask);
-            CreateTaskClientRpc();
+            CreateTask();
         }
     }
-    [ClientRpc]
-    private void CreateTaskClientRpc()
+    private void CreateTask()
     {
         Debug.Log("Creating Task");
         if (TaskCount >= maxTasks)
         {
             return;
         }
-        Task task = PickRandomTask();
-        TaskStatus taskStatus = Instantiate(activeTask_Prefab, activeTask_Container);
+        Task_Singleplayer task = PickRandomTask();
+        TaskStatus_Singleplayer taskStatus = Instantiate(activeTask_Prefab, activeTask_Container);
         taskStatus.AssignTask(task, TaskCount);
         activeTasksStatusList.Add(taskStatus);
         task.ActivateTask(taskStatus);
     }
-    private Task PickRandomTask()
+    private Task_Singleplayer PickRandomTask()
     {
         //Se não existirem quest que se possam repetir ele eventualmente da um erro por não haver mais tasks para criar
         //No jogo em si isto não devo ser um problema visto termos sempre uma quest repetivel mas se acontecer fica aqui marcado para dar fix
         int randomIndex = Random.Range(0, possibleTasksList.Count);
-        Task Task = possibleTasksList[randomIndex];
+        Task_Singleplayer Task = possibleTasksList[randomIndex];
 
         if (Task.IsRepeatable == false)
         {
@@ -65,19 +67,16 @@ public class TaskManager : NetworkBehaviour
         }
         return Task;
     }
-    [ServerRpc(RequireOwnership = false)]
-    public void TaskCompletedServerRpc(int taskIndex)
+    public void TaskCompleted(int taskIndex)
     {
-        DeleteTaskClientRpc(taskIndex);
+        DeleteTask(taskIndex);
     }
-    [ServerRpc(RequireOwnership = false)]
-    public void TaskFailedServerRpc(int taskIndex)
+    public void TaskFailed(int taskIndex)
     {
-        DeleteTaskClientRpc(taskIndex);
+        DeleteTask(taskIndex);
         //Energy bar diminuir ou modo de night time
     }
-    [ClientRpc]
-    private void DeleteTaskClientRpc(int taskIndex)
+    private void DeleteTask(int taskIndex)
     {
         if (taskIndex + 1 < TaskCount)
         {
@@ -87,7 +86,7 @@ public class TaskManager : NetworkBehaviour
             }
         }
 
-        TaskStatus taskStatus = activeTasksStatusList[taskIndex];
+        TaskStatus_Singleplayer taskStatus = activeTasksStatusList[taskIndex];
         if (taskStatus.TaskReference.IsRepeatable == false)
         {
             possibleTasksList.Add(taskStatus.TaskReference);

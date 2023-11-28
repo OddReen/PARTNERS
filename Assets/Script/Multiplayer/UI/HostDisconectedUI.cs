@@ -10,7 +10,6 @@ public class HostDisconectedUI : MonoBehaviour
     private void Start()
     {
         NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
-
         quit_BT.onClick.AddListener(() =>
         {
             Time.timeScale = 1f;
@@ -19,10 +18,12 @@ public class HostDisconectedUI : MonoBehaviour
 
         Hide();
     }
-    
+
+
     //Se  o client que se desconectou for o Host mostra essa mensagem
     private void NetworkManager_OnClientDisconnectCallback(ulong clientId)
     {
+        Debug.Log("Test");
         if (clientId == NetworkManager.ServerClientId)
         {
             Cursor.lockState = CursorLockMode.Confined;
@@ -41,6 +42,12 @@ public class HostDisconectedUI : MonoBehaviour
     }
     private void OnDestroy()
     {
-        NetworkManager.Singleton.OnClientDisconnectCallback -= NetworkManager_OnClientDisconnectCallback;
+        //Isto é so necessario para corrigir um erro do editor na build o NetworkManager é sempre destroido depois desta verificação
+        if (NetworkManager.Singleton != null)
+        {   
+            Debug.Log("DestroyedHere");
+            NetworkManager.Singleton.OnClientDisconnectCallback -= NetworkManager_OnClientDisconnectCallback;
+        }
+
     }
 }

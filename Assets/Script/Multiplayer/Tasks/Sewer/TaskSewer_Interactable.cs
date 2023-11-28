@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DoorPanel : Interactable
+public class TaskSewer_Interactable : Interactable
 {
-    [SerializeField] Door_Multiplayer door;
     public override void Interact()
     {
-        door.InteractDoor_ServerRpc();
+        TaskSewer_Multiplayer.Instance.FillMinigame(gameObject.name);
     }
 }

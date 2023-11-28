@@ -109,7 +109,7 @@ public class MultiplayerManager : NetworkBehaviour
     }
     private void NetworkManager_Server_OnClientDisconnectCallback(ulong clientId)
     {
-        Debug.Log("Player Disconnected");
+        Debug.Log($"Player {clientId} Disconnected");
         for (int i = 0; i < playerDataNetworkList.Count; i++)
         {
             PlayerData playerData = playerDataNetworkList[i];
@@ -120,7 +120,7 @@ public class MultiplayerManager : NetworkBehaviour
         }
     }
     //Autoriza a conection entre o client e o server
-    //Estou a verificar se o numero de players que estão conectados são iguais ao numero maximo permitido
+    //Esta a verificar se o numero de players que estão conectados são iguais ao numero maximo permitido
     //Se sim a conection é rejeitada e uma mensagem é enviada para o client que falhoe a dizer que o numero maximo de players ja foi atingido
     private void NetworkManager_ConectionApprovalCallback(NetworkManager.ConnectionApprovalRequest connectionApprovalRequest, NetworkManager.ConnectionApprovalResponse connectionApprovalResponse)
     {

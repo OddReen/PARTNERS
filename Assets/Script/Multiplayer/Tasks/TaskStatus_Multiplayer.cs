@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class TaskStatus : MonoBehaviour
+public class TaskStatus_Multiplayer : MonoBehaviour
 {
-    public Task TaskReference { get; private set; }
+    public Task_Multiplayer TaskReference { get; private set; }
     public string TaskDescription { get; private set; }
 
     public TextMeshProUGUI taskDescriptionTxt;
@@ -15,7 +15,7 @@ public class TaskStatus : MonoBehaviour
     float timeMinutes;
 
     public int TaskIndex { get; private set; }
-    public void AssignTask(Task task, int taskIndex)
+    public void AssignTask(Task_Multiplayer task, int taskIndex)
     {
         TaskReference = task;
         TaskIndex = taskIndex;
@@ -42,7 +42,7 @@ public class TaskStatus : MonoBehaviour
     //This feels wrong somehow se souberes uma forma melhor por favor avisa
     IEnumerator Timer()
     {
-        while (timeSeconds > 0)
+        do
         {
             yield return new WaitForSeconds(1f);
             timeSeconds--;
@@ -52,7 +52,7 @@ public class TaskStatus : MonoBehaviour
                 timeSeconds = 60;
             }
             SetTaskTimeTxt();
-        }
+        } while (timeSeconds > 0);
         FailTask();
     }
     public void FailTask()

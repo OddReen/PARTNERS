@@ -36,7 +36,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 92.406, y: 50}
+  m_SizeDelta: {x: 241.675, y: 111.4385}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2404884679387094540
 CanvasRenderer:
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 95.7
+  m_fontSizeBase: 95.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1125301191520243438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16f4ee91c2e462f45a1b96a55ffa2ede, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a5a0bad014bdc24cb68034338ea0cfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   taskDescriptionTxt: {fileID: 1276117863128113675}
@@ -293,7 +293,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 113.2017, y: 50}
+  m_SizeDelta: {x: 253.6125, y: 110.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4963488111325629941
 CanvasRenderer:
@@ -350,8 +350,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 95.7
+  m_fontSizeBase: 95.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 2538756394576252901}
   - component: {fileID: 1276117863128113675}
   m_Layer: 5
-  m_Name: Text (TMP) (1)
+  m_Name: TaskDescriptonTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -428,7 +428,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1090.246, y: 50}
+  m_SizeDelta: {x: 1090.246, y: 112.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2538756394576252901
 CanvasRenderer:
@@ -485,8 +485,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 95.7
+  m_fontSizeBase: 95.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 2825128624847032475}
   - component: {fileID: 157299769499907997}
   m_Layer: 5
-  m_Name: Text (TMP) (3)
+  m_Name: TaskTimeTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -563,7 +563,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 704.94, y: 50}
+  m_SizeDelta: {x: 394.47, y: 111.5381}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2825128624847032475
 CanvasRenderer:
@@ -593,7 +593,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99999999999999999999999999999999999
+  m_text: 9999999
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -620,8 +620,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 95.7
+  m_fontSizeBase: 95.7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

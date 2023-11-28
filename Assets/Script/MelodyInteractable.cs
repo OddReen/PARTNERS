@@ -50,7 +50,7 @@ public class MelodyInteractable : Interactable
         else
         {
             transform.SetPositionAndRotation(defaultPosition, defaultRotation);
-            melody.ResetMusicServerRpc();
+            melody.GainEnergy_ServerRpc();
         }
     }
 }

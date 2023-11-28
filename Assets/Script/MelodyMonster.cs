@@ -19,6 +19,8 @@ public class MelodyMonster : NetworkBehaviour
 
     NetworkVariable<float> energyCharge =  new NetworkVariable<float>();
 
+    [SerializeField] float energyGain;
+
     float EnergyCharge
     {
         get { return energyCharge.Value; }
@@ -26,8 +28,8 @@ public class MelodyMonster : NetworkBehaviour
     }
 
     [SerializeField] float maxEnergyCharge = 30;
-    [SerializeField] float maxEnergyYellow = 20;
-    [SerializeField] float maxEnergyRed = 10;
+    //[SerializeField] float maxEnergyYellow = 20;
+    //[SerializeField] float maxEnergyRed = 10;
 
     enum State
     {
@@ -98,8 +100,10 @@ public class MelodyMonster : NetworkBehaviour
 
     //Find better name
     [ServerRpc(RequireOwnership = false)]
-    public void ResetMusicServerRpc()
+    public void GainEnergy_ServerRpc()
     {
+        EnergyManager_Multiplayer.Instance.ChangeEnergy_ServerRpc(energyGain);
+
         energyCharge.Value = maxEnergyCharge;
 
         //How to fmod multiplayer?

@@ -394,6 +394,7 @@ GameObject:
   m_Component:
   - component: {fileID: 36015845}
   - component: {fileID: 36015846}
+  - component: {fileID: 36015847}
   m_Layer: 5
   m_Name: HostDisconnected_UI
   m_TagString: Untagged
@@ -437,6 +438,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   quit_BT: {fileID: 276525477}
+--- !u!114 &36015847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 36015844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2617456881
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!1 &39901837
 GameObject:
   m_ObjectHideFlags: 0

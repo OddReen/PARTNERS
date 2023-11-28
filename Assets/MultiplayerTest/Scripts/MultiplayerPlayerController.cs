@@ -182,6 +182,7 @@ public class MultiplayerPlayerController : NetworkBehaviour
     }
 
     //Jump
+    //Todo ask leo if this is better has a event?
     public void Jump()
     {
         if (IsGrounded() && _input.isJumping)
@@ -194,8 +195,8 @@ public class MultiplayerPlayerController : NetworkBehaviour
     #region IsChecks
     public bool IsGrounded()
     {
-        RaycastHit hitInfo;
-        isGrounded = Physics.SphereCast(transform.position, isGroundedVerifier_Radius, -transform.up, out hitInfo, isGroundedVerifier_Height, layerMask);
+        //If seen tell nardo 2 that for some fucking reason the spherecast wasnt working so switched to raycast
+        isGrounded = Physics.Raycast(transform.position, -transform.up,isGroundedVerifier_Height, layerMask);
         return isGrounded;
     }
 
@@ -254,5 +255,4 @@ public class MultiplayerPlayerController : NetworkBehaviour
         }
     }
     #endregion
-
 }

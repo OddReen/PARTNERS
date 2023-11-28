@@ -272,7 +272,7 @@ MonoBehaviour:
   BottomClamp: -85
   jumpForce: 250
   isGrounded: 0
-  isGroundedVerifier_Height: 0.5
+  isGroundedVerifier_Height: 1.2
   isGroundedVerifier_Radius: 0.5
   capsule: {fileID: 6684604719681704570}
   sphere: {fileID: 6684604717778419920}
@@ -283,7 +283,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   interactDistance: 3
-  interactHint: {fileID: 0}
   grabPosition: {fileID: 3398035990313614732}
 --- !u!114 &2405749580840564596
 MonoBehaviour:

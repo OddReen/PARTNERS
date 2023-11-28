@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class BetterDoor : NetworkBehaviour
+public class Door_Multiplayer : NetworkBehaviour
 {
     [SerializeField] bool isOpened = false;
+
+    bool isLocked = false;
 
     [SerializeField] GameObject door;
 
     [ServerRpc(RequireOwnership = false)]
-    public void InteractDoorServerRpc()
+    public void InteractDoor_ServerRpc()
     {
-        InteractDoorClientRpc();
+        if (isLocked)
+        {
+            return;
+        }
+        InteractDoor_ClientRpc();
     }
     [ClientRpc]
-    private void InteractDoorClientRpc()
+    private void InteractDoor_ClientRpc()
     {
         isOpened = !isOpened;
         if (isOpened)
@@ -27,5 +33,10 @@ public class BetterDoor : NetworkBehaviour
             door.SetActive(true);
         }
 
+    }
+    [ServerRpc]
+    public void ChangeLockStatus_ServerRpc(bool isLocked)
+    {
+        this.isLocked = isLocked;
     }
 }
