@@ -9,7 +9,6 @@ public class MusicBox : MonoBehaviour
     LineRenderer lineRenderer;
     public EventReference ClearSongEvent;
     EventInstance clearSong;
-    [SerializeField] Image countdownImage;
 
     Vector3 defaultPosition;
     Quaternion defaultRotation;
@@ -88,7 +87,6 @@ public class MusicBox : MonoBehaviour
     {
         while (true)
         {
-            countdownImage.fillAmount = EnergyCharge / maxEnergyCharge;
             EnergyCharge -= Time.deltaTime;
             yield return null;
         }

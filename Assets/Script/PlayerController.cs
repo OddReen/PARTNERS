@@ -6,13 +6,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] bool gizmos;
 
     [SerializeField] Animator animator;
+    [SerializeField] GameObject playerModel;
     PlayerInput playerInput;
     Rigidbody rb;
-
-    [SerializeField] CameraConsole cameraConsole;
-    [SerializeField] CPEnergy _CPEnergy;
-    [SerializeField] CPGas _CPGas;
-    [SerializeField] CPSewer _CPSewer;
 
     [Header("Movement States")]
     [SerializeField] MovementState movementState;
@@ -26,17 +22,14 @@ public class PlayerController : MonoBehaviour
 
     [Header("Speed")]
     [SerializeField] float speed = 150f;
-    [Range(0, 1)]
-    [SerializeField] float speedDebuffMultiplier = .75f;
+    [Range(0, 1)] [SerializeField] float speedDebuffMultiplier = .75f;
     [SerializeField] float runMultiplier = 2f;
-    [Range(0, 1)]
-    [SerializeField] float crouchMultiplier = .5f;
+    [Range(0, 1)] [SerializeField] float crouchMultiplier = .5f;
 
     [Header("Camera")]
     [SerializeField] Transform cameraTarget;
     [SerializeField] Transform cameraCrouchTarget;
     [SerializeField] CinemachineVirtualCamera cinemachineCamera;
-
     float _cinemachineTargetPitch;
     const float _threshold = 0.01f;
     private float _rotationVelocity;
@@ -71,12 +64,15 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interact")]
     [SerializeField] float interactDistance = 3f;
-    [SerializeField] GameObject interactHint;
 
     [Header("Animation")]
     [SerializeField] float currentMoveIndex;
     [SerializeField] float targetMoveIndex;
     [SerializeField] float changeMoveIndexSpeed = 5;
+
+
+    RaycastHit hitInfo;
+    GameObject hitInfoGameObject;
 
     void Start()
     {
@@ -96,10 +92,10 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         MoveStates();
-        //Animate();
+        Animate();
         Jump();
         Crouch();
-        InteractHint();
+        InteractableHoverInterface();
         Move();
     }
     void LateUpdate()
@@ -148,12 +144,12 @@ public class PlayerController : MonoBehaviour
         else if (playerInput.isRunning)
         {
             movementState = MovementState.Run;
-            targetMoveIndex = 1;
+            targetMoveIndex = playerInput.direction.magnitude * 2;
         }
         else if (playerInput.direction != Vector3.zero)
         {
             movementState = MovementState.Walk;
-            targetMoveIndex = 0.5f;
+            targetMoveIndex = playerInput.direction.magnitude;
         }
         else
         {
@@ -165,10 +161,14 @@ public class PlayerController : MonoBehaviour
     //Animation
     private void Animate()
     {
+        playerModel.transform.LookAt(playerInput.direction + playerModel.transform.position + Camera.main.transform.forward, Vector3.up);
+        //if (Vector3.Dot(transform.forward, ) >= 0)
+            //Foward Animation
+        //else
+            //Backward Animation
         currentMoveIndex = Mathf.MoveTowards(currentMoveIndex, targetMoveIndex, Time.deltaTime * changeMoveIndexSpeed);
-        animator.SetFloat("Movement", currentMoveIndex);
+        animator.SetFloat("Move", currentMoveIndex);
     }
-
     //Camera
     private void CameraRotation()
     {
@@ -233,18 +233,33 @@ public class PlayerController : MonoBehaviour
         isUnder = Physics.SphereCast(cameraCrouchTarget.position, isUnderVerifier_Radius, transform.up, out hitInfo, isUnderVerifier_Height, layerMask);
         return isUnder;
     }
-
     //Interact
-    public void InteractHint()
+    public void InteractableHoverInterface()
     {
-        RaycastHit hitInfo;
+        bool hasInteractHint;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
         {
-            interactHint.SetActive(hitInfo.collider.CompareTag("Interactable"));
+            if (hitInfo.collider.CompareTag("Interactable"))
+            {
+                if (hitInfoGameObject != null)
+                {
+                    hitInfoGameObject.GetComponent<Interactable>().InteractHint(false);
+                }
+                hitInfoGameObject = hitInfo.collider.gameObject;
+                hasInteractHint = true;
+            }
+            else
+            {
+                hasInteractHint = false;
+            }
         }
         else
         {
-            interactHint.SetActive(false);
+            hasInteractHint = false;
+        }
+        if (hitInfoGameObject != null)
+        {
+            hitInfoGameObject.GetComponent<Interactable>().InteractHint(hasInteractHint);
         }
     }
     public void Interact()
