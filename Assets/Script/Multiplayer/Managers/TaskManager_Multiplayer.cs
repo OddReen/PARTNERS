@@ -13,7 +13,7 @@ public class TaskManager_Multiplayer : NetworkBehaviour
 
     [SerializeField] List<Task_Multiplayer> possibleTasksList;
 
-    List<TaskStatus_Multiplayer> activeTasksStatusList = new List<TaskStatus_Multiplayer>();
+    List<TaskStatus_Multiplayer> activeTasksStatusList = new();
 
     [SerializeField] float timeToCreateTask;
 

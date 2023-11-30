@@ -73,6 +73,9 @@ public class MultiplayerPlayerController : NetworkBehaviour
     GameObject interactHint;
     public Transform grabPosition;
 
+    GameObject hitInfoGameObject;
+
+    bool isSpawned = false;
     public override void OnNetworkSpawn()
     {
         if (IsOwner)
@@ -85,13 +88,14 @@ public class MultiplayerPlayerController : NetworkBehaviour
             cinemachineCamera = camera.virtualCamera;
             interactHint = AssetsReference.Instance.interactionHint;
             OwnerInstance = this;
+            isSpawned = true;
         }
     }
 
     void FixedUpdate()
     {
         //Se não for o dono de este object não executar o codigo
-        if (!IsOwner) return;
+        if (!IsOwner && isSpawned) return;
 
         MoveStates();
         Jump();
@@ -101,7 +105,7 @@ public class MultiplayerPlayerController : NetworkBehaviour
     }
     void LateUpdate()
     {
-        if (!IsOwner) return;
+        if (!IsOwner && isSpawned) return;
 
         CameraRotation();
     }
@@ -241,17 +245,30 @@ public class MultiplayerPlayerController : NetworkBehaviour
     }
     public void InteractHint()
     {
+        bool hasInteractHint;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hitInfo, interactDistance, layerMask))
         {
-            if (hitInfo.transform.CompareTag("Interactable"))
+            if (hitInfo.collider.CompareTag("Interactable"))
             {
-                Debug.Log("Hit");
-                interactHint.SetActive(true);
+                if (hitInfoGameObject != null)
+                {
+                    hitInfoGameObject.GetComponent<Interactable>().InteractHint(false);
+                }
+                hitInfoGameObject = hitInfo.collider.gameObject;
+                hasInteractHint = true;
             }
             else
             {
-                interactHint.SetActive(false);
+                hasInteractHint = false;
             }
+        }
+        else
+        {
+            hasInteractHint = false;
+        }
+        if (hitInfoGameObject != null)
+        {
+            hitInfoGameObject.GetComponent<Interactable>().InteractHint(hasInteractHint);
         }
     }
     #endregion

@@ -24,7 +24,6 @@ public class MultiplayerPlayerInput : NetworkBehaviour
     public event EventHandler PauseAction;
     private void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         inputController = new InputController();
         inputController.Gameplay.Enable();
     }

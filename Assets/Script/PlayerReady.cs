@@ -25,7 +25,7 @@ public class PlayerReady : NetworkBehaviour
 
     public override void OnNetworkDespawn()
     {
-        SetPlayerUnReadyServerRpc();
+        SetPlayerUnReady_ServerRpc();
     }
 
     public void SetPlayerReadyStatus()
@@ -33,25 +33,25 @@ public class PlayerReady : NetworkBehaviour
         isReady = !isReady;
         if (isReady)
         {
-            SetPlayerReadyServerRpc();
+            SetPlayerReady_ServerRpc();
         }
         else
         {
-            SetPlayerUnReadyServerRpc();
+            SetPlayerUnReady_ServerRpc();
         }
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void SetPlayerUnReadyServerRpc(ServerRpcParams serverRpcParams = default)
+    private void SetPlayerUnReady_ServerRpc(ServerRpcParams serverRpcParams = default)
     {
-        SetPlayerUnReadyClientRpc(serverRpcParams.Receive.SenderClientId);
+        SetPlayerUnReady_ClientRpc(serverRpcParams.Receive.SenderClientId);
         playerReadyDictionary[serverRpcParams.Receive.SenderClientId] = false;
     }
 
     [ServerRpc(RequireOwnership = false)]
-    private void SetPlayerReadyServerRpc(ServerRpcParams serverRpcParams = default)
+    private void SetPlayerReady_ServerRpc(ServerRpcParams serverRpcParams = default)
     {
-        SetPlayerReadyClientRpc(serverRpcParams.Receive.SenderClientId);
+        SetPlayerReady_ClientRpc(serverRpcParams.Receive.SenderClientId);
         playerReadyDictionary[serverRpcParams.Receive.SenderClientId] = true;
 
         bool allClientsReady = true;
@@ -78,19 +78,25 @@ public class PlayerReady : NetworkBehaviour
 
         if (allClientsReady)
         {
+            LockClientsCursor_ClientRpc();
             Loader.LoadNetwork(Loader.Scene.MultiplayerTest);
         }
-    } 
+    }
+    [ClientRpc]
+    private void LockClientsCursor_ClientRpc()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 
     [ClientRpc]
-    private void SetPlayerReadyClientRpc(ulong clientId)
+    private void SetPlayerReady_ClientRpc(ulong clientId)
     {
         playerReadyDictionary[clientId] = true;
         OnReadyChange?.Invoke(this, EventArgs.Empty);
     }
 
     [ClientRpc]
-    private void SetPlayerUnReadyClientRpc(ulong clientId)
+    private void SetPlayerUnReady_ClientRpc(ulong clientId)
     {
         playerReadyDictionary[clientId] = false;
         OnReadyChange?.Invoke(this, EventArgs.Empty);
