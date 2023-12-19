@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{16597845-acf3-4761-884b-97eb3c5e5c28}">
+		<property name="assetPath">
+			<value>water-through-drain-with-reverb-31163.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>24</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>65.688000000000002</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ca888a3a-daf9-4563-902e-58ca44d55e33}</destination>
+		</relationship>
+	</object>
+</objects>

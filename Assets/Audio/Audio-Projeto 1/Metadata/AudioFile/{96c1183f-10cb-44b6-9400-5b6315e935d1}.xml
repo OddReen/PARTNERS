@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{96c1183f-10cb-44b6-9400-5b6315e935d1}">
+		<property name="assetPath">
+			<value>turning-down-power-48657.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>2.8212244897959184</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ca888a3a-daf9-4563-902e-58ca44d55e33}</destination>
+		</relationship>
+	</object>
+</objects>

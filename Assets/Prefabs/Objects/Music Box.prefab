@@ -117,8 +117,7 @@ MonoBehaviour:
       Data2: 1126951206
       Data3: -702713717
       Data4: -371198168
-    Path: event:/First-Creature/Music-Box
-  countdownImage: {fileID: 0}
+    Path: event:/SFX_Sounds/Melodie/Music_Box/Music-Box
   grabPos: {fileID: 0}
   light: {fileID: 3821471394477850425}
   gradient:

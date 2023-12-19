@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="EventFolder" id="{a0605933-2a1f-47dd-b494-f35872f98b33}">
+		<property name="name">
+			<value>BlackOut</value>
+		</property>
+		<relationship name="folder">
+			<destination>{21df1c2a-09da-4011-ae12-86880cf7d3eb}</destination>
+		</relationship>
+	</object>
+</objects>

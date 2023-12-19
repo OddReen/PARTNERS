@@ -426,8 +426,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets/Audio/Audio-Projeto/Audio-Projeto.fspro
-  sourceBankPath: Assets/Audio/Audio-Projeto/Build
+  sourceProjectPath: Assets/Audio/Audio-Projeto 1/Audio-Projeto.fspro
+  sourceBankPath: Assets/Audio/Audio-Projeto 1/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -450,7 +450,10 @@ MonoBehaviour:
   Plugins: []
   MasterBanks:
   - Master
-  Banks: []
+  Banks:
+  - Ambiente
+  - Voice_lines
+  - Walk
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{7a66433e-0609-4011-8e23-2025f3ce9c0a}">
+		<property name="assetPath">
+			<value>alarm-clock-short-6402.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>24</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>8.5920000000000005</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ca888a3a-daf9-4563-902e-58ca44d55e33}</destination>
+		</relationship>
+	</object>
+</objects>

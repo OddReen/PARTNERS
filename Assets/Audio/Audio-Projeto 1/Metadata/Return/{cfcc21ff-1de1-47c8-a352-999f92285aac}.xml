@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="MixerReturn" id="{cfcc21ff-1de1-47c8-a352-999f92285aac}">
+		<property name="overridingInputFormat">
+			<value>2</value>
+		</property>
+		<property name="name">
+			<value>Reverb</value>
+		</property>
+		<relationship name="effectChain">
+			<destination>{e10b0dae-eeb2-4074-88ad-f32ee86f301c}</destination>
+		</relationship>
+		<relationship name="panner">
+			<destination>{25f23aad-b76d-4456-812f-709a567e1e2c}</destination>
+		</relationship>
+		<relationship name="output">
+			<destination>{df688af9-48a7-4d32-9d8c-ec530c94f1a9}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusEffectChain" id="{e10b0dae-eeb2-4074-88ad-f32ee86f301c}">
+		<relationship name="effects">
+			<destination>{0de168e7-8b49-44c1-91c5-dd663e7356ff}</destination>
+			<destination>{0bef9cdf-cb06-4d45-92ac-bff529793ad7}</destination>
+		</relationship>
+	</object>
+	<object class="MixerBusPanner" id="{25f23aad-b76d-4456-812f-709a567e1e2c}">
+		<property name="disabledSpeakers">
+			<value>2</value>
+		</property>
+	</object>
+	<object class="MixerBusFader" id="{0de168e7-8b49-44c1-91c5-dd663e7356ff}" />
+	<object class="SFXReverbEffect" id="{0bef9cdf-cb06-4d45-92ac-bff529793ad7}">
+		<property name="decayTime">
+			<value>4300</value>
+		</property>
+	</object>
+</objects>
