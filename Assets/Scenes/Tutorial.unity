@@ -47604,20 +47604,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b6cbf28b28e9d1419d5dd13b4461be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Win:
-    Guid:
-      Data1: -1244015122
-      Data2: 1304985818
-      Data3: -1696397162
-      Data4: 1015061033
-    Path: event:/Debug/mixkit-retro-game-notification-212
-  Lose:
-    Guid:
-      Data1: -1996346518
-      Data2: 1119943740
-      Data3: -1735800654
-      Data4: -1301376650
-    Path: event:/Debug/mixkit-losing-bleeps-2026
   isShowingPattern: 0
   timeBetweenColors: 0.25
   timeColorOnScreen: 0.5
@@ -50157,7 +50143,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh35890
+  m_Name: pb_Mesh35570
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
