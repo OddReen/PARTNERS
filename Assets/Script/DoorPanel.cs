@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorPanel : Interactable
 {
     [SerializeField] Door_Multiplayer door;
-    public override void Interact()
+    public override void Interact(PlayerController playerController)
     {
         door.InteractDoor_ServerRpc();
     }

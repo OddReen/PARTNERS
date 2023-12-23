@@ -1,18 +1,18 @@
 using Cinemachine;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(Rigidbody))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] bool gizmos;
 
-    [SerializeField] Animator animator;
-    [SerializeField] GameObject playerModel;
-    PlayerInput playerInput;
-    Rigidbody rb;
+    public PlayerInput playerInput;
+    public Rigidbody rb;
 
     [Header("Movement States")]
-    [SerializeField] MovementState movementState;
-    enum MovementState
+    [SerializeField] public MovementState movementState;
+    public enum MovementState
     {
         Idle,
         Walk,
@@ -64,12 +64,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("Interact")]
     [SerializeField] float interactDistance = 3f;
+    [SerializeField] public Transform grabPos;
 
     [Header("Animation")]
+    Vector3 lookAtVector = Vector3.zero;
     [SerializeField] float currentMoveIndex;
-    [SerializeField] float targetMoveIndex;
+    [SerializeField] public float targetMoveIndex;
     [SerializeField] float changeMoveIndexSpeed = 5;
-
 
     RaycastHit hitInfo;
     GameObject hitInfoGameObject;
@@ -81,18 +82,20 @@ public class PlayerController : MonoBehaviour
     }
     private void OnEnable()
     {
-        PlayerInput.DoInteract += Interact;
-        //PlayerInput.StopInteract += Interact;
+        playerInput.DoInteract += Interact;
+        //PlayerInput.Instance.StopInteract += Interact;
     }
     private void OnDisable()
     {
-        PlayerInput.DoInteract -= Interact;
-        //PlayerInput.StopInteract -= Interact;
+        playerInput.DoInteract -= Interact;
+        //PlayerInput.Instance.StopInteract -= Interact;
+    }
+    private void Update()
+    {
+        MoveStates();
     }
     void FixedUpdate()
     {
-        MoveStates();
-        Animate();
         Jump();
         Crouch();
         InteractableHoverInterface();
@@ -101,6 +104,7 @@ public class PlayerController : MonoBehaviour
     void LateUpdate()
     {
         CameraRotation();
+        //Animate();
     }
 
     //Movement
@@ -144,31 +148,17 @@ public class PlayerController : MonoBehaviour
         else if (playerInput.isRunning)
         {
             movementState = MovementState.Run;
-            targetMoveIndex = playerInput.direction.magnitude * 2;
         }
         else if (playerInput.direction != Vector3.zero)
         {
             movementState = MovementState.Walk;
-            targetMoveIndex = playerInput.direction.magnitude;
         }
         else
         {
             movementState = MovementState.Idle;
-            targetMoveIndex = 0;
         }
     }
 
-    //Animation
-    private void Animate()
-    {
-        playerModel.transform.LookAt(playerInput.direction + playerModel.transform.position + Camera.main.transform.forward, Vector3.up);
-        //if (Vector3.Dot(transform.forward, ) >= 0)
-            //Foward Animation
-        //else
-            //Backward Animation
-        currentMoveIndex = Mathf.MoveTowards(currentMoveIndex, targetMoveIndex, Time.deltaTime * changeMoveIndexSpeed);
-        animator.SetFloat("Move", currentMoveIndex);
-    }
     //Camera
     private void CameraRotation()
     {
@@ -204,7 +194,7 @@ public class PlayerController : MonoBehaviour
     public bool IsGrounded()
     {
         RaycastHit hitInfo;
-        isGrounded = Physics.SphereCast(transform.position, isGroundedVerifier_Radius, -transform.up, out hitInfo, isGroundedVerifier_Height, layerMask);
+        isGrounded = Physics.SphereCast(transform.position, isGroundedVerifier_Radius, -transform.up, out hitInfo, isGroundedVerifier_Height, ~layerMask);
         return isGrounded;
     }
 
@@ -230,14 +220,15 @@ public class PlayerController : MonoBehaviour
     public bool IsUnder()
     {
         RaycastHit hitInfo;
-        isUnder = Physics.SphereCast(cameraCrouchTarget.position, isUnderVerifier_Radius, transform.up, out hitInfo, isUnderVerifier_Height, layerMask);
+        isUnder = Physics.SphereCast(cameraCrouchTarget.position, isUnderVerifier_Radius, transform.up, out hitInfo, isUnderVerifier_Height, ~layerMask);
         return isUnder;
     }
+
     //Interact
     public void InteractableHoverInterface()
     {
         bool hasInteractHint;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, ~layerMask))
         {
             if (hitInfo.collider.CompareTag("Interactable"))
             {
@@ -265,11 +256,11 @@ public class PlayerController : MonoBehaviour
     public void Interact()
     {
         RaycastHit hitInfo;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, layerMask))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hitInfo, interactDistance, ~layerMask))
         {
             if (hitInfo.collider.CompareTag("Interactable"))
             {
-                hitInfo.collider.GetComponent<Interactable>().Interact();
+                hitInfo.collider.GetComponent<Interactable>().Interact(this);
             }
         }
     }
@@ -277,6 +268,14 @@ public class PlayerController : MonoBehaviour
     //Debug
     private void OnDrawGizmos()
     {
+        if (playerInput != null)
+        {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(transform.position, transform.position + transform.forward);
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position + (transform.rotation * playerInput.direction), .2f);
+            Gizmos.DrawLine(transform.position, transform.position + (transform.rotation * playerInput.direction));
+        }
         if (gizmos)
         {
             //IsGrounded SphereCast

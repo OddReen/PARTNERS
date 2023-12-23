@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MultiplayerTest.unity
     guid: b447b036e1dc6504c9b825a4ee7a2dcd
   - enabled: 0
-    path: Assets/Scenes/Test.unity
+    path: Assets/Scenes/Leonardo/Test.unity
     guid: 1491c45feb57a4f4a86781fe6ac4e6ae
   - enabled: 1
     path: Assets/Scenes/LoadingScene.unity

@@ -67078,6 +67078,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82b72c746be394a4ba73eccaae01d090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gizmos: 0
+  animator: {fileID: 0}
+  playerModel: {fileID: 0}
+  playerInput: {fileID: 0}
+  rb: {fileID: 0}
   movementState: 0
   speed: 150
   speedDebuffMultiplier: 0.75
@@ -67086,7 +67091,7 @@ MonoBehaviour:
   cameraTarget: {fileID: 1428913945}
   cameraCrouchTarget: {fileID: 1320518125}
   cinemachineCamera: {fileID: 781345995}
-  RotationSpeed: 50
+  cameraRotationSpeed: 50
   TopClamp: 85
   BottomClamp: -85
   jumpForce: 250
@@ -67102,7 +67107,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   interactDistance: 5
-  interactHint: {fileID: 1754366350}
+  grabPos: {fileID: 0}
+  currentMoveIndex: 0
+  targetMoveIndex: 0
+  changeMoveIndexSpeed: 5
 --- !u!54 &1595568981
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -71062,7 +71070,6 @@ MonoBehaviour:
   - {fileID: 2031054471}
   - {fileID: 2024243348}
   - {fileID: 2071186820}
-  currentCameraIndex: 0
 --- !u!43 &1802615543
 Mesh:
   m_ObjectHideFlags: 0

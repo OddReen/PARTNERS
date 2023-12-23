@@ -18,7 +18,7 @@ public class MelodyInteractable : Interactable
         defaultPosition = transform.position;
         defaultRotation = transform.rotation;
     }
-    public override void Interact()
+    public override void Interact(PlayerController playerController)
     {
         StartCoroutine(CordPull());
     }

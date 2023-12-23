@@ -239,7 +239,8 @@ public class MultiplayerPlayerController : NetworkBehaviour
         {
             if (hitInfo.collider.CompareTag("Interactable"))
             {
-                hitInfo.collider.GetComponent<Interactable>().Interact();
+                //Estava a dar compile error
+                //hitInfo.collider.GetComponent<Interactable>().Interact();
             }
         }
     }

@@ -125,7 +125,7 @@ MonoBehaviour:
   Path: Assets/Audio/Audio-Projeto 1/Build/Desktop/Voice_lines.bank
   Name: Voice_lines
   StudioPath: bank:/Voice_lines
-  lastModified: 638385875673589035
+  lastModified: 638385929964728136
   FileSizes:
   - Name: Desktop
     Value: 450208
@@ -334,7 +334,7 @@ MonoBehaviour:
   Path: Assets/Audio/Audio-Projeto 1/Build/Desktop/Ambiente.bank
   Name: Ambiente
   StudioPath: bank:/Ambiente
-  lastModified: 638385872417517789
+  lastModified: 638385929964357131
   FileSizes:
   - Name: Desktop
     Value: 1913152
@@ -889,7 +889,7 @@ MonoBehaviour:
   - {fileID: 3556055539735483868}
   StringsBanks:
   - {fileID: 4321363442250388292}
-  cacheTime: 638385877628877101
+  cacheTime: 638385929964821690
   cacheVersion: 131607
 --- !u!114 &691751622510179257
 MonoBehaviour:
@@ -1344,7 +1344,7 @@ MonoBehaviour:
   Path: Assets/Audio/Audio-Projeto 1/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 638385877628827102
+  lastModified: 638385929964667668
   FileSizes:
   - Name: Desktop
     Value: 6669376
@@ -1502,7 +1502,7 @@ MonoBehaviour:
   Path: Assets/Audio/Audio-Projeto 1/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 638385877628877101
+  lastModified: 638385929964692845
   FileSizes:
   - Name: Desktop
     Value: 4068
@@ -1744,7 +1744,7 @@ MonoBehaviour:
   Path: Assets/Audio/Audio-Projeto 1/Build/Desktop/Walk.bank
   Name: Walk
   StudioPath: bank:/Walk
-  lastModified: 638385872406491392
+  lastModified: 638385929964821690
   FileSizes:
   - Name: Desktop
     Value: 1739168

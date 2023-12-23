@@ -127,8 +127,30 @@
                 },
                 {
                     "name": "",
+                    "id": "53b2ba48-81ba-473f-97d5-2ca11c265dc2",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "7686aef1-1e1e-4d41-a62d-b95c67d80320",
                     "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Look",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "79c25ee5-fc60-403f-a148-7f01b1eb57a4",
+                    "path": "<Gamepad>/rightStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -149,8 +171,30 @@
                 },
                 {
                     "name": "",
+                    "id": "d84163dc-4092-4663-976e-05ea28e1a254",
+                    "path": "<Gamepad>/leftStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "6a62561c-eac0-443d-802f-6c211af614c0",
                     "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "599547d3-4bb9-42a5-a484-40b9322c4a1d",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -171,6 +215,17 @@
                 },
                 {
                     "name": "",
+                    "id": "30602ba0-a2d7-44a3-83a5-74697e6bef29",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "21a3001a-c54a-46e8-8a69-73077b8936cd",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -182,8 +237,30 @@
                 },
                 {
                     "name": "",
+                    "id": "651e96ba-1049-48cf-8f55-2cd3bb5cdac8",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "cf35746d-fc8b-4d71-b9f4-3bcfb3c6fc05",
                     "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "630e2e92-b3cf-4e86-80a0-39882881c9b3",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

@@ -6,7 +6,7 @@ public class TaskButton : Interactable
 {
     [SerializeField] TaskTest taskTest;
 
-    public override void Interact()
+    public override void Interact(PlayerController playerController)
     {
         taskTest.ButtonPressed();
     }
