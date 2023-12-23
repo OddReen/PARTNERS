@@ -426,8 +426,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: Assets/Audio/Audio-Projeto 1/Audio-Projeto.fspro
-  sourceBankPath: Assets/Audio/Audio-Projeto 1/Build
+  sourceProjectPath: Fmod_Assets/Audio/Audio-Projeto 1/Audio-Projeto.fspro
+  sourceBankPath: Fmod_Assets/Audio/Audio-Projeto 1/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
