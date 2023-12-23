@@ -7,8 +7,9 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] bool gizmos;
 
-    public PlayerInput playerInput;
+    public PlayerInput _playerInput;
     public Rigidbody rb;
+    public Animator _animator;
 
     [Header("Movement States")]
     [SerializeField] public MovementState movementState;
@@ -75,19 +76,21 @@ public class PlayerController : MonoBehaviour
     RaycastHit hitInfo;
     GameObject hitInfoGameObject;
 
-    void Start()
+    private void Awake()
     {
+        _animator = GetComponentInChildren<Animator>();
         rb = GetComponent<Rigidbody>();
-        playerInput = GetComponent<PlayerInput>();
+        _playerInput = GetComponent<PlayerInput>();
     }
+
     private void OnEnable()
     {
-        playerInput.DoInteract += Interact;
+        _playerInput.DoInteract += Interact;
         //PlayerInput.Instance.StopInteract += Interact;
     }
     private void OnDisable()
     {
-        playerInput.DoInteract -= Interact;
+        _playerInput.DoInteract -= Interact;
         //PlayerInput.Instance.StopInteract -= Interact;
     }
     private void Update()
@@ -120,7 +123,7 @@ public class PlayerController : MonoBehaviour
         cameraForward.Normalize();
         cameraRight.Normalize();
 
-        Vector3 direction = cameraForward * playerInput.direction.z + cameraRight * playerInput.direction.x;
+        Vector3 direction = cameraForward * _playerInput.direction.z + cameraRight * _playerInput.direction.x;
 
         //Dot Product of Foward and Direction
         float dotProduct = Vector3.Dot(transform.forward, direction);
@@ -141,15 +144,15 @@ public class PlayerController : MonoBehaviour
     }
     private void MoveStates()
     {
-        if (playerInput.isCrouching || IsUnder())
+        if (_playerInput.isCrouching || IsUnder())
         {
             movementState = MovementState.Crouch;
         }
-        else if (playerInput.isRunning)
+        else if (_playerInput.isRunning)
         {
             movementState = MovementState.Run;
         }
-        else if (playerInput.direction != Vector3.zero)
+        else if (_playerInput.direction != Vector3.zero)
         {
             movementState = MovementState.Walk;
         }
@@ -162,12 +165,12 @@ public class PlayerController : MonoBehaviour
     //Camera
     private void CameraRotation()
     {
-        if (playerInput.look.sqrMagnitude >= _threshold)
+        if (_playerInput.look.sqrMagnitude >= _threshold)
         {
             float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
 
-            _cinemachineTargetPitch += -playerInput.look.y * cameraRotationSpeed * deltaTimeMultiplier;
-            _rotationVelocity = playerInput.look.x * cameraRotationSpeed * deltaTimeMultiplier;
+            _cinemachineTargetPitch += -_playerInput.look.y * cameraRotationSpeed * deltaTimeMultiplier;
+            _rotationVelocity = _playerInput.look.x * cameraRotationSpeed * deltaTimeMultiplier;
 
             _cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, BottomClamp, TopClamp);
             cameraTarget.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
@@ -185,8 +188,19 @@ public class PlayerController : MonoBehaviour
     //Jump
     public void Jump()
     {
-        if (IsGrounded() && playerInput.isJumping)
+
+        if (IsGrounded())
         {
+            _animator.SetBool("IsGrounded", true);
+        }
+        else
+        {
+            _animator.ResetTrigger("Jumped");
+            _animator.SetBool("IsGrounded", false);
+        }
+        if (IsGrounded() && _playerInput.isJumping)
+        {
+            _animator.SetTrigger("Jumped");
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce);
         }
@@ -202,7 +216,7 @@ public class PlayerController : MonoBehaviour
     public void Crouch()
     {
         IsUnder();
-        if (playerInput.isCrouching)
+        if (_playerInput.isCrouching)
         {
             //Crouch
             capsule.SetActive(false);
@@ -268,13 +282,13 @@ public class PlayerController : MonoBehaviour
     //Debug
     private void OnDrawGizmos()
     {
-        if (playerInput != null)
+        if (_playerInput != null)
         {
             Gizmos.color = Color.blue;
             Gizmos.DrawLine(transform.position, transform.position + transform.forward);
             Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(transform.position + (transform.rotation * playerInput.direction), .2f);
-            Gizmos.DrawLine(transform.position, transform.position + (transform.rotation * playerInput.direction));
+            Gizmos.DrawWireSphere(transform.position + (transform.rotation * _playerInput.direction), .2f);
+            Gizmos.DrawLine(transform.position, transform.position + (transform.rotation * _playerInput.direction));
         }
         if (gizmos)
         {

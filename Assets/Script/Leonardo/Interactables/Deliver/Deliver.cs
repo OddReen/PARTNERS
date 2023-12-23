@@ -23,7 +23,7 @@ public class Deliver : Interactable
     {
         _collider.enabled = false;
         _rb.isKinematic = true;
-        while (playerController.playerInput.isInteracting)
+        while (playerController._playerInput.isInteracting)
         {
             transform.position = playerController.grabPos.position;
             transform.LookAt(playerController.grabPos);
