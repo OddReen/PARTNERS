@@ -57,6 +57,7 @@ public class PlayerStrafe : MonoBehaviour
             //Idle Animation
             currentMoveIndex = Mathf.MoveTowards(currentMoveIndex, _playerController.targetMoveIndex, Time.deltaTime * changeMoveIndexSpeed);
         }
+        _animator.SetBool("IsMoving", currentMoveIndex > 0.1f || currentMoveIndex < -0.1f);
         _animator.SetFloat("Move", currentMoveIndex);
     }
     private void MoveStates()
