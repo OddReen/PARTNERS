@@ -4,45 +4,57 @@ using UnityEngine;
 
 public class CameraConsole : MonoBehaviour
 {
+    //Isto não precisa de ser uma static Instance so que depois iamos ter que meter uma referencia a cada botão e isso é chato
     public static CameraConsole Instance;
 
-    [SerializeField] Camera[] cctv;
+    [SerializeField] GameObject[] cameraArray;
 
-    Camera lastCamera;
+    GameObject activeCamera;
+
+    int currentCamIndex;
 
     private void Start()
     {
         Instance = this;
-        lastCamera = cctv[0];
-    }
-    public void ButtonPressed(string name)
-    {
-        switch (name)
+
+        activeCamera = cameraArray[0];
+
+        //Not necessary just a precaution you can delete if you want to
+        foreach (GameObject camera in cameraArray)
         {
-            case "Button1":
-                Debug.Log("Yeah");
-                CameraHandler(0);
-                break;
-            case "Button2":
-                CameraHandler(1);
-                break;
-            case "Button3":
-                CameraHandler(2);
-                break;
-            case "Button4":
-                CameraHandler(3);
-                break;
-            case "Button5":
-                CameraHandler(4);
-                break;
-            default:
-                break;
+            camera.SetActive(false);
+
         }
+        activeCamera.SetActive(true);
     }
-    void CameraHandler(int cameraIndex)
+    public void NextCam()
     {
-        lastCamera.gameObject.SetActive(false);
-        lastCamera = cctv[cameraIndex];
-        cctv[cameraIndex].gameObject.SetActive(true);
+        currentCamIndex++;
+        if (currentCamIndex >= cameraArray.Length)
+        {
+            currentCamIndex = 0;
+        }
+        //Yes i know that this means im assigning the same value two times to currentCamIndex but i need to assign it to the other client and this is the easiest way
+        ChangeCameraServerRpc(currentCamIndex);
+    }
+    public void PreviousCam()
+    {
+        currentCamIndex--;
+        if (currentCamIndex <= -1)
+        {
+            currentCamIndex = cameraArray.Length - 1;
+        }
+        ChangeCameraServerRpc(currentCamIndex);
+    }
+    public void ChangeCameraServerRpc(int cameraIndex)
+    {
+        ChangeCameraClientRpc(cameraIndex);
+    }
+    private void ChangeCameraClientRpc(int cameraIndex)
+    {
+        activeCamera.SetActive(false);
+        activeCamera = cameraArray[cameraIndex];
+        cameraArray[cameraIndex].SetActive(true);
+        currentCamIndex = cameraIndex;
     }
 }

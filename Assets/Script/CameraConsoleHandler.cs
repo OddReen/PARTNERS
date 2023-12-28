@@ -1,7 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using Unity.Netcode;
+using UnityEngine;
 
 public class CameraConsoleHandler : NetworkBehaviour
 {
@@ -30,7 +28,7 @@ public class CameraConsoleHandler : NetworkBehaviour
     public void NextCam()
     {
         currentCamIndex++;
-        if (currentCamIndex >=cameraArray.Length)
+        if (currentCamIndex >= cameraArray.Length)
         {
             currentCamIndex = 0;
         }
@@ -40,7 +38,7 @@ public class CameraConsoleHandler : NetworkBehaviour
     public void PreviousCam()
     {
         currentCamIndex--;
-        if (currentCamIndex<=-1)
+        if (currentCamIndex <= -1)
         {
             currentCamIndex = cameraArray.Length - 1;
         }
