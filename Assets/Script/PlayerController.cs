@@ -86,7 +86,6 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         _playerInput.DoInteract += Interact;
-        //PlayerInput.Instance.StopInteract += Interact;
     }
     private void OnDisable()
     {

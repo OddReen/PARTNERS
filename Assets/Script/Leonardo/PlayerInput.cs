@@ -19,7 +19,6 @@ public class PlayerInput : MonoBehaviour
 
     private void Awake()
     {
-        Cursor.lockState = CursorLockMode.Locked;
         inputController = new InputController();
         inputController.Gameplay.Enable();
     }
