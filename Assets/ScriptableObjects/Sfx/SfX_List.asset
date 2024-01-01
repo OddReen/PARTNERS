@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9013161aa9e71a4fbb553e89738f8c7, type: 3}
+  m_Name: SfX_List
+  m_EditorClassIdentifier: 
+  CameraButtonPress:
+    Guid:
+      Data1: -1311068337
+      Data2: 1122538691
+      Data3: -794097741
+      Data4: 1630044116
+    Path: event:/SFX_Sounds/Camera_Room/Keyboard
+  CameraChange:
+    Guid:
+      Data1: 1860056137
+      Data2: 1077292252
+      Data3: 1521986472
+      Data4: -561051134
+    Path: event:/SFX_Sounds/Camera_Room/Change_Camera
+  CPGasCorrect:
+    Guid:
+      Data1: -1311068337
+      Data2: 1122538691
+      Data3: -794097741
+      Data4: 1630044116
+    Path: event:/SFX_Sounds/Camera_Room/Keyboard
+  CPGasWrong:
+    Guid:
+      Data1: 281094912
+      Data2: 1210240715
+      Data3: 522143107
+      Data4: 1051825137
+    Path: event:/Tasks/Task_Fail
+  PowerLoss:
+    Guid:
+      Data1: -2019706715
+      Data2: 1213923196
+      Data3: -720851810
+      Data4: 1803448465
+    Path: event:/BlackOut/power-down-45784

@@ -9,7 +9,7 @@ public class DoorManager_Multiplayer : NetworkBehaviour
 
     [SerializeField] List<Door_Multiplayer> doorList;
 
-    [SerializeField] Door_Multiplayer MelodyDoor;
+    [SerializeField] Door_Multiplayer melodyDoor;
    
     private void Awake()
     {
@@ -33,4 +33,11 @@ public class DoorManager_Multiplayer : NetworkBehaviour
     {
         doorList[doorIndex].ChangeLockStatus_ServerRpc(locked);
     }
+    [ServerRpc(RequireOwnership = false)]
+    public void LockMelodyDoor_ServerRpc( bool locked)
+    {
+        melodyDoor.ChangeLockStatus_ServerRpc(locked);
+    }
+    //0- Camera Room
+    //1- Melody Door
 }

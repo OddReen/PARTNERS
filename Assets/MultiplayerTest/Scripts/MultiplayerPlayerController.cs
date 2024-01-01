@@ -200,7 +200,7 @@ public class MultiplayerPlayerController : NetworkBehaviour
     public bool IsGrounded()
     {
         //If seen tell nardo 2 that for some fucking reason the spherecast wasnt working so switched to raycast
-        isGrounded = Physics.Raycast(transform.position, -transform.up,isGroundedVerifier_Height, layerMask);
+        isGrounded = Physics.Raycast(transform.position, -transform.up, isGroundedVerifier_Height, layerMask);
         return isGrounded;
     }
 
@@ -235,19 +235,18 @@ public class MultiplayerPlayerController : NetworkBehaviour
     #region Interaction
     private void PlayerInput_InteractAction(object sender, System.EventArgs e)
     {
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hitInfo, interactDistance, layerMask))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit hitInfo, interactDistance, layerMask))
         {
             if (hitInfo.collider.CompareTag("Interactable"))
             {
-                //Estava a dar compile error
-                //hitInfo.collider.GetComponent<Interactable>().Interact();
+                hitInfo.collider.GetComponent<Interactable>().Interact(null);
             }
         }
     }
     public void InteractHint()
     {
         bool hasInteractHint;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out RaycastHit hitInfo, interactDistance, layerMask))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out RaycastHit hitInfo, interactDistance, layerMask))
         {
             if (hitInfo.collider.CompareTag("Interactable"))
             {

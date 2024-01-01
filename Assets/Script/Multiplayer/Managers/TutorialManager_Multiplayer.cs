@@ -5,35 +5,33 @@ using Unity.Netcode;
 
 public class TutorialManager_Multiplayer : NetworkBehaviour
 {
-    //public static TutorialManager_Multiplayer Instance;
+    public static TutorialManager_Multiplayer Instance;
 
-    //[SerializeField] List<TutorialTask_Multiplayer> tutorialList = new();
+    [SerializeField] List<Tutorial_Multiplayer> tutorialList = new();
+    int currentTutorial = -1;
 
-    //List<TutorialTaskStatus_Multiplayer> activeTaskStatus = new();
-    //int currentTutorial;
+    private void Awake()
+    {
+        Instance = this;
+    }
+    public override void OnNetworkSpawn()
+    {
+        if (IsServer)
+        {
+            NextTutorial_ServerRpc();
+            //Put network start here if needed
+        }
+    }
 
-    //private void Awake()
-    //{
-    //    Instance = this;
-    //}
-    //public override void OnNetworkSpawn()
-    //{
-    //    if (IsServer)
-    //    {
-    //        tutorialList[currentTutorial].ActivateTask();
-    //        //Put network start here if needed
-    //    }
-    //}
-    //private void Start()
-    //{
-    //    //Need to be in start because of execution order
-    //    DoorManager_Multiplayer.Instance.ChangeAllDoorLocks_ServerRpc(true);
-    //}
-
-    //[ServerRpc(RequireOwnership = false)]
-    //public void NextTutorial_ServerRpc()
-    //{
-    //    currentTutorial++;
-    //    tutorialList[currentTutorial].ActivateTutorial();
-    //}
+    [ServerRpc(RequireOwnership = false)]
+    public void NextTutorial_ServerRpc()
+    {
+        NextTutorial_ClientRpc();
+    }
+    [ClientRpc]
+    private void NextTutorial_ClientRpc()
+    {
+        currentTutorial++;
+        tutorialList[currentTutorial].ActivateTutorial();
+    }
 }

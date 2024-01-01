@@ -14,6 +14,7 @@ public class Door_Multiplayer : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void InteractDoor_ServerRpc()
     {
+        Debug.Log(isLocked);
         if (isLocked)
         {
             return;
@@ -36,6 +37,11 @@ public class Door_Multiplayer : NetworkBehaviour
     }
     [ServerRpc]
     public void ChangeLockStatus_ServerRpc(bool isLocked)
+    {
+        ChangeLockStatus_ClientRpc(isLocked);
+    }
+    [ClientRpc]
+    private void ChangeLockStatus_ClientRpc(bool isLocked)
     {
         this.isLocked = isLocked;
     }

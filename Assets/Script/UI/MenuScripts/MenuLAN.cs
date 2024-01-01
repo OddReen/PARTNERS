@@ -13,12 +13,12 @@ public class MenuLAN : Menu
     [SerializeField] Button createHost_BT;
     [Header("Client Join Info")]
     [SerializeField] Button createClient_BT;
-    [SerializeField] Button setLanData_BT;
     [SerializeField] TMP_InputField ipv4Input;
-    [SerializeField] TextMeshProUGUI ipv4DisplayText;
     [Header("ConnectingUI")]
     [SerializeField] ConnectingUI connectingUI;
     [SerializeField] ConnectionFailedUI connectionFailedUI;
+    [Header("Hover Text")]
+    [SerializeField] TextMeshProUGUI hoverText;
     protected override void VirtualStart()
     {
         base.VirtualStart();
@@ -35,12 +35,8 @@ public class MenuLAN : Menu
         });
         createClient_BT.onClick.AddListener(() =>
         {
-            MultiplayerManager.Instance.StartClient();
-        });
-        setLanData_BT.onClick.AddListener(() =>
-        {
             NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = ipv4Input.text;
-            ipv4DisplayText.text = "Current Ipv4 set to:" + ipv4Input.text;
+            MultiplayerManager.Instance.StartClient();
         });
         quitToMenu_BT.onClick.AddListener(() =>
         {
@@ -61,5 +57,13 @@ public class MenuLAN : Menu
     {
         Debug.Log("Joining...");
         connectingUI.Show();
+    }
+    public void ShowHelpText(string hoverString)
+    {
+        hoverText.text = hoverString;
+    }
+    public void HideHelpText()
+    {
+        hoverText.text = "";
     }
 }

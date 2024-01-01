@@ -45,7 +45,6 @@ public class HostDisconectedUI : MonoBehaviour
         //Isto é so necessario para corrigir um erro do editor na build o NetworkManager é sempre destroido depois desta verificação
         if (NetworkManager.Singleton != null)
         {   
-            Debug.Log("DestroyedHere");
             NetworkManager.Singleton.OnClientDisconnectCallback -= NetworkManager_OnClientDisconnectCallback;
         }
 

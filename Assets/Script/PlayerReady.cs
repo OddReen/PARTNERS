@@ -16,6 +16,7 @@ public class PlayerReady : NetworkBehaviour
 
     [Header("Debug")]
     [SerializeField] bool debugAllowHostStart;
+    [SerializeField] Loader.Scene scene;
 
     public override void OnNetworkSpawn()
     {
@@ -79,7 +80,7 @@ public class PlayerReady : NetworkBehaviour
         if (allClientsReady)
         {
             LockClientsCursor_ClientRpc();
-            Loader.LoadNetwork(Loader.Scene.MultiplayerTest);
+            Loader.LoadNetwork(scene);
         }
     }
     [ClientRpc]

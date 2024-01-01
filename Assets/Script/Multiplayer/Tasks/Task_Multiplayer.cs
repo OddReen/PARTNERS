@@ -25,17 +25,16 @@ public class Task_Multiplayer : MonoBehaviour
 
     protected virtual void CompleteTask()
     {
-        TaskManager_Multiplayer.Instance.TaskCompletedServerRpc(activeTasksList[0].TaskIndex);
-        ClearTaskFromList();
+        TaskManager_Multiplayer.Instance.TaskCompleted_ServerRpc(activeTasksList[0].TaskIndex);
         Debug.Log("Task Completed");
     }
     public virtual void FailTask()
     {
         TaskManager_Multiplayer.Instance.TaskFailed_ServerRpc(activeTasksList[0].TaskIndex);
-        ClearTaskFromList();
         Debug.Log("Task Failed");
     }
-    protected virtual void ClearTaskFromList()
+    //Called trough ClientRpc so its deleted in both players
+    public void ClearTaskFromList()
     {
         activeTasksList.RemoveAt(0);
         if (ActiveTaskCount == 0)

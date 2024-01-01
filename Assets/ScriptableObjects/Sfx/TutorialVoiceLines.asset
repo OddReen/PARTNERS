@@ -1,0 +1,84 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cbcc94dbab5eaa4c92490426be1668c, type: 3}
+  m_Name: TutorialVoiceLines
+  m_EditorClassIdentifier: 
+  SmithIntroduction_Tutorial:
+    Guid:
+      Data1: -1266440274
+      Data2: 1272318100
+      Data3: -119847508
+      Data4: -2029032473
+    Path: event:/Voice_Lines/I am smith(1)
+  TaskPanel_Tutorial:
+    Guid:
+      Data1: -681165389
+      Data2: 1165741802
+      Data3: 1057144501
+      Data4: -433079210
+    Path: event:/Voice_Lines/Task_must_do(2)
+  EnergyPanel_Tutorial:
+    Guid:
+      Data1: 1521452864
+      Data2: 1185205538
+      Data3: -1791425641
+      Data4: -209513721
+    Path: event:/Voice_Lines/Power_Dropping(3)
+  MelodyIntroduction_Tutorial:
+    Guid:
+      Data1: -1627446155
+      Data2: 1274161807
+      Data3: 1530937494
+      Data4: 777220348
+    Path: event:/Voice_Lines/Melodie(4)
+  Melody_Tutorial:
+    Guid:
+      Data1: 1645858408
+      Data2: 1121528831
+      Data3: -1359163978
+      Data4: -1441942939
+    Path: event:/Voice_Lines/Pull_Melodie(5)
+  BackToCameras_Tutorial:
+    Guid:
+      Data1: 22259230
+      Data2: 1174454013
+      Data3: 1629772187
+      Data4: 1832018630
+    Path: event:/Voice_Lines/Go_back_camera(6)
+  BackLater_Tutorial:
+    Guid:
+      Data1: -2128723984
+      Data2: 1280742478
+      Data3: -1690847060
+      Data4: 184918006
+    Path: event:/Voice_Lines/Go_back_later(7)
+  BlackOut_Tutorial:
+    Guid:
+      Data1: 2098119214
+      Data2: 1095897115
+      Data3: 1772057022
+      Data4: -507020270
+    Path: event:/Voice_Lines/Security(8)
+  DayCompleted1_Tutorial:
+    Guid:
+      Data1: 615999698
+      Data2: 1281467048
+      Data3: -146664293
+      Data4: -636256142
+    Path: event:/Voice_Lines/Finish_day-1(9)
+  DayCompleted2_Tutorial:
+    Guid:
+      Data1: -285985158
+      Data2: 1230539912
+      Data3: 1404361125
+      Data4: 1733329306
+    Path: event:/Voice_Lines/Finish_day-2(10)
