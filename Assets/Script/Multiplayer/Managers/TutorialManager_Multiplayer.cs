@@ -10,16 +10,25 @@ public class TutorialManager_Multiplayer : NetworkBehaviour
     [SerializeField] List<Tutorial_Multiplayer> tutorialList = new();
     int currentTutorial = -1;
 
+    [Header("Debug")]
+    [SerializeField] int startInTutorial = 0;
     private void Awake()
     {
         Instance = this;
     }
     public override void OnNetworkSpawn()
     {
-        if (IsServer)
+        if (IsServer  )
         {
-            NextTutorial_ServerRpc();
-            //Put network start here if needed
+            if (startInTutorial == 0)
+            {
+                NextTutorial_ServerRpc();
+            }
+            else
+            {
+                currentTutorial = startInTutorial;
+                StartInTutorialDebug_ClientRpc();
+            }
         }
     }
 
@@ -33,5 +42,10 @@ public class TutorialManager_Multiplayer : NetworkBehaviour
     {
         currentTutorial++;
         tutorialList[currentTutorial].ActivateTutorial();
+    }
+    [ClientRpc]
+    private void StartInTutorialDebug_ClientRpc()
+    {
+        tutorialList[startInTutorial].ActivateTutorial();
     }
 }

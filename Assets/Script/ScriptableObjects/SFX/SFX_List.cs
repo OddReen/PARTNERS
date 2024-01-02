@@ -11,4 +11,5 @@ public class SFX_List : ScriptableObject
     public EventReference CPGasCorrect;
     public EventReference CPGasWrong;
     public EventReference PowerLoss;
+    public EventReference PickupPaper;
 }

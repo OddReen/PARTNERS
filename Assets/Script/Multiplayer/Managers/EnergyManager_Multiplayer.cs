@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.UI;
@@ -37,7 +38,21 @@ public class EnergyManager_Multiplayer : NetworkBehaviour
                 StartCoroutine(DecreaseEnergy());
             }
         }
+        BlackoutManager_Multiplayer.Instance.StartBlackout += BlackoutManager_StartBlackout;
+        BlackoutManager_Multiplayer.Instance.EndBlackout += BlackoutManager_EndBlackout;
     }
+
+    private void BlackoutManager_EndBlackout(object sender, EventArgs e)
+    {
+        EndBlackOut_ServerRpc();
+    }
+
+    private void BlackoutManager_StartBlackout(object sender, EventArgs e)
+    {
+        StartBlackout_ServerRpc();
+    }
+
+
     private void Awake()
     {
         energyLevelWarning.gameObject.SetActive(false);
@@ -74,7 +89,7 @@ public class EnergyManager_Multiplayer : NetworkBehaviour
             energyDown.SetActive(false);
             return;
         }
-        if (Energy < 20)
+        if (Energy < 30)
         {
             energyLevelWarning.gameObject.SetActive(true);
             energyLevelWarning.sprite = energyLevelCritical;
@@ -92,6 +107,10 @@ public class EnergyManager_Multiplayer : NetworkBehaviour
     {
         Energy = Mathf.Clamp(Energy + amount, 0, MaxEnergy);
         UpdateEnergyBar_ClientRpc();
+        if (Energy==0 && !BlackoutManager_Multiplayer.Instance.inBlackout)
+        {
+          BlackoutManager_Multiplayer.Instance.StartBlackout_ServerRpc();
+        }
     }
     [ServerRpc(RequireOwnership =false)]
     public void StartBlackout_ServerRpc()
@@ -107,6 +126,8 @@ public class EnergyManager_Multiplayer : NetworkBehaviour
     }
     public override void OnNetworkDespawn()
     {
+        BlackoutManager_Multiplayer.Instance.StartBlackout -= BlackoutManager_StartBlackout;
+        BlackoutManager_Multiplayer.Instance.EndBlackout -= BlackoutManager_EndBlackout;
         StopAllCoroutines();
     }
 }

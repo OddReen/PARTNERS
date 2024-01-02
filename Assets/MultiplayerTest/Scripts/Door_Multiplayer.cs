@@ -21,6 +21,17 @@ public class Door_Multiplayer : NetworkBehaviour
         }
         InteractDoor_ClientRpc();
     }
+    [ServerRpc(RequireOwnership =false)]
+    public void CloseDoor_ServerRpc()
+    {
+        CloseDoor_ClientRpc();
+    }
+    [ClientRpc]
+    private void CloseDoor_ClientRpc()
+    {
+        isOpened = false;
+        door.SetActive(true);
+    }
     [ClientRpc]
     private void InteractDoor_ClientRpc()
     {

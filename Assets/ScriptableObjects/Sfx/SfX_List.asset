@@ -47,3 +47,10 @@ MonoBehaviour:
       Data3: -720851810
       Data4: 1803448465
     Path: event:/BlackOut/power-down-45784
+  PickupPaper:
+    Guid:
+      Data1: -1879433541
+      Data2: 1296433435
+      Data3: 1122571701
+      Data4: -637643394
+    Path: event:/Players/Pick-up/Paper

@@ -9,7 +9,7 @@ public class CameraPreviousTaskButton : Interactable
 
     public override void Interact(PlayerController playerController)
     {
-        CameraConsoleHandler.Instance.PreviousCam();
+        CameraConsoleHandler_Multiplayer.Instance.PreviousCam();
         consoleTask.CameraButtonPressed();
     }
 }

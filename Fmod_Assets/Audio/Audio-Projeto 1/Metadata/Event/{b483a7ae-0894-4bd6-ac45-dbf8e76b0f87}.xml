@@ -5,7 +5,7 @@
 			<value>I am smith(1)</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{98537418-937a-4161-9fd3-6bc0eedffad5}</destination>
@@ -116,7 +116,6 @@
 	<object class="MixerBusEffectChain" id="{a839ef8f-bbf5-4cac-b7a3-8c1ba7642ba5}">
 		<relationship name="effects">
 			<destination>{8f1ea057-9e11-4c91-861f-97be436a84a1}</destination>
-			<destination>{f26b434f-153d-42df-a744-0cadc60d9e8b}</destination>
 			<destination>{78b7ab29-52b9-4062-87a5-986f839e64ef}</destination>
 		</relationship>
 	</object>
@@ -130,13 +129,12 @@
 	</object>
 	<object class="MixerBusPanner" id="{c2635286-ec6e-4764-8139-0af17eefd3d6}" />
 	<object class="MixerBusFader" id="{8f1ea057-9e11-4c91-861f-97be436a84a1}" />
-	<object class="SpatialiserEffect" id="{f26b434f-153d-42df-a744-0cadc60d9e8b}" />
 	<object class="MixerSend" id="{78b7ab29-52b9-4062-87a5-986f839e64ef}">
 		<property name="level">
 			<value>0</value>
 		</property>
 		<property name="inputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="mixerReturn">
 			<destination>{cfcc21ff-1de1-47c8-a352-999f92285aac}</destination>

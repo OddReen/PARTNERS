@@ -34,8 +34,25 @@ public class TaskManager_Multiplayer : NetworkBehaviour
         if (IsServer)
         {
             StartCoroutine(TaskCreator());
+            BlackoutManager_Multiplayer.Instance.StartBlackout += BlackoutManager_StartBlackout;
+            BlackoutManager_Multiplayer.Instance.EndBlackout += BlackoutManager_EndBlackout; ;
         }
     }
+
+    private void BlackoutManager_EndBlackout(object sender, System.EventArgs e)
+    {
+        StartCreatingTasks_ServerRpc();
+    }
+
+    private void BlackoutManager_StartBlackout(object sender, System.EventArgs e)
+    {
+        StopAllCoroutines();
+        for (int i = 0; i < activeTasksStatusList.Count; i++)
+        {
+            TaskFailed_ServerRpc(i);
+        }
+    }
+
     [ServerRpc(RequireOwnership =false)]
     public void StartCreatingTasks_ServerRpc()
     {
@@ -89,7 +106,7 @@ public class TaskManager_Multiplayer : NetworkBehaviour
     public void TaskFailed_ServerRpc(int taskIndex)
     {
         DeleteTask_ClientRpc(taskIndex,false);
-        //Energy bar diminuir ou modo de night time
+        EnergyManager_Multiplayer.Instance.ChangeEnergy_ServerRpc(-20f);
     }
     [ClientRpc]
     private void DeleteTask_ClientRpc(int taskIndex,bool wasTaskCompleted)

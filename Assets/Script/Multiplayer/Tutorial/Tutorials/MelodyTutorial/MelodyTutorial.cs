@@ -26,8 +26,8 @@ public class MelodyTutorial : Tutorial_Multiplayer
         DoorManager_Multiplayer.Instance.ChangeAllDoorLocks_ServerRpc(false);
         SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(sFX_List.EnergyPanel_Tutorial.Path);
         EnergyManager_Multiplayer.Instance.ChangeEnergy_ServerRpc(-80);
-        panelOutline.StartOutlineTimer_ServerRpc(10f);
-        Invoke(nameof(MelodyTask), 5f);
+        panelOutline.StartOutlineTimer_ServerRpc(6f);
+        Invoke(nameof(MelodyTask), 6f);
     }
     private void MelodyTask()
     {

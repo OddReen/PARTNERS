@@ -19,13 +19,20 @@ public class CPGas_Multiplayer : NetworkBehaviour
 
     [SerializeField] SFX_List sFX_List;
 
-    int[] colorIndexArray;
+    int[] colorIndexArray = new int[10];
 
     bool isBroken = false;
     private void Start()
     {
         Instance = this;
+        BlackoutManager_Multiplayer.Instance.StartBlackout += BlackoutManager_StartBlackout;
     }
+
+    private void BlackoutManager_StartBlackout(object sender, System.EventArgs e)
+    {
+        Break();
+    }
+
     public override void OnNetworkSpawn()
     {
         if (IsServer)
@@ -85,7 +92,7 @@ public class CPGas_Multiplayer : NetworkBehaviour
     IEnumerator ShowPattern(int[] colorIndexArray)
     {
         isShowingPattern = true;
-        for (int i = 0; i < colorIndexArray.Length; i++)
+        for (int i = 0; i < patternQuantity; i++)
         {
             colors[colorIndexArray[i]].SetActive(true);
             yield return new WaitForSeconds(timeColorOnScreen);
@@ -103,6 +110,7 @@ public class CPGas_Multiplayer : NetworkBehaviour
     void Fix()
     {
         isBroken = false;
+        BlackoutManager_Multiplayer.Instance.EndBlackOut_ServerRpc();
     }
     void Correct()
     {

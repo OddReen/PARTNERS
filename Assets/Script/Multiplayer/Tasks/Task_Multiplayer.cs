@@ -5,6 +5,7 @@ using Unity.Netcode;
 
 public class Task_Multiplayer : MonoBehaviour
 {
+    //Make tasks inherit from NetworkBehaviour its probably for the best but no time gota go fast
     public bool IsRepeatable;
     public string TaskDescription { get { return taskDesctiption; } private set { taskDesctiption = value; } }
     [SerializeField] string taskDesctiption = "Kill God";
@@ -25,6 +26,11 @@ public class Task_Multiplayer : MonoBehaviour
 
     protected virtual void CompleteTask()
     {
+        //Delivery Objects dont despawn
+        if (isTaskActive==false)
+        {
+            return;
+        }
         TaskManager_Multiplayer.Instance.TaskCompleted_ServerRpc(activeTasksList[0].TaskIndex);
         Debug.Log("Task Completed");
     }

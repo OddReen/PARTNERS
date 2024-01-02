@@ -43,7 +43,7 @@ public class Melody_Multiplayer : NetworkBehaviour
         if (IsServer)
         {
             energyCharge.Value = maxEnergyCharge;
-            StartCoroutine(EnergyLoss());
+            //StartCoroutine(EnergyLoss());
         }
     }
     void Start()
@@ -55,7 +55,7 @@ public class Melody_Multiplayer : NetworkBehaviour
     void Update()
     {
         //clearSong.set3DAttributes(RuntimeUtils.To3DAttributes(gameObject));
-        ColorUpdateClientRpc();
+        //ColorUpdateClientRpc();
         //StateUpdate();
 
     }

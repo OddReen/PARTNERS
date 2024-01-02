@@ -11,7 +11,7 @@ public class CameraTaskButton : Interactable
 
     public override void Interact(PlayerController playerController)
     {
-        CameraConsoleHandler.Instance.ChangeCameraServerRpc(cameraIndex);
+        CameraConsoleHandler_Multiplayer.Instance.ChangeCameraServerRpc(cameraIndex);
         consoleTask.CameraButtonPressed();
     }
 }

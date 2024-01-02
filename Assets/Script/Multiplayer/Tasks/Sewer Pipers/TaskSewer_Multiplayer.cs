@@ -6,8 +6,8 @@ public class TaskSewer_Multiplayer : Task_Multiplayer
 {
     public static TaskSewer_Multiplayer Instance;
 
-    [SerializeField] GameObject pipe1, pipe2, pipe3;
-    bool isFilled1 = false, isFilled2 = false, isFilled3 = false;
+    [SerializeField] Animator pipe1, pipe2, pipe3,pipe4;
+    bool isFilled1 = false, isFilled2 = false, isFilled3 = false, isFilled4;
 
     private void Start()
     {
@@ -36,12 +36,15 @@ public class TaskSewer_Multiplayer : Task_Multiplayer
                 break;
             case "Button2":
                 isFilled2 ^= true;
-                isFilled3 ^= true;
+                isFilled4 ^= true;
                 break;
             case "Button3":
-                isFilled3 ^= true;
+                isFilled1 ^= true;
                 break;
-            default:
+            case "Button4":
+                isFilled1 ^= true;
+                isFilled2 ^= true;
+                isFilled3 ^= true;
                 break;
         }
         FillPipe();
@@ -50,28 +53,40 @@ public class TaskSewer_Multiplayer : Task_Multiplayer
     //This doesnt work multiplayer do later
     public void FillPipe()
     {
-        //pipe1.SetActive(isFilled1);
-        //pipe2.SetActive(isFilled2);
-        //pipe3.SetActive(isFilled3);
-        //Ask leo later
         if (isFilled1)
-            pipe1.transform.localScale = Vector3.one;
+            pipe1.SetTrigger("Fill");
         else
-            pipe1.transform.localScale = new Vector3(1, .1f, 1);
+            pipe1.SetTrigger("Empty");
 
         if (isFilled2)
-            pipe2.transform.localScale = Vector3.one;
+            pipe2.SetTrigger("Fill");
         else
-            pipe2.transform.localScale = new Vector3(1, .1f, 1);
+            pipe2.SetTrigger("Empty");
 
         if (isFilled3)
-            pipe3.transform.localScale = Vector3.one;
+            pipe3.SetTrigger("Fill");
         else
-            pipe3.transform.localScale = new Vector3(1, .1f, 1);
+            pipe3.SetTrigger("Empty");
+
+        if (isFilled4)
+            pipe4.SetTrigger("Fill");
+        else
+            pipe4.SetTrigger("Empty");
+
+        StartCoroutine(ResetTrigger(pipe1));
+        StartCoroutine(ResetTrigger(pipe2));
+        StartCoroutine(ResetTrigger(pipe3));
+        StartCoroutine(ResetTrigger(pipe4));
+    }
+    IEnumerator ResetTrigger(Animator _animator)
+    {
+        yield return new WaitForEndOfFrame();
+        _animator.ResetTrigger("Fill");
+        _animator.ResetTrigger("Empty");
     }
     public void Fix()
     {
-        if (isFilled1 && isFilled2 && isFilled3)
+        if (isFilled1 && isFilled2 && isFilled3 && isFilled4)
         {
             CompleteTask();
         }

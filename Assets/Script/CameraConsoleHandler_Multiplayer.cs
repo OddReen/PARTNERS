@@ -1,16 +1,19 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class CameraConsoleHandler : NetworkBehaviour
+public class CameraConsoleHandler_Multiplayer : NetworkBehaviour
 {
     //Isto não precisa de ser uma static Instance so que depois iamos ter que meter uma referencia a cada botão e isso é chato
-    public static CameraConsoleHandler Instance;
+    public static CameraConsoleHandler_Multiplayer Instance;
 
     [SerializeField] GameObject[] cameraArray;
 
     GameObject activeCamera;
 
     int currentCamIndex;
+
+    [SerializeField] SFX_List sFX_List;
+    [SerializeField] Transform cameraRoom;
     private void Start()
     {
         Instance = this;
@@ -47,6 +50,7 @@ public class CameraConsoleHandler : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void ChangeCameraServerRpc(int cameraIndex)
     {
+        SFX_Manager_Multiplayer.Instance.PlaySoundLocal_ServerRpc(sFX_List.CameraChange.Path, cameraRoom.position);
         ChangeCameraClientRpc(cameraIndex);
     }
     [ClientRpc]

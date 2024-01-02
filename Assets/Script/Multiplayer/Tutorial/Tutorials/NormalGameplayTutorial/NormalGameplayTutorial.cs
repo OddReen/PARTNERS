@@ -14,7 +14,7 @@ public class NormalGameplayTutorial : Tutorial_Multiplayer
 
     protected override void CompleteTutorial()
     {
-        //TaskManager_Multiplayer.Instance.StartCreatingTasks_ServerRpc();
+        TaskManager_Multiplayer.Instance.StartCreatingTasks_ServerRpc();
         EnergyManager_Multiplayer.Instance.StartEnergyDeacrease_ServerRpc();
         DoorManager_Multiplayer.Instance.LockMelodyDoor_ServerRpc(true);
         base.CompleteTutorial();

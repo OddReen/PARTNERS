@@ -37,7 +37,6 @@ public class DoorManager_Multiplayer : NetworkBehaviour
     public void LockMelodyDoor_ServerRpc( bool locked)
     {
         melodyDoor.ChangeLockStatus_ServerRpc(locked);
+        melodyDoor.CloseDoor_ServerRpc();
     }
-    //0- Camera Room
-    //1- Melody Door
 }
