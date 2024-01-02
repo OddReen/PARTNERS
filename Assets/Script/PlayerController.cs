@@ -187,19 +187,18 @@ public class PlayerController : MonoBehaviour
     //Jump
     public void Jump()
     {
-
-        if (IsGrounded())
-        {
-            _animator.SetBool("IsGrounded", true);
-        }
-        else
-        {
-            _animator.ResetTrigger("Jumped");
-            _animator.SetBool("IsGrounded", false);
-        }
+        //if (IsGrounded())
+        //{
+        //    _animator.SetBool("IsGrounded", true);
+        //}
+        //else
+        //{
+        //    _animator.ResetTrigger("Jumped");
+        //    _animator.SetBool("IsGrounded", false);
+        //}
         if (IsGrounded() && _playerInput.isJumping)
         {
-            _animator.SetTrigger("Jumped");
+            //_animator.SetTrigger("Jumped");
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForce);
         }
