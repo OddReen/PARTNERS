@@ -5,7 +5,7 @@
 			<value>Power_Dropping(3)</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{98537418-937a-4161-9fd3-6bc0eedffad5}</destination>
@@ -116,7 +116,6 @@
 	<object class="MixerBusEffectChain" id="{f91f2ae4-3d2e-4ded-8e83-c8056c91a461}">
 		<relationship name="effects">
 			<destination>{5ec8f38b-9033-4f57-a562-fa044d409737}</destination>
-			<destination>{609d40a1-1c61-4996-8832-4930e420a26b}</destination>
 			<destination>{6068fef9-053b-4915-b475-5edc2c2ef590}</destination>
 		</relationship>
 	</object>
@@ -129,13 +128,12 @@
 	</object>
 	<object class="MixerBusPanner" id="{a514e4ba-a0c6-4bcc-ad6c-c90df237916a}" />
 	<object class="MixerBusFader" id="{5ec8f38b-9033-4f57-a562-fa044d409737}" />
-	<object class="SpatialiserEffect" id="{609d40a1-1c61-4996-8832-4930e420a26b}" />
 	<object class="MixerSend" id="{6068fef9-053b-4915-b475-5edc2c2ef590}">
 		<property name="level">
 			<value>0</value>
 		</property>
 		<property name="inputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="mixerReturn">
 			<destination>{cfcc21ff-1de1-47c8-a352-999f92285aac}</destination>

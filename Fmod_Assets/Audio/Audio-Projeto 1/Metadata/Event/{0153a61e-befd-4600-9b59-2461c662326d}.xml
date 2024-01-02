@@ -5,7 +5,7 @@
 			<value>Go_back_camera(6)</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{98537418-937a-4161-9fd3-6bc0eedffad5}</destination>
@@ -116,7 +116,6 @@
 	<object class="MixerBusEffectChain" id="{70cda2f9-018b-4610-a9bb-70371835e2ef}">
 		<relationship name="effects">
 			<destination>{a981db7b-d2e2-4bd5-97ab-87cbdbb86acf}</destination>
-			<destination>{6dbad734-5095-482b-8948-99f52cea0476}</destination>
 			<destination>{740f8c45-5483-4e81-bf35-427282a32968}</destination>
 		</relationship>
 	</object>
@@ -129,13 +128,12 @@
 	</object>
 	<object class="MixerBusPanner" id="{2e5966d4-73b2-4f0d-9298-080036651a53}" />
 	<object class="MixerBusFader" id="{a981db7b-d2e2-4bd5-97ab-87cbdbb86acf}" />
-	<object class="SpatialiserEffect" id="{6dbad734-5095-482b-8948-99f52cea0476}" />
 	<object class="MixerSend" id="{740f8c45-5483-4e81-bf35-427282a32968}">
 		<property name="level">
 			<value>0</value>
 		</property>
 		<property name="inputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="mixerReturn">
 			<destination>{cfcc21ff-1de1-47c8-a352-999f92285aac}</destination>

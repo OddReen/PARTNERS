@@ -5,7 +5,7 @@
 			<value>Pull_Melodie(5)</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{98537418-937a-4161-9fd3-6bc0eedffad5}</destination>
@@ -113,7 +113,6 @@
 	<object class="MixerBusEffectChain" id="{1b0ff9f0-7aab-4fc7-8f1f-995fa43d2be5}">
 		<relationship name="effects">
 			<destination>{6ad9537d-6917-4249-af42-871f6b5e8556}</destination>
-			<destination>{673c4e0f-84f4-4596-9457-cf880c831424}</destination>
 			<destination>{768d6ddd-f799-478f-ada8-b8c60454fed6}</destination>
 		</relationship>
 	</object>
@@ -126,13 +125,12 @@
 	</object>
 	<object class="MixerBusPanner" id="{dfab34f9-396a-4985-886a-4f8433ac5785}" />
 	<object class="MixerBusFader" id="{6ad9537d-6917-4249-af42-871f6b5e8556}" />
-	<object class="SpatialiserEffect" id="{673c4e0f-84f4-4596-9457-cf880c831424}" />
 	<object class="MixerSend" id="{768d6ddd-f799-478f-ada8-b8c60454fed6}">
 		<property name="level">
 			<value>0</value>
 		</property>
 		<property name="inputFormat">
-			<value>2</value>
+			<value>1</value>
 		</property>
 		<relationship name="mixerReturn">
 			<destination>{cfcc21ff-1de1-47c8-a352-999f92285aac}</destination>
