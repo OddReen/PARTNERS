@@ -1,0 +1,321 @@
+fileFormatVersion: 2
+guid: 8ae98a6a144da5146bc9e5f93564bf15
+ModelImporter:
+  serializedVersion: 21300
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Black
+    second: {fileID: 2100000, guid: 1a476cf611f6786418fcee5795c390b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Caution Stripes
+    second: {fileID: 2100000, guid: 5f92041bd3a8c434092bca8bcda4335f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Clay PR
+    second: {fileID: 2100000, guid: 90e83ad6f6022d94aa89fabd866ff25f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrete
+    second: {fileID: 2100000, guid: 936ce4ae95cbf944aa64c8c3903ca278, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Damaged Paint Bl
+    second: {fileID: 2100000, guid: 945b545489da66c46a6c773f022d73d9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Damaged Paint Dark Green
+    second: {fileID: 2100000, guid: 6ad77fde376eead4aa161d86a75e4cfb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Damaged Paint Drk Blue
+    second: {fileID: 2100000, guid: 45be07ffabdbb6041880fc90d5682802, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Damaged Paint Green
+    second: {fileID: 2100000, guid: 4994b784b2f62374f801d655f416795a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Damaged Paint Orange
+    second: {fileID: 2100000, guid: 08043af49370e9e46837137b4e21130c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Damaged Paint Pk
+    second: {fileID: 2100000, guid: 13154ea91c2a46149947ee51711f61bd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Damaged Paint Purple
+    second: {fileID: 2100000, guid: a9e7aa27241308d4e8673bf387692f85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Damaged Paint Red
+    second: {fileID: 2100000, guid: a28024bf5b5033a42a2c96796ae68f21, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Damaged Paint Turquoise
+    second: {fileID: 2100000, guid: e2609a113a07f0a40880fc82c23c353c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Damaged Paint Violet
+    second: {fileID: 2100000, guid: a2a3cc4c3e3304644b0dfcede92dc7ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Damaged Paint Yellow
+    second: {fileID: 2100000, guid: 78af7721ff39aab4e824e110d34af64d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Darker Stylised Wood
+    second: {fileID: 2100000, guid: 6841c5d1c16a3074ab1be2486760bcd9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fumed Glass
+    second: {fileID: 2100000, guid: 193b007951dae2d4bb4bb8e7dcaf08a4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Fumed Glass W
+    second: {fileID: 2100000, guid: 7530d98f4ac060f4f8e31c6b84508d9d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Galvanised Steel
+    second: {fileID: 2100000, guid: 19505d1e7f73be545b840ba30393240a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glow_
+    second: {fileID: 2100000, guid: 9e8a2e75c46692c4bab43d8f365595e3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hard Plastic
+    second: {fileID: 2100000, guid: a8208135249f84c4a845251066987f8a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Latex
+    second: {fileID: 2100000, guid: 504aa28836b37d3429ced5d665b147c3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Latex Metal
+    second: {fileID: 2100000, guid: 0c4cedf368cbf414487d6b18203f12e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Latex Metal B
+    second: {fileID: 2100000, guid: 32f22522fa4ac5d419df5ffc458f0142, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Latex Metal C
+    second: {fileID: 2100000, guid: 7f2a0ee09c85b8941a5d2b3078a72c49, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Latex Metal E
+    second: {fileID: 2100000, guid: 1387172ff6d9c19459f157fa15183c38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Marble B
+    second: {fileID: 2100000, guid: 6313ad6c32362254fb90d543edcd8b8e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metal Rough B
+    second: {fileID: 2100000, guid: 07f45506f71f85245b379b37583b34e4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Over Pressured Metal
+    second: {fileID: 2100000, guid: 2e0a84d6ce6908e4a8d5e11a8384c6f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Over Pressured Metal B
+    second: {fileID: 2100000, guid: 0b3ff10c1dc48ea4ba125c3382f04899, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plaster A
+    second: {fileID: 2100000, guid: c35e474caba4d474ba8a5fda2e5fd626, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plaster C
+    second: {fileID: 2100000, guid: 0324bbba78cc44449b94ba1c9a18a8cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Purple
+    second: {fileID: 2100000, guid: 915c9c4d0f10b8d48b145ca88e0ebc3d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red
+    second: {fileID: 2100000, guid: 29c1fb43624339f4b8ec3e954a0877f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Rough Metal B
+    second: {fileID: 2100000, guid: 86d0fab8cff891748bce0b5d08bc3030, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Satin
+    second: {fileID: 2100000, guid: 02913002b5fa38143a099ecc25ebda43, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stylised Wood
+    second: {fileID: 2100000, guid: 39643886ccbc4ea4a92fec9bf21effa5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stylised Wood B
+    second: {fileID: 2100000, guid: a378c97bad0e54a44a93e482cdebc5c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stylised Wood.001
+    second: {fileID: 2100000, guid: 63af487ce3c30ea4395269ee08fadfdb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Tilled Floor A
+    second: {fileID: 2100000, guid: e9e642fc1f8686c4d9e7507584807574, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White
+    second: {fileID: 2100000, guid: 53ac4158305b33545b434e9f56acf82c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: WoodPlanks B
+    second: {fileID: 2100000, guid: 1d8d0bfe85626f9469e517ed11bdab7c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _Black_
+    second: {fileID: 2100000, guid: d2a5e5175169c1943b72217c83123672, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 1
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
