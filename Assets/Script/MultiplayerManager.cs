@@ -29,10 +29,10 @@ public class MultiplayerManager : NetworkBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
         playerDataNetworkList = new NetworkList<PlayerData>();
-
     }
     public override void OnNetworkSpawn()
     {
+
         playerDataNetworkList.OnListChanged += PlayerDataNetworkList_OnListChanged;
     }
     #endregion

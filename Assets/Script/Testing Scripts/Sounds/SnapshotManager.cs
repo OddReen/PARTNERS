@@ -1,33 +1,34 @@
+using FMOD.Studio;
+using FMODUnity;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FMOD.Studio;
-using FMODUnity;
 
-public class SnapshotTest : MonoBehaviour
+public class SnapshotManager : MonoBehaviour
 {
+    public static SnapshotManager Instance;
     const string cameraRoomSnapshot = "snapshot:/Camera_Room";
     const string corridorSnapshot = "snapshot:/Corridor";
     const string caveSnapshot = "snapshot:/Cave";
     EventInstance snapshot;
-
-    private enum Snapshot
+    public enum Snapshot
     {
         cameraRoomSnapshot,
         corridorSnapshot,
         SewerSnapshot
     }
-    [SerializeField] Snapshot chooseSnapshot = Snapshot.cameraRoomSnapshot;
-    Snapshot currentSnapshot = Snapshot.cameraRoomSnapshot;
-    private void Start()
+    private Snapshot currentSnapshot;
+    private void Awake()
     {
-        snapshot = RuntimeManager.CreateInstance(cameraRoomSnapshot);
+        Instance = this;
+        snapshot = RuntimeManager.CreateInstance(corridorSnapshot);
+        snapshot.start();
     }
-    private void Update()
+    public void ChangeSpapshot(Snapshot choosenSnapshot)
     {
-        if (currentSnapshot != chooseSnapshot)
+        if (currentSnapshot != choosenSnapshot)
         {
-            currentSnapshot = chooseSnapshot;
+            currentSnapshot = choosenSnapshot;
             switch (currentSnapshot)
             {
                 case Snapshot.cameraRoomSnapshot:
@@ -51,6 +52,8 @@ public class SnapshotTest : MonoBehaviour
                 default:
                     break;
             }
+            Debug.Log($"Current Snapshot:{currentSnapshot}");
         }
     }
+
 }

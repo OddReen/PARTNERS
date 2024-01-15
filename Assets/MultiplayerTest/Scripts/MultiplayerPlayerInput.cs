@@ -26,6 +26,7 @@ public class MultiplayerPlayerInput : NetworkBehaviour
     {
         inputController = new InputController();
         inputController.Gameplay.Enable();
+        Cursor.lockState = CursorLockMode.Locked;
     }
     public override void OnNetworkSpawn()
     {
