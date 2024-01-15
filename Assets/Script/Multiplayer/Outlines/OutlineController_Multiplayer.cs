@@ -8,9 +8,12 @@ public class OutlineController_Multiplayer : NetworkBehaviour
 {
     Outline _outline;
 
-    void Start()
+    void Awake()
     {
         _outline = GetComponent<Outline>();
+    }
+    public override void OnNetworkSpawn()
+    {
         ActivateOutline_ServerRpc(false);
     }
 

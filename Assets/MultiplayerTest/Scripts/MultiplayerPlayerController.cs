@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using FMODUnity;
+using FMOD.Studio;
 
 public class MultiplayerPlayerController : NetworkBehaviour
 {
     public static MultiplayerPlayerController OwnerInstance;
-
+    public static MultiplayerPlayerController DebugInstance;
     MultiplayerPlayerInput _input;
     Rigidbody rb;
 
@@ -70,12 +72,22 @@ public class MultiplayerPlayerController : NetworkBehaviour
 
     [Header("Interact")]
     [SerializeField] float interactDistance = 3f;
-    GameObject interactHint;
     public Transform grabPosition;
 
     GameObject hitInfoGameObject;
 
     bool isSpawned = false;
+
+    [Header("DEBUG")]
+    [SerializeField] int materialIndex = 1;
+    EventInstance footsteps;
+    private void Awake()
+    {
+        DebugInstance = this;
+        footsteps = RuntimeManager.CreateInstance("event:/Players/Walk");
+        footsteps.setParameterByName("Superficies", materialIndex);
+        RuntimeManager.AttachInstanceToGameObject(footsteps, transform);
+    }
     public override void OnNetworkSpawn()
     {
         if (IsOwner)
@@ -86,7 +98,6 @@ public class MultiplayerPlayerController : NetworkBehaviour
             PlayerCamera camera = Instantiate(playerCameraPrefab);
             playerCamera = camera.playerCamera;
             cinemachineCamera = camera.virtualCamera;
-            interactHint = AssetsReference.Instance.interactionHint;
             OwnerInstance = this;
             isSpawned = true;
         }
@@ -140,8 +151,30 @@ public class MultiplayerPlayerController : NetworkBehaviour
             default:
                 break;
         }
+        Footsteps();
         rb.velocity = new Vector3(direction.x * currentSpeed * Time.deltaTime, rb.velocity.y, direction.z * currentSpeed * Time.deltaTime);
     }
+    #region TempFootsteps
+    bool isWalking;
+    private void Footsteps()
+    {
+        if (_input.direction != Vector3.zero && !isWalking)
+        {
+            StartCoroutine(FootstepSound());
+        }
+    }
+    IEnumerator FootstepSound()
+    {
+        isWalking = true;
+        while (_input.direction != Vector3.zero)
+        {
+            RuntimeManager.AttachInstanceToGameObject(footsteps, transform);
+            footsteps.start();
+            yield return new WaitForSeconds(0.5f);
+        }
+        isWalking = false;
+    }
+    #endregion
     private void MoveStates()
     {
         if (_input.isCrouching || IsUnder())
@@ -200,8 +233,30 @@ public class MultiplayerPlayerController : NetworkBehaviour
     public bool IsGrounded()
     {
         //If seen tell nardo 2 that for some fucking reason the spherecast wasnt working so switched to raycast
-        isGrounded = Physics.Raycast(transform.position, -transform.up, isGroundedVerifier_Height, layerMask);
-        return isGrounded;
+        RaycastHit raycastHit;
+        if (Physics.Raycast(transform.position, -transform.up, out raycastHit, isGroundedVerifier_Height, layerMask))
+        {
+            switch (raycastHit.collider.tag)
+            {
+                case "Water":
+                    materialIndex = 0;
+                    break;
+                case "Normal":
+                    materialIndex = 1;
+                    break;
+                case "Metal":
+                    materialIndex = 2;
+                    break;
+                case "Dirty":
+                    materialIndex = 3;
+                    break;
+                default:
+                    break;
+            }
+            footsteps.setParameterByName("Superficies", materialIndex);
+            return true;
+        }
+        return false;
     }
 
     public bool IsUnder()

@@ -18,7 +18,7 @@ public class MenuPause : Menu
         });
         resume_BT.onClick.AddListener(() =>
         {
-            InGameManager.Instance.TogglePauseGame();
+            SpawnManager.Instance.TogglePauseGame();
         });
         Hide();
     }

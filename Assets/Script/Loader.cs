@@ -12,7 +12,8 @@ public static class Loader
         LoadingScene,
         MultiplayerTest,
         Test,
-        Tutorial
+        Tutorial,
+        FmodTest
     }
 
     private static Scene targetScene;

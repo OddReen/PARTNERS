@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using System;
 
-
-public class InGameManager : NetworkBehaviour
+public class SpawnManager : NetworkBehaviour
 {
-    public static InGameManager Instance;
+    public static SpawnManager Instance;
 
     [Header("Player Spawn")]
     [SerializeField] Transform playerPrefab;
@@ -74,6 +74,5 @@ public class InGameManager : NetworkBehaviour
     private void PlayerInitializationClientRpc()
     {
         MultiplayerPlayerInput.OwnerInstance.PauseAction += MultiplayerPlayerInput_PauseAction;
-
     }
 }

@@ -37,9 +37,9 @@ public class EnergyManager_Multiplayer : NetworkBehaviour
             {
                 StartCoroutine(DecreaseEnergy());
             }
+            BlackoutManager_Multiplayer.Instance.StartBlackout += BlackoutManager_StartBlackout;
+            BlackoutManager_Multiplayer.Instance.EndBlackout += BlackoutManager_EndBlackout;
         }
-        BlackoutManager_Multiplayer.Instance.StartBlackout += BlackoutManager_StartBlackout;
-        BlackoutManager_Multiplayer.Instance.EndBlackout += BlackoutManager_EndBlackout;
     }
 
     private void BlackoutManager_EndBlackout(object sender, EventArgs e)

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 using System;
+using TMPro;
 
-public class PlayerReady : NetworkBehaviour
+public class LobbyManager : NetworkBehaviour
 {
-    public static PlayerReady Instance { get; private set; }
+    public static LobbyManager Instance { get; private set; }
 
     private Dictionary<ulong, bool> playerReadyDictionary;
 
@@ -14,14 +15,38 @@ public class PlayerReady : NetworkBehaviour
 
     bool isReady = false;
 
+    [SerializeField] TMP_Dropdown levelSelector;
+
     [Header("Debug")]
     [SerializeField] bool debugAllowHostStart;
-    [SerializeField] Loader.Scene scene;
 
+    Loader.Scene targetScene = Loader.Scene.Tutorial;
     public override void OnNetworkSpawn()
     {
         Instance = this;
         playerReadyDictionary = new Dictionary<ulong, bool>();
+        if (IsServer)
+        {
+            levelSelector.gameObject.SetActive(true);
+            levelSelector.onValueChanged.AddListener(delegate {
+                ChangeTargetScene(levelSelector);
+            });
+        }
+        else
+        {
+            levelSelector.gameObject.SetActive(false);
+        }
+    }
+    private void ChangeTargetScene(TMP_Dropdown levelSelector)
+    {
+        Debug.Log(levelSelector.value);
+        targetScene = levelSelector.value switch
+        {
+            0 => Loader.Scene.Tutorial,
+            1 => Loader.Scene.MultiplayerTest,
+            2 => Loader.Scene.FmodTest,
+            _ => Loader.Scene.MultiplayerTest,
+        };
     }
 
     public override void OnNetworkDespawn()
@@ -80,7 +105,7 @@ public class PlayerReady : NetworkBehaviour
         if (allClientsReady)
         {
             LockClientsCursor_ClientRpc();
-            Loader.LoadNetwork(scene);
+            Loader.LoadNetwork(targetScene);
         }
     }
     [ClientRpc]

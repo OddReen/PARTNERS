@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class LobbyPlayer : MonoBehaviour
@@ -9,13 +10,13 @@ public class LobbyPlayer : MonoBehaviour
     private void Start()
     {
         MultiplayerManager.Instance.OnPlayerDataNetworkListChanged += MultiplayerManager_OnPlayerDataNetworkListChanged;
-        PlayerReady.Instance.OnReadyChange += PlayerReady_OnReadyChange;
+        LobbyManager.Instance.OnReadyChange += PlayerReady_OnReadyChange;
         UpdatePlayer();
     }
     private void OnDestroy()
     {
         MultiplayerManager.Instance.OnPlayerDataNetworkListChanged -= MultiplayerManager_OnPlayerDataNetworkListChanged;
-        PlayerReady.Instance.OnReadyChange -= PlayerReady_OnReadyChange;
+        LobbyManager.Instance.OnReadyChange -= PlayerReady_OnReadyChange;
     }
     private void PlayerReady_OnReadyChange(object sender, System.EventArgs e)
     {
@@ -29,12 +30,11 @@ public class LobbyPlayer : MonoBehaviour
 
     private void UpdatePlayer()
     {
-        //Debug.Log("Updating Lobby Player:" + playerIndex);
         if (MultiplayerManager.Instance.IsPlayerIndexConected(playerIndex))
         {
             Show();
             PlayerData playerData = MultiplayerManager.Instance.GetPlayerDataFromIndex(playerIndex);
-            readyGameObject.SetActive(PlayerReady.Instance.IsPlayerReady(playerData.clientId));
+            readyGameObject.SetActive(LobbyManager.Instance.IsPlayerReady(playerData.clientId));
         }
         else
         {
