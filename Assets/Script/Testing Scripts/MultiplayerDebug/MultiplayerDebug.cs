@@ -13,10 +13,16 @@ public class MultiplayerDebug : MonoBehaviour
         {
             Instantiate(networkManagerPrefab);
             MultiplayerManager multiplayerManager = Instantiate(multiplayerManagerPrefab);
-            multiplayerManager.StartHost();
             //Necessario colocar um delay para o server não estar a iniciar no mesmo frame que o player
-            Invoke(nameof(SpawnPlayer), 0.1f);
+            StartCoroutine(StartGame(multiplayerManager));
         }
+    }
+    IEnumerator StartGame(MultiplayerManager multiplayerManager)
+    {
+        yield return new WaitForEndOfFrame();
+        multiplayerManager.StartHost();
+        yield return new WaitForSeconds(0f);
+        InGameManager.Instance.SpawnPlayers();
     }
     private void SpawnPlayer()
     {

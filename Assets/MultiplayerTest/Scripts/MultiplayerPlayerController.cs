@@ -81,6 +81,7 @@ public class MultiplayerPlayerController : NetworkBehaviour
     [Header("DEBUG")]
     [SerializeField] int materialIndex = 1;
     EventInstance footsteps;
+    [SerializeField] bool footstepsSound = true;
     private void Awake()
     {
         DebugInstance = this;
@@ -158,7 +159,7 @@ public class MultiplayerPlayerController : NetworkBehaviour
     bool isWalking;
     private void Footsteps()
     {
-        if (_input.direction != Vector3.zero && !isWalking)
+        if (_input.direction != Vector3.zero && !isWalking&& footstepsSound)
         {
             StartCoroutine(FootstepSound());
         }

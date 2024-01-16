@@ -33,19 +33,16 @@ public class SnapshotManager : MonoBehaviour
             {
                 case Snapshot.cameraRoomSnapshot:
                     snapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                    snapshot.release();
                     snapshot = RuntimeManager.CreateInstance(cameraRoomSnapshot);
                     snapshot.start();
                     break;
                 case Snapshot.corridorSnapshot:
                     snapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                    snapshot.release();
                     snapshot = RuntimeManager.CreateInstance(corridorSnapshot);
                     snapshot.start();
                     break;
                 case Snapshot.SewerSnapshot:
                     snapshot.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-                    snapshot.release();
                     snapshot = RuntimeManager.CreateInstance(caveSnapshot);
                     snapshot.start();
                     break;

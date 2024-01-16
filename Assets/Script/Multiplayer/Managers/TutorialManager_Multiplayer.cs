@@ -18,7 +18,7 @@ public class TutorialManager_Multiplayer : NetworkBehaviour
     }
     public override void OnNetworkSpawn()
     {
-        if (IsServer  )
+        if (IsServer)
         {
             if (startInTutorial == 0)
             {
