@@ -13,7 +13,6 @@ public class EnergyManager_Multiplayer : NetworkBehaviour
     [SerializeField] Image energyBar;
 
     NetworkVariable<float> energyNetwork = new NetworkVariable<float>();
-    public float Energy { get { return energyNetwork.Value; } private set { energyNetwork.Value = value; } }
 
     [SerializeField] Image energyLevelWarning;
     [SerializeField] Sprite energyLevelLow;
@@ -32,14 +31,14 @@ public class EnergyManager_Multiplayer : NetworkBehaviour
     {
         if (IsServer)
         {
-            Energy = MaxEnergy;
+            energyNetwork.Value = MaxEnergy;
             if (!noEnergyLoss)
             {
                 StartCoroutine(DecreaseEnergy());
             }
+            BlackoutManager_Multiplayer.Instance.StartBlackout += BlackoutManager_StartBlackout;
+            BlackoutManager_Multiplayer.Instance.EndBlackout += BlackoutManager_EndBlackout;
         }
-        BlackoutManager_Multiplayer.Instance.StartBlackout += BlackoutManager_StartBlackout;
-        BlackoutManager_Multiplayer.Instance.EndBlackout += BlackoutManager_EndBlackout;
     }
 
     private void BlackoutManager_EndBlackout(object sender, EventArgs e)
@@ -66,30 +65,30 @@ public class EnergyManager_Multiplayer : NetworkBehaviour
     }
     IEnumerator DecreaseEnergy()
     {
-        while (Energy > 0)
+        while (energyNetwork.Value > 0)
         {
             yield return new WaitForEndOfFrame();
-            Energy -= overtimeDecay * Time.deltaTime;
+            energyNetwork.Value -= overtimeDecay * Time.deltaTime;
             UpdateEnergyBar_ClientRpc();
         }
     }
     [ClientRpc]
     private void UpdateEnergyBar_ClientRpc()
     {
-        energyBar.fillAmount = Energy / MaxEnergy;
+        energyBar.fillAmount = energyNetwork.Value / MaxEnergy;
         //This probably works better com um animator but too lazy lol
-        if (Energy <= 0)
+        if (energyNetwork.Value <= 0)
         {
             energyDown.SetActive(true);
             return;
         }
-        if (Energy > 50)
+        if (energyNetwork.Value > 50)
         {
             energyLevelWarning.gameObject.SetActive(false);
             energyDown.SetActive(false);
             return;
         }
-        if (Energy < 30)
+        if (energyNetwork.Value < 30)
         {
             energyLevelWarning.gameObject.SetActive(true);
             energyLevelWarning.sprite = energyLevelCritical;
@@ -105,9 +104,9 @@ public class EnergyManager_Multiplayer : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void ChangeEnergy_ServerRpc(float amount)
     {
-        Energy = Mathf.Clamp(Energy + amount, 0, MaxEnergy);
+        energyNetwork.Value = Mathf.Clamp(energyNetwork.Value + amount, 0, MaxEnergy);
         UpdateEnergyBar_ClientRpc();
-        if (Energy==0 && !BlackoutManager_Multiplayer.Instance.inBlackout)
+        if (energyNetwork.Value == 0 && !BlackoutManager_Multiplayer.Instance.inBlackout)
         {
           BlackoutManager_Multiplayer.Instance.StartBlackout_ServerRpc();
         }

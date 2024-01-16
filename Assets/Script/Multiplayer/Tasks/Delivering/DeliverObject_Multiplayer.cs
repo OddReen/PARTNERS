@@ -41,6 +41,10 @@ public class DeliverObject_Multiplayer : Interactable
     }
     void Destination()
     {
+        if (deliveryDestination == null)
+        {
+            return;
+        }
         if (Vector3.Distance(deliveryDestination.position, transform.position) < 1)
         {
             TaskSucceed();

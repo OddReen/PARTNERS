@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
-
+using System;
 
 public class InGameManager : NetworkBehaviour
 {
@@ -56,13 +56,17 @@ public class InGameManager : NetworkBehaviour
 
     private void SceneManager_OnLoadEventCompleted(string sceneName, UnityEngine.SceneManagement.LoadSceneMode loadSceneMode, List<ulong> clientsCompleted, List<ulong> clientsTimedOut)
     {
+        SpawnPlayers();
+    }
+    public void SpawnPlayers()
+    {
         //Client ids começam a 0
         foreach (ulong clientId in NetworkManager.Singleton.ConnectedClientsIds)
         {
             //MODIFICAR A POSIÇÃO DIRETAMENTE DEPOIS DE ELE SPAWNAR MANDAO PARA UMA COORDENADA DIFERENTE QUE A METIDA WHY?? FUCK IF I KNOW
             //Spawnar na posição coreta logo no instantiate em vez de modificar depois 
-            Transform playerTransform = Instantiate(playerPrefab, spawnPosition[clientId].position, Quaternion.Euler(0,-90,0));
-           
+            Transform playerTransform = Instantiate(playerPrefab, spawnPosition[clientId].position, Quaternion.Euler(0, -90, 0));
+
             //Eu sei que posso pegar diretamente sem ter que estar a dar assign a uma variavel mas quando meti diferente deu um erro e depois desapareceu 
             //Deixei assim para respeitar os sinais que deus mandou
             NetworkObject networkObject = playerTransform.GetComponent<NetworkObject>();
@@ -74,6 +78,5 @@ public class InGameManager : NetworkBehaviour
     private void PlayerInitializationClientRpc()
     {
         MultiplayerPlayerInput.OwnerInstance.PauseAction += MultiplayerPlayerInput_PauseAction;
-
     }
 }

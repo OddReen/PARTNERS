@@ -8,10 +8,10 @@ public class OutlineController_Multiplayer : NetworkBehaviour
 {
     Outline _outline;
 
-    void Start()
+    void Awake()
     {
         _outline = GetComponent<Outline>();
-        ActivateOutline_ServerRpc(false);
+        _outline.enabled = false;
     }
 
     [ServerRpc(RequireOwnership = false)]

@@ -13,7 +13,7 @@ public class MenuLobby : Menu
         base.VirtualStart();
         playerReady_BT.onClick.AddListener(() =>
         {
-            PlayerReady.Instance.SetPlayerReadyStatus();
+            LobbyManager.Instance.SetPlayerReadyStatus();
         });
         quitToMainMenu_BT.onClick.AddListener(() =>
         {
