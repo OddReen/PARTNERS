@@ -17,7 +17,7 @@ public class SnapshotManager : MonoBehaviour
         corridorSnapshot,
         SewerSnapshot
     }
-    private Snapshot currentSnapshot;
+    [SerializeField]private Snapshot currentSnapshot;
     private void Awake()
     {
         Instance = this;

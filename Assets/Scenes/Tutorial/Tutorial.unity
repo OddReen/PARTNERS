@@ -3721,9 +3721,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 4.7
 --- !u!1 &51293112
 GameObject:
   m_ObjectHideFlags: 0
@@ -11732,9 +11732,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 4.7
 --- !u!1001 &203580627
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19632,9 +19632,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 4.7
 --- !u!1001 &343798632
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -20945,9 +20945,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 4.7
 --- !u!1 &375278082
 GameObject:
   m_ObjectHideFlags: 0
@@ -28785,9 +28785,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 4.7
 --- !u!65 &554553599
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31533,9 +31533,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 4.7
 --- !u!1 &627255096
 GameObject:
   m_ObjectHideFlags: 0
@@ -42629,9 +42629,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 4.7
 --- !u!1 &837932582
 GameObject:
   m_ObjectHideFlags: 0
@@ -46959,7 +46959,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929632744}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.09, y: 13.18, z: 0}
+  m_LocalPosition: {x: -21.1, y: 13.18, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46996,7 +46996,7 @@ MonoBehaviour:
   Params: []
   OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 196.09
+  OverrideMaxDistance: 30.2
 --- !u!1 &929876247
 GameObject:
   m_ObjectHideFlags: 0
@@ -64674,9 +64674,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 4.7
 --- !u!1 &1253616924
 GameObject:
   m_ObjectHideFlags: 0
@@ -64834,9 +64834,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 4.7
 --- !u!65 &1254060597
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -71601,9 +71601,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 4.7
 --- !u!65 &1381816193
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -79949,9 +79949,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 4.7
 --- !u!1 &1546640962
 GameObject:
   m_ObjectHideFlags: 0
@@ -88792,9 +88792,9 @@ MonoBehaviour:
   Preload: 0
   AllowNonRigidbodyDoppler: 0
   Params: []
-  OverrideAttenuation: 0
+  OverrideAttenuation: 1
   OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  OverrideMaxDistance: 4.7
 --- !u!1 &1701779589
 GameObject:
   m_ObjectHideFlags: 0
