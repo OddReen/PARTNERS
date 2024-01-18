@@ -35732,7 +35732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &721698931
 Transform:
   m_ObjectHideFlags: 0
@@ -109411,6 +109411,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 386255617}
     m_Modifications:
+    - target: {fileID: 4403798827572171997, guid: 3405b5f5c50139443af8bb89148822f8,
+        type: 3}
+      propertyPath: OverrideMinDistance
+      value: 3.76
+      objectReference: {fileID: 0}
     - target: {fileID: 4403798827572171998, guid: 3405b5f5c50139443af8bb89148822f8,
         type: 3}
       propertyPath: m_RootOrder
