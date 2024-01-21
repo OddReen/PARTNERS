@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{312bea34-0c3a-4f1e-a28d-4f5d6382e7d8}">
+		<property name="assetPath">
+			<value>MA_KatyaMorris_FootstepsDifferentSpeeds_1.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>18.499947916666667</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{ca888a3a-daf9-4563-902e-58ca44d55e33}</destination>
+		</relationship>
+	</object>
+</objects>
