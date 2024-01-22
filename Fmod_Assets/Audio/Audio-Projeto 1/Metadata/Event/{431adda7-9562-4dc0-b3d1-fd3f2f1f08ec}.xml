@@ -5,7 +5,7 @@
 			<value>turning-down-power-48657</value>
 		</property>
 		<property name="outputFormat">
-			<value>2</value>
+			<value>0</value>
 		</property>
 		<relationship name="folder">
 			<destination>{a0605933-2a1f-47dd-b494-f35872f98b33}</destination>
@@ -113,7 +113,6 @@
 	<object class="MixerBusEffectChain" id="{a3cfc67c-c028-456a-8890-b420a555593b}">
 		<relationship name="effects">
 			<destination>{9d51f067-de4b-4bc5-95f2-69aeb71f5709}</destination>
-			<destination>{8934ac89-3a6a-4472-82e3-f252165f5d65}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{2f0e3051-1aca-4f02-9fe6-e15253949dae}" />
@@ -126,7 +125,6 @@
 	</object>
 	<object class="MixerBusPanner" id="{2895c4b5-b367-4d7f-92d3-4f9def35cd35}" />
 	<object class="MixerBusFader" id="{9d51f067-de4b-4bc5-95f2-69aeb71f5709}" />
-	<object class="SpatialiserEffect" id="{8934ac89-3a6a-4472-82e3-f252165f5d65}" />
 	<object class="MixerBusFader" id="{431e51d8-5335-438a-a734-886eb952373a}" />
 	<object class="GainEffect" id="{70ddb9c2-7d68-47dd-bd95-475cd4c00b10}">
 		<property name="gain">
