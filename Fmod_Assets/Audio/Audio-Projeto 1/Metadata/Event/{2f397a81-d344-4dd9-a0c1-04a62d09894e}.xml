@@ -134,7 +134,7 @@
 	<object class="MixerBusFader" id="{9ddf1677-c7c5-48f4-b498-b1e51d909096}" />
 	<object class="GainEffect" id="{96e178ac-f9f3-43a6-ab0e-398f0bac732c}">
 		<property name="gain">
-			<value>-26.5</value>
+			<value>-17.5</value>
 		</property>
 	</object>
 	<object class="SFXReverbEffect" id="{1e11854a-7e47-4f26-bbff-a703019c92cc}">
@@ -142,7 +142,7 @@
 			<value>800</value>
 		</property>
 		<property name="wetLevel">
-			<value>-11.5</value>
+			<value>-1</value>
 		</property>
 	</object>
 </objects>
