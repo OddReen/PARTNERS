@@ -1,0 +1,5 @@
+Olá Leonard,:
+
+Só para relembrar:
+
+A cabeça do player "desaparece" da animação no Frame 33. 
