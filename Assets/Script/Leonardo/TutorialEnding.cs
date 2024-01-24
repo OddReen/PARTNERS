@@ -4,20 +4,35 @@ using UnityEngine;
 
 public class TutorialEnding : MonoBehaviour
 {
-    Transform spawnMelodyPosition;
-    GameObject melodyModelPref;
+    [SerializeField] Transform spawnMelodyPosition;
+    [SerializeField] GameObject melodyModelPref;
 
-    void Execute()
+    public void Execute()
     {
-
+        StartCoroutine(EndingSequence());
     }
     IEnumerator EndingSequence()
     {
+        //Restrict Players
         GameObject[] player = GameObject.FindGameObjectsWithTag("Player");
-        GameObject gameObject = Instantiate(melodyModelPref, spawnMelodyPosition.position, spawnMelodyPosition.rotation);
+        for (int i = 0; i < player.Length; i++)
+        {
+            Behaviour[] behaviour = player[i].GetComponentsInChildren<Behaviour>();
+            for (int d = 0; d < behaviour.Length; d++)
+            {
+                behaviour[d].enabled = false;
+            }
+        }
 
-        yield return new WaitForSeconds(2);
+        //Instantiate Melody
+        GameObject newMelody = Instantiate(melodyModelPref, spawnMelodyPosition.position, spawnMelodyPosition.rotation);
 
+        //Rotate player cameras to melody
+        for (int i = 0; i < player.Length; i++)
+        {
+            player[i].transform.LookAt(newMelody.transform, Vector3.up);
+        }
+        yield return new WaitForSeconds(5);
 
     }
 }
