@@ -20,6 +20,7 @@ public class Menu : MonoBehaviour
         Instance = this;
         if (firstMenu != null)
         {
+            firstMenu.gameObject.SetActive(true);
             navigationStack.Push(firstMenu);
         }
     }
