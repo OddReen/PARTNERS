@@ -35729,7 +35729,7 @@ MonoBehaviour:
   - {fileID: 322729981}
   - {fileID: 2025807284}
   - {fileID: 1553466840}
-  startInTutorial: 2
+  startInTutorial: 0
 --- !u!1 &722561409
 GameObject:
   m_ObjectHideFlags: 0
