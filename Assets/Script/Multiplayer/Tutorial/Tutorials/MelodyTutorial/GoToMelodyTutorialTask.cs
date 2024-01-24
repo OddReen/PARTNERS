@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class GoToMelodyTutorialTask : TutorialTask_Multiplayer
 {
-    [SerializeField] TutorialVoiceLines voiceLines;
+    [SerializeField] SFX_List voiceLines;
 
     [SerializeField] OutlineController_Multiplayer melodyOutline;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && isTaskActive)
+        if (IsServer)
         {
-            CompleteTask();
-            SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(voiceLines.Melody_Tutorial.Path);
-            melodyOutline.ActivateOutline_ServerRpc(false);
+            if (other.CompareTag("Player") && isTaskActive)
+            {
+                CompleteTask();
+                SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(voiceLines.Melody_TutorialPath);
+                melodyOutline.ActivateOutline_ServerRpc(false);
+            }
         }
+
     }
 }

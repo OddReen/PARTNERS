@@ -19,7 +19,7 @@ public class DeliverObject_Multiplayer : Interactable
     }
     public override void Interact(PlayerController playerController)
     {
-        SFX_Manager_Multiplayer.Instance.PlaySoundLocal_ServerRpc(sFX_List.PickupPaper.Path,transform.position);
+        SFX_Manager_Multiplayer.Instance.PlaySoundLocal_ServerRpc(sFX_List.PickupPaperPath,transform.position);
         StartCoroutine(PickUp());
     }
     IEnumerator PickUp()
@@ -27,29 +27,22 @@ public class DeliverObject_Multiplayer : Interactable
         _collider.enabled = false;
         _rb.isKinematic = true;
         //Change to grabpos being inside playerIput
-        MultiplayerPlayerInput _input = MultiplayerPlayerInput.OwnerInstance;
-        MultiplayerPlayerController _controller = MultiplayerPlayerController.OwnerInstance;
+        PlayerInput_Multiplayer _input = PlayerInput_Multiplayer.OwnerInstance;
+        PlayerController_Multiplayer _controller = PlayerController_Multiplayer.OwnerInstance;
         while (_input.isInteracting)
         {
             transform.position = _controller.grabPosition.position;
             transform.LookAt(_controller.grabPosition);
             yield return new WaitForEndOfFrame();
-        }
-        Destination();
-        _collider.enabled = true;
-        _rb.isKinematic = false;
-    }
-    void Destination()
-    {
-        if (deliveryDestination == null)
-        {
-            return;
-        }
+        } 
+
         if (Vector3.Distance(deliveryDestination.position, transform.position) < 1)
         {
             TaskSucceed();
             Destroy(gameObject);
         }
+        _collider.enabled = true;
+        _rb.isKinematic = false;
     }
     void TaskSucceed()
     {

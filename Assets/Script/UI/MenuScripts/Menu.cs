@@ -18,7 +18,10 @@ public class Menu : MonoBehaviour
     protected virtual void VirtualStart()
     {
         Instance = this;
-        navigationStack.Push(firstMenu);
+        if (firstMenu != null)
+        {
+            navigationStack.Push(firstMenu);
+        }
     }
     public void GoToPreviousMenu()
     {

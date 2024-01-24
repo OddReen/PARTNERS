@@ -23,7 +23,6 @@ public class HostDisconectedUI : MonoBehaviour
     //Se  o client que se desconectou for o Host mostra essa mensagem
     private void NetworkManager_OnClientDisconnectCallback(ulong clientId)
     {
-        Debug.Log("Test");
         if (clientId == NetworkManager.ServerClientId)
         {
             Cursor.lockState = CursorLockMode.Confined;

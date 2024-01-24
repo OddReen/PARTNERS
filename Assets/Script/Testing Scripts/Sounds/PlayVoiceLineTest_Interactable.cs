@@ -9,6 +9,6 @@ public class PlayVoiceLineTest_Interactable : Interactable
 
     public override void Interact(PlayerController playerController)
     {
-        RuntimeManager.PlayOneShotAttached(voiceLine,MultiplayerPlayerController.DebugInstance.gameObject);
+        RuntimeManager.PlayOneShotAttached(voiceLine,PlayerController_Multiplayer.DebugInstance.gameObject);
     }
 }

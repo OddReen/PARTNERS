@@ -11,6 +11,6 @@ public class InteractWithMelodyTask : TutorialTask_Multiplayer
     }
     public void TaskCompleted()
     {
-        CompleteTask();
+        CompleteTask_ServerRpc();
     }
 }

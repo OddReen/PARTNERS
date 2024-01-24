@@ -7,7 +7,7 @@ public class Tutorial_Multiplayer : NetworkBehaviour
 {
     [SerializeField] protected List<TutorialTask_Multiplayer> tutorialTaskTutorial = new();
 
-   protected List<TutorialTaskStatus_Multiplayer> activeTasksStatusList = new();
+    protected List<TutorialTaskStatus_Multiplayer> activeTasksStatusList = new();
 
     [SerializeField] protected TutorialTaskStatus_Multiplayer activeTask_Prefab;
     [SerializeField] protected Transform activeTask_Container;
@@ -15,32 +15,53 @@ public class Tutorial_Multiplayer : NetworkBehaviour
     protected int TaskCount { get { return activeTasksStatusList.Count; } }
 
     //Rpc não gostam de inheritance so functions que não são herdadas é que podem possuir server Rpcs
-
-    public virtual void ActivateTutorial()
+    [ServerRpc]
+    public void ActivateTutorial_ServerRpc()
+    {
+        ActivateTutorialServerSide();
+        ActivateTutorial_ClientRpc();
+    }
+    [ClientRpc]
+    private void ActivateTutorial_ClientRpc()
+    {
+        ActivateTutorialClientSide();
+    }
+    protected virtual void ActivateTutorialServerSide()
+    {
+        ActivateTasks();
+    }
+    protected void ActivateTasks()
     {
         foreach (TutorialTask_Multiplayer task in tutorialTaskTutorial)
         {
             TutorialTaskStatus_Multiplayer taskStatus = Instantiate(activeTask_Prefab, activeTask_Container);
+            NetworkObject netObject = taskStatus.gameObject.GetComponent<NetworkObject>();
+            netObject.Spawn();
+            netObject.TrySetParent(activeTask_Container);
             taskStatus.AssignTask(task, TaskCount);
             activeTasksStatusList.Add(taskStatus);
             task.ActivateTask(taskStatus, this);
         }
     }
-   
+    protected virtual void ActivateTutorialClientSide()
+    {
+
+    }
+
     [ServerRpc(RequireOwnership = false)]
     public void TaskCompletedServerRpc(int taskIndex)
     {
-        DeleteTask_ClientRpc(taskIndex,true);
+        DeleteTask_ServerRpc(taskIndex, true);
     }
 
     [ServerRpc(RequireOwnership = false)]
     public void TaskFailed_ServerRpc(int taskIndex)
     {
-        DeleteTask_ClientRpc(taskIndex,false);
+        DeleteTask_ServerRpc(taskIndex, false);
     }
 
-    [ClientRpc]
-    private void DeleteTask_ClientRpc(int taskIndex,bool wasTaskCompleted)
+    [ServerRpc]
+    private void DeleteTask_ServerRpc(int taskIndex, bool wasTaskCompleted)
     {
         if (taskIndex + 1 < TaskCount)
         {
@@ -55,11 +76,11 @@ public class Tutorial_Multiplayer : NetworkBehaviour
 
         taskStatus.TaskReference.ClearTaskFromList();
 
-        if (TaskCount == 0)
+        if (TaskCount == 0 && IsServer)
         {
             CompleteTutorial();
         }
-    } 
+    }
 
     protected virtual void CompleteTutorial()
     {

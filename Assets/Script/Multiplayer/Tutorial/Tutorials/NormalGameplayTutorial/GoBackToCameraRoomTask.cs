@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class GoBackToCameraRoomTask : TutorialTask_Multiplayer
 {
-    [SerializeField] TutorialVoiceLines voiceLines;
+    [SerializeField] SFX_List voiceLines;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && isTaskActive)
-        {  
-            SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(voiceLines.BackLater_Tutorial.Path);
-            CompleteTask();       
+        if (IsServer)
+        {
+            if (other.CompareTag("Player") && isTaskActive)
+            {
+                SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(voiceLines.BackLater_TutorialPath);
+                CompleteTask();
+            }
         }
+
     }
 }

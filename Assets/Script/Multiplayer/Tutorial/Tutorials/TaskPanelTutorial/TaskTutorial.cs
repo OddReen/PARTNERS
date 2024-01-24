@@ -8,9 +8,9 @@ public class TaskTutorial : Tutorial_Multiplayer
     [SerializeField] OutlineController_Multiplayer cameraConsoleOutline;
     [SerializeField] float outlineTime;
 
-    [SerializeField] TutorialVoiceLines sfx_List;
+    [SerializeField] SFX_List sfx_List;
 
-    public override void ActivateTutorial()
+    protected override void ActivateTutorialServerSide()
     {
         Invoke(nameof(LockAllDoors), 0.2f);
         Invoke(nameof(PlayStartSound), 5f);
@@ -22,21 +22,15 @@ public class TaskTutorial : Tutorial_Multiplayer
     }
     private void PlayStartSound()
     {
-        SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(sfx_List.SmithIntroduction_Tutorial.Path);
+        SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(sfx_List.SmithIntroduction_TutorialPath);
         //Yes its hardcoded but no time lol
         Invoke(nameof(StartTasks), 5f);
     }
     private void StartTasks()
     {
-        SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(sfx_List.TaskPanel_Tutorial.Path);
+        SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(sfx_List.TaskPanel_TutorialPath);
         cameraConsoleOutline.ActivateOutline_ServerRpc(true);
-        foreach (TutorialTask_Multiplayer task in tutorialTaskTutorial)
-        {
-            TutorialTaskStatus_Multiplayer taskStatus = Instantiate(activeTask_Prefab, activeTask_Container);
-            taskStatus.AssignTask(task, TaskCount);
-            activeTasksStatusList.Add(taskStatus);
-            task.ActivateTask(taskStatus, this);
-        }
+        ActivateTasks();
     }
     protected override void CompleteTutorial()
     {

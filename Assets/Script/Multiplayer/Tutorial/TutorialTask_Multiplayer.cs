@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class TutorialTask_Multiplayer : MonoBehaviour
+public class TutorialTask_Multiplayer : NetworkBehaviour
 {
     protected Tutorial_Multiplayer tutorial;
 
@@ -17,14 +18,20 @@ public class TutorialTask_Multiplayer : MonoBehaviour
     public int ActiveTaskCount { get { return activeTasksList.Count; } private set { } }
 
     [HideInInspector] public bool isTaskActive = false;
-    public virtual void ActivateTask(TutorialTaskStatus_Multiplayer taskInfo, Tutorial_Multiplayer tutorial)
+
+    //Server
+    public void ActivateTask(TutorialTaskStatus_Multiplayer taskInfo, Tutorial_Multiplayer tutorial)
     {
         this.tutorial = tutorial;
-        isTaskActive = true;
+        IsTaskActive_ClientRpc(true);
         activeTasksList.Add(taskInfo);
         //Coloca codigo que determina que a atividade é possivel aqui
     }
-
+    [ServerRpc(RequireOwnership = false)]
+    protected void CompleteTask_ServerRpc()
+    {
+        CompleteTask();
+    }
     protected virtual void CompleteTask()
     {
         tutorial.TaskCompletedServerRpc(activeTasksList[0].TaskIndex);
@@ -38,7 +45,12 @@ public class TutorialTask_Multiplayer : MonoBehaviour
         activeTasksList.RemoveAt(0);
         if (ActiveTaskCount == 0)
         {
-            isTaskActive = false;
+            IsTaskActive_ClientRpc(false);
         }
+    }
+    [ClientRpc]
+    private void IsTaskActive_ClientRpc(bool isTaskActive)
+    {
+        this.isTaskActive = isTaskActive;
     }
 }

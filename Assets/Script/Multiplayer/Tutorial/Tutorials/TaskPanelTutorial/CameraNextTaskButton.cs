@@ -9,6 +9,6 @@ public class CameraNextTaskButton : Interactable
     public override void Interact(PlayerController playerController)
     {
         CameraConsoleHandler_Multiplayer.Instance.NextCam();
-        consoleTask.CameraButtonPressed();
+        consoleTask.CameraButtonPressed_ServerRpc();
     }
 }

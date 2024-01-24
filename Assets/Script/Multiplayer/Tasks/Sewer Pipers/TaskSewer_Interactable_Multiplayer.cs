@@ -6,6 +6,6 @@ public class TaskSewer_Interactable_Multiplayer : Interactable
 {
     public override void Interact(PlayerController playerController)
     {
-        TaskSewer_Multiplayer.Instance.FillMinigame(gameObject.name);
+        TaskSewer_Multiplayer.Instance.FillMinigame_ServerRpc(gameObject.name);
     }
 }

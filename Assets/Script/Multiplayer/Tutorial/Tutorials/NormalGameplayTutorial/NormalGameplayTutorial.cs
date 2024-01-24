@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class NormalGameplayTutorial : Tutorial_Multiplayer
 {
-    [SerializeField] TutorialVoiceLines voiceLines;
+    [SerializeField] SFX_List voiceLines;
 
-    public override void ActivateTutorial()
+    protected override void ActivateTutorialServerSide()
     {
-        base.ActivateTutorial();
-        SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(voiceLines.BackToCameras_Tutorial.Path);   
+        SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(voiceLines.BackToCameras_TutorialPath);
+        base.ActivateTutorialServerSide();
     }
-
     protected override void CompleteTutorial()
     {
         TaskManager_Multiplayer.Instance.StartCreatingTasks_ServerRpc();

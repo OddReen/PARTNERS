@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class DeliveringTask_Multiplayer : Task_Multiplayer
@@ -17,15 +18,12 @@ public class DeliveringTask_Multiplayer : Task_Multiplayer
     {
         base.ActivateTask(taskInfo);
         DeliverObject_Multiplayer temp = Instantiate(deliverObjectPrefab);
+        temp.GetComponent<NetworkObject>().Spawn(true);
         temp.transform.position = deliverSpawnLocation.position;
         temp.AssignDeliveryDestination(deliveryLocation);
     }
     public void Deliver()
     {
-        CompleteTask();
-    }
-    public override void FailTask()
-    {
-        base.FailTask();
+        CompleteTask_ServerRpc();
     }
 }

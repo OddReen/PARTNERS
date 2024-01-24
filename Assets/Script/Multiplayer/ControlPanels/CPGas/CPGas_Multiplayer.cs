@@ -21,11 +21,19 @@ public class CPGas_Multiplayer : NetworkBehaviour
 
     int[] colorIndexArray = new int[10];
 
+    [SerializeField] VideoController panelVideo;
+
     bool isBroken = false;
     private void Start()
     {
         Instance = this;
         BlackoutManager_Multiplayer.Instance.StartBlackout += BlackoutManager_StartBlackout;
+        BlackoutManager_Multiplayer.Instance.EndBlackout += BlackoutManager_EndBlackout;
+    }
+
+    private void BlackoutManager_EndBlackout(object sender, System.EventArgs e)
+    {
+        Standby();
     }
 
     private void BlackoutManager_StartBlackout(object sender, System.EventArgs e)
@@ -107,21 +115,30 @@ public class CPGas_Multiplayer : NetworkBehaviour
         colorPattern.Clear();
         targetColorIndex = 0;
     }
+    void Standby()
+    {
+        panelVideo.ChangeVideo_ClientRpc(0);
+    }
     void Fix()
     {
+        panelVideo.ChangeVideo_ClientRpc(3);
         isBroken = false;
         BlackoutManager_Multiplayer.Instance.EndBlackOut_ServerRpc();
     }
     void Correct()
     {
-        SFX_Manager_Multiplayer.Instance.PlaySoundLocal_ServerRpc(sFX_List.CPGasCorrect.Path, transform.position);
+        panelVideo.ChangeVideo_ClientRpc(2);
+        SFX_Manager_Multiplayer.Instance.PlaySoundLocal_ServerRpc(sFX_List.ControlPanelCorrectPath, transform.position);
     }
     void Wrong()
     {
-        SFX_Manager_Multiplayer.Instance.PlaySoundLocal_ServerRpc(sFX_List.CPGasWrong.Path, transform.position);
+        panelVideo.ChangeVideo_ClientRpc(1);
+        SFX_Manager_Multiplayer.Instance.PlaySoundLocal_ServerRpc(sFX_List.ControlPanelWrongPath, transform.position);
     }
-    public void Break()
+
+    void Break()
     {
+        panelVideo.ChangeVideo_ClientRpc(1);
         isBroken = true;
     }
 }

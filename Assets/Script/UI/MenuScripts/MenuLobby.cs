@@ -8,9 +8,12 @@ public class MenuLobby : Menu
 {
     [SerializeField] Button playerReady_BT;
     [SerializeField] Button quitToMainMenu_BT;
-    protected override void VirtualStart()
+    private void Start()
     {
-        base.VirtualStart();
+        VirtualStart();
+    }
+    protected override void VirtualStart()
+    {      
         playerReady_BT.onClick.AddListener(() =>
         {
             LobbyManager.Instance.SetPlayerReadyStatus();
@@ -20,5 +23,6 @@ public class MenuLobby : Menu
             MultiplayerManager.Instance.Shutdown();
             Loader.Load(Loader.Scene.MainMenu);
         });
+        base.VirtualStart();
     }
 }

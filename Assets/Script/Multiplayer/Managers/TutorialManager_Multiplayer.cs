@@ -20,32 +20,19 @@ public class TutorialManager_Multiplayer : NetworkBehaviour
     {
         if (IsServer)
         {
-            if (startInTutorial == 0)
-            {
-                NextTutorial_ServerRpc();
-            }
-            else
-            {
-                currentTutorial = startInTutorial;
-                StartInTutorialDebug_ClientRpc();
-            }
+            currentTutorial = startInTutorial;
+            Invoke(nameof(Delay),0.5f);
         }
     }
-
+    private void Delay()
+    {
+        Debug.Log("StartTutorial");
+        tutorialList[currentTutorial].ActivateTutorial_ServerRpc();
+    }
     [ServerRpc(RequireOwnership = false)]
     public void NextTutorial_ServerRpc()
     {
-        NextTutorial_ClientRpc();
-    }
-    [ClientRpc]
-    private void NextTutorial_ClientRpc()
-    {
         currentTutorial++;
-        tutorialList[currentTutorial].ActivateTutorial();
-    }
-    [ClientRpc]
-    private void StartInTutorialDebug_ClientRpc()
-    {
-        tutorialList[startInTutorial].ActivateTutorial();
+        tutorialList[currentTutorial].ActivateTutorial_ServerRpc();
     }
 }

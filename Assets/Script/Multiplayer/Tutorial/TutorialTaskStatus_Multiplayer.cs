@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TutorialTaskStatus_Multiplayer : MonoBehaviour
+public class TutorialTaskStatus_Multiplayer : NetworkBehaviour
 {
     public TutorialTask_Multiplayer TaskReference { get; private set; }
     public string TaskDescription { get; private set; }
@@ -25,14 +26,14 @@ public class TutorialTaskStatus_Multiplayer : MonoBehaviour
         uiAnimation = GetComponent<UIAutoAnimation>();
         image = GetComponent<Image>();
     }
-
     public void AssignTask(TutorialTask_Multiplayer task, int taskIndex)
     {
         TaskReference = task;
         TaskIndex = taskIndex;
-        SetTaskDescription(TaskReference.TaskDescription);
+        SetTaskDescription_ClientRpc(TaskReference.TaskDescription);
     }
-    private void SetTaskDescription(string taskDescription)
+    [ClientRpc]
+    private void SetTaskDescription_ClientRpc(string taskDescription)
     {
         TaskDescription = taskDescription;
         taskDescriptionTxt.SetText(TaskDescription);

@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Unity.Netcode;
 
-public class TaskStatus_Multiplayer : MonoBehaviour
+public class TaskStatus_Multiplayer : NetworkBehaviour
 {
     public Task_Multiplayer TaskReference { get; private set; }
     public string TaskDescription { get; private set; }
@@ -33,24 +34,25 @@ public class TaskStatus_Multiplayer : MonoBehaviour
     {
         TaskReference = task;
         TaskIndex = taskIndex;
-        SetTaskDescription();
+        TaskDescription = TaskReference.TaskDescription;
+        SetTaskDescription_ClientRpc(TaskDescription);
         SetTaskTime();
         StartCoroutine(Timer());
     }
-
-    private void SetTaskDescription()
+    [ClientRpc]
+    private void SetTaskDescription_ClientRpc(string taskDescription)
     {
-        TaskDescription = TaskReference.TaskDescription;
-        taskDescriptionTxt.SetText(TaskDescription);
+        taskDescriptionTxt.SetText(taskDescription);
     }
     private void SetTaskTime()
     {
         int time = (int)TaskReference.TaskTime;
         timeMinutes = time / 60;
         timeSeconds = time % 60;
-        SetTaskTimeTxt();
+        SetTaskTimeTxt_ClientRpc(timeSeconds, timeMinutes);
     }
-    private void SetTaskTimeTxt()
+    [ClientRpc]
+    private void SetTaskTimeTxt_ClientRpc(float timeSecons,float timeMinutes)
     {
         taskTimeTxt.SetText($"{timeMinutes}:{timeSeconds}");
     }
@@ -66,7 +68,7 @@ public class TaskStatus_Multiplayer : MonoBehaviour
                 timeMinutes--;
                 timeSeconds = 60;
             }
-            SetTaskTimeTxt();
+            SetTaskTimeTxt_ClientRpc(timeSeconds, timeMinutes);
         } while (timeSeconds > 0);
         FailTask();
     }
@@ -82,6 +84,12 @@ public class TaskStatus_Multiplayer : MonoBehaviour
     {
         StopAllCoroutines();
         taskTimeTxt.SetText("");
+        WasTaskCompleted_ClientRpc(wasTaskCompleted);
+        Invoke(nameof(Delete), showAfterCompletion);
+    }
+    [ClientRpc]
+    private void WasTaskCompleted_ClientRpc(bool wasTaskCompleted)
+    {
         if (wasTaskCompleted)
         {
             image.sprite = taskCompleted;
@@ -90,7 +98,6 @@ public class TaskStatus_Multiplayer : MonoBehaviour
         {
             image.sprite = taskFailed;
         }
-        Invoke(nameof(Delete), showAfterCompletion);
     }
     private void Delete()
     {

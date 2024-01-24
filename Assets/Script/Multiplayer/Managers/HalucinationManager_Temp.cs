@@ -54,7 +54,7 @@ public class HalucinationManager_Temp : MonoBehaviour
     }
     public void ActivateHalucination()
     {
-        player = MultiplayerPlayerController.OwnerInstance.gameObject;
+        player = PlayerController_Multiplayer.OwnerInstance.gameObject;
         isHalucinating = true;
         StartCoroutine(Halucinating());
     }

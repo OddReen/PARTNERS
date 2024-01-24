@@ -8,9 +8,12 @@ public class MenuPause : Menu
 {
     [SerializeField] Button quit_BT;
     [SerializeField] Button resume_BT;
+    private void Start()
+    {
+        VirtualStart();
+    }
     protected override void VirtualStart()
     {
-        base.VirtualStart();
         quit_BT.onClick.AddListener(() =>
         {
             MultiplayerManager.Instance.Shutdown();
@@ -21,6 +24,7 @@ public class MenuPause : Menu
             InGameManager.Instance.TogglePauseGame();
         });
         Hide();
+        base.VirtualStart();
     }
     public void Hide()
     {

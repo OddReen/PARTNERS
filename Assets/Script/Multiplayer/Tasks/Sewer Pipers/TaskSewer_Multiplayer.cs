@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 public class TaskSewer_Multiplayer : Task_Multiplayer
 {
     public static TaskSewer_Multiplayer Instance;
 
-    [SerializeField] Animator pipe1, pipe2, pipe3,pipe4;
+    [SerializeField] Animator pipe1, pipe2, pipe3, pipe4;
     bool isFilled1 = false, isFilled2 = false, isFilled3 = false, isFilled4;
 
     private void Start()
     {
-        FillPipe();
         Instance = this;
+    }
+    public override void OnNetworkSpawn()
+    {
+        if (IsServer)
+        {
+            FillPipe_ClientRpc(isFilled1, isFilled2, isFilled3, isFilled4);
+        }
     }
     public override void ActivateTask(TaskStatus_Multiplayer taskInfo)
     {
@@ -20,9 +27,10 @@ public class TaskSewer_Multiplayer : Task_Multiplayer
         isFilled1 = false;
         isFilled2 = false;
         isFilled3 = false;
-        FillPipe();
+        FillPipe_ClientRpc(isFilled1, isFilled2, isFilled3, isFilled4);
     }
-    public void FillMinigame(string buttonString)
+    [ServerRpc]
+    public void FillMinigame_ServerRpc(string buttonString)
     {
         if (isTaskActive == false)
         {
@@ -47,12 +55,13 @@ public class TaskSewer_Multiplayer : Task_Multiplayer
                 isFilled3 ^= true;
                 break;
         }
-        FillPipe();
+        FillPipe_ClientRpc(isFilled1,isFilled2,isFilled3,isFilled4);
         Fix();
     }
-    //This doesnt work multiplayer do later
-    public void FillPipe()
+    [ClientRpc]
+    public void FillPipe_ClientRpc(bool isFilled1, bool isFilled2, bool isFilled3, bool isFilled4)
     {
+        //Podia ter so metido um network animator but fuck it no time
         if (isFilled1)
             pipe1.SetTrigger("Fill");
         else
@@ -88,7 +97,7 @@ public class TaskSewer_Multiplayer : Task_Multiplayer
     {
         if (isFilled1 && isFilled2 && isFilled3 && isFilled4)
         {
-            CompleteTask();
+            CompleteTask_ServerRpc();
         }
     }
 }

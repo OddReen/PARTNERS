@@ -7,18 +7,18 @@ using Unity.Netcode;
 public class SFX_Manager_Multiplayer : NetworkBehaviour
 {
     //Script is cursed dont execute functions imediately after scene start or it wont work
-    //\\Ja tentei mudar a ordem de execução still doesnt work o network usa uma diferente
+    //Ja tentei mudar a ordem de execução still doesnt work o network usa uma diferente
     public static SFX_Manager_Multiplayer Instance;
 
     public void Awake()
     {
         Instance = this;
     }
-    //Perguntar ao tales como fazer os soms serem globais
+
     [ServerRpc(RequireOwnership = false)]
     public void PlaySound_ServerRpc(string eventReferencePath)
     {
-        PlaySound_ClientRpc( eventReferencePath);
+        PlaySound_ClientRpc(eventReferencePath);
     }
     [ClientRpc]
     private void PlaySound_ClientRpc(string eventReferencePath)

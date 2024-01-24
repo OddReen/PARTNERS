@@ -17,6 +17,7 @@ public class BlackoutManager_Multiplayer : NetworkBehaviour
 
    [HideInInspector]public bool inBlackout;
 
+    [SerializeField] GameObject shutdownVignete;
     public event EventHandler StartBlackout;
     public event EventHandler EndBlackout;
     private void Awake()
@@ -28,9 +29,9 @@ public class BlackoutManager_Multiplayer : NetworkBehaviour
     public void StartBlackout_ServerRpc()
     {
         inBlackout = true;
-        SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(sFX.PowerLoss.Path);
+        shutdownVignete.SetActive(true);
+        SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(sFX.PowerLossPath);
         StartBlackout(this,EventArgs.Empty);
-        CPGas_Multiplayer.Instance.Break();
         if (onlyHalucinations)
         {
             StartHalucinations_ClientRpc();
@@ -52,11 +53,12 @@ public class BlackoutManager_Multiplayer : NetworkBehaviour
     [ServerRpc(RequireOwnership =false)]
     public void EndBlackOut_ServerRpc()
     {
+        shutdownVignete.SetActive(false);
         cpFixedCount++;
         if (cpFixedCount>=cpToFix)
         {
             inBlackout = false;
-            EndBlackout(this,EventArgs.Empty);
+            EndBlackout(this, EventArgs.Empty);
             if (onlyHalucinations)
             {
                 StopHalucinations_ClientRpc();

@@ -26,20 +26,27 @@ MonoBehaviour:
       Data3: 1521986472
       Data4: -561051134
     Path: event:/SFX_Sounds/Camera_Room/Change_Camera
-  CPGasCorrect:
+  ControlPanelClick:
     Guid:
-      Data1: -1311068337
-      Data2: 1122538691
-      Data3: -794097741
-      Data4: 1630044116
-    Path: event:/SFX_Sounds/Camera_Room/Keyboard
-  CPGasWrong:
+      Data1: 510638092
+      Data2: 1280960527
+      Data3: -922026866
+      Data4: -116806234
+    Path: event:/Control_Panel/Button_Click
+  ControlPanelCorrect:
     Guid:
-      Data1: 281094912
-      Data2: 1210240715
-      Data3: 522143107
-      Data4: 1051825137
-    Path: event:/Tasks/Task_Fail
+      Data1: -1468645336
+      Data2: 1196880620
+      Data3: -641298808
+      Data4: 2065607641
+    Path: event:/Control_Panel/Correct
+  ControlPanelWrong:
+    Guid:
+      Data1: 792296065
+      Data2: 1306121028
+      Data3: -1509637728
+      Data4: 1317603629
+    Path: event:/Control_Panel/Wrong_code
   PowerLoss:
     Guid:
       Data1: -2019706715
@@ -47,6 +54,13 @@ MonoBehaviour:
       Data3: -720851810
       Data4: 1803448465
     Path: event:/BlackOut/power-down-45784
+  PowerRegained:
+    Guid:
+      Data1: 1125834151
+      Data2: 1304466786
+      Data3: 1073598899
+      Data4: -335012049
+    Path: event:/BlackOut/turning-down-power-48657
   PickupPaper:
     Guid:
       Data1: -1879433541
@@ -54,3 +68,91 @@ MonoBehaviour:
       Data3: 1122571701
       Data4: -637643394
     Path: event:/Players/Pick-up/Paper
+  SmithIntroduction_Tutorial:
+    Guid:
+      Data1: -1266440274
+      Data2: 1272318100
+      Data3: -119847508
+      Data4: -2029032473
+    Path: event:/Voice_Lines/I am smith(1)
+  TaskPanel_Tutorial:
+    Guid:
+      Data1: -681165389
+      Data2: 1165741802
+      Data3: 1057144501
+      Data4: -433079210
+    Path: event:/Voice_Lines/Task_must_do(2)
+  EnergyPanel_Tutorial:
+    Guid:
+      Data1: 1521452864
+      Data2: 1185205538
+      Data3: -1791425641
+      Data4: -209513721
+    Path: event:/Voice_Lines/Power_Dropping(3)
+  MelodyIntroduction_Tutorial:
+    Guid:
+      Data1: -1627446155
+      Data2: 1274161807
+      Data3: 1530937494
+      Data4: 777220348
+    Path: event:/Voice_Lines/Melodie(4)
+  Melody_Tutorial:
+    Guid:
+      Data1: 1645858408
+      Data2: 1121528831
+      Data3: -1359163978
+      Data4: -1441942939
+    Path: event:/Voice_Lines/Pull_Melodie(5)
+  BackToCameras_Tutorial:
+    Guid:
+      Data1: 22259230
+      Data2: 1174454013
+      Data3: 1629772187
+      Data4: 1832018630
+    Path: event:/Voice_Lines/Go_back_camera(6)
+  BackLater_Tutorial:
+    Guid:
+      Data1: -2128723984
+      Data2: 1280742478
+      Data3: -1690847060
+      Data4: 184918006
+    Path: event:/Voice_Lines/Go_back_later(7)
+  BlackOut_Tutorial:
+    Guid:
+      Data1: 2098119214
+      Data2: 1095897115
+      Data3: 1772057022
+      Data4: -507020270
+    Path: event:/Voice_Lines/Security(8)
+  DayCompleted1_Tutorial:
+    Guid:
+      Data1: 615999698
+      Data2: 1281467048
+      Data3: -146664293
+      Data4: -636256142
+    Path: event:/Voice_Lines/Finish_day-1(9)
+  DayCompleted2_Tutorial:
+    Guid:
+      Data1: -285985158
+      Data2: 1230539912
+      Data3: 1404361125
+      Data4: 1733329306
+    Path: event:/Voice_Lines/Finish_day-2(10)
+  CameraButtonPressPath: event:/SFX_Sounds/Camera_Room/Keyboard
+  CameraChangePath: event:/SFX_Sounds/Camera_Room/Change_Camera
+  ControlPanelClickPath: event:/Control_Panel/Button_Click
+  ControlPanelCorrectPath: event:/Control_Panel/Correct
+  ControlPanelWrongPath: event:/Control_Panel/Wrong_code
+  PowerLossPath: event:/BlackOut/power-down-45784
+  PowerRegainedPath: event:/BlackOut/turning-down-power-48657
+  PickupPaperPath: event:/Players/Pick-up/Paper
+  SmithIntroduction_TutorialPath: event:/Voice_Lines/I am smith(1)
+  TaskPanel_TutorialPath: event:/Voice_Lines/Task_must_do(2)
+  EnergyPanel_TutorialPath: event:/Voice_Lines/Power_Dropping(3)
+  MelodyIntroduction_TutorialPath: event:/Voice_Lines/Melodie(4)
+  Melody_TutorialPath: event:/Voice_Lines/Pull_Melodie(5)
+  BackToCameras_TutorialPath: event:/Voice_Lines/Go_back_camera(6)
+  BackLater_TutorialPath: event:/Voice_Lines/Go_back_later(7)
+  BlackOut_TutorialPath: event:/Voice_Lines/Security(8)
+  DayCompleted1_TutorialPath: event:/Voice_Lines/Finish_day-1(9)
+  DayCompleted2_TutorialPath: event:/Voice_Lines/Finish_day-2(10)

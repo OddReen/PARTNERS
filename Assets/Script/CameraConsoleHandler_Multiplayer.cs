@@ -1,5 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
+using FMODUnity;
+using FMOD.Studio;
 
 public class CameraConsoleHandler_Multiplayer : NetworkBehaviour
 {
@@ -50,7 +52,7 @@ public class CameraConsoleHandler_Multiplayer : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void ChangeCameraServerRpc(int cameraIndex)
     {
-        SFX_Manager_Multiplayer.Instance.PlaySoundLocal_ServerRpc(sFX_List.CameraChange.Path, cameraRoom.position);
+        SFX_Manager_Multiplayer.Instance.PlaySoundLocal_ServerRpc(sFX_List.CameraChangePath, cameraRoom.position);
         ChangeCameraClientRpc(cameraIndex);
     }
     [ClientRpc]

@@ -24,7 +24,7 @@ public class TaskManager_Multiplayer : NetworkBehaviour
     [SerializeField] bool noTasksStart = false;
     public override void OnNetworkSpawn()
     {
-       
+
         Instance = this;
         if (noTasksStart)
         {
@@ -53,25 +53,24 @@ public class TaskManager_Multiplayer : NetworkBehaviour
         }
     }
 
-    [ServerRpc(RequireOwnership =false)]
+    [ServerRpc(RequireOwnership = false)]
     public void StartCreatingTasks_ServerRpc()
     {
-        CreateTask_ClientRpc();
+        CreateTasks_ServerRpc();
         StartCoroutine(TaskCreator());
     }
     //Isto tem que ser com tempos que podem variar find a way to do that later
     //Tem que ser executada pelo server
     IEnumerator TaskCreator()
     {
-        Debug.Log("Task Creator Start");
         while (true)
         {
             yield return new WaitForSeconds(timeToCreateTask);
-            CreateTask_ClientRpc();
+            CreateTasks_ServerRpc();
         }
     }
-    [ClientRpc]
-    private void CreateTask_ClientRpc()
+    [ServerRpc]
+    private void CreateTasks_ServerRpc()
     {
         Debug.Log("Creating Task");
         if (TaskCount >= maxTasks)
@@ -80,6 +79,9 @@ public class TaskManager_Multiplayer : NetworkBehaviour
         }
         Task_Multiplayer task = PickRandomTask();
         TaskStatus_Multiplayer taskStatus = Instantiate(activeTask_Prefab, activeTask_Container);
+        NetworkObject netObject = taskStatus.gameObject.GetComponent<NetworkObject>();
+        netObject.Spawn();
+        netObject.TrySetParent(activeTask_Container);
         taskStatus.AssignTask(task, TaskCount);
         activeTasksStatusList.Add(taskStatus);
         task.ActivateTask(taskStatus);
@@ -100,16 +102,16 @@ public class TaskManager_Multiplayer : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void TaskCompleted_ServerRpc(int taskIndex)
     {
-        DeleteTask_ClientRpc(taskIndex,true);
+        DeleteTask_ServerRpc(taskIndex, true);
     }
     [ServerRpc(RequireOwnership = false)]
     public void TaskFailed_ServerRpc(int taskIndex)
     {
-        DeleteTask_ClientRpc(taskIndex,false);
+        DeleteTask_ServerRpc(taskIndex, false);
         EnergyManager_Multiplayer.Instance.ChangeEnergy_ServerRpc(-20f);
     }
-    [ClientRpc]
-    private void DeleteTask_ClientRpc(int taskIndex,bool wasTaskCompleted)
+    [ServerRpc]
+    private void DeleteTask_ServerRpc(int taskIndex, bool wasTaskCompleted)
     {
         //Check if the task completed was the last task added and if false reduces every task index 
         //In front of it
@@ -127,8 +129,6 @@ public class TaskManager_Multiplayer : NetworkBehaviour
             possibleTasksList.Add(taskStatus.TaskReference);
         }
 
-        //This is so stupid i hate it
-        //Removes the completed task from all clients
         taskStatus.TaskReference.ClearTaskFromList();
 
         activeTasksStatusList.Remove(taskStatus);

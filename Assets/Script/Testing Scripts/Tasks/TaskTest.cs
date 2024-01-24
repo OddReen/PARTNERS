@@ -13,7 +13,7 @@ public class TaskTest : Task_Multiplayer
     {
         if (isTaskActive)
         {
-            CompleteTask();
+            CompleteTask_ServerRpc();
         }
     }
 }

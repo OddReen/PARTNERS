@@ -35,15 +35,14 @@ public class MelodyInteractable_Multiplayer : Interactable
     }
     IEnumerator CordPull()
     {
-        while (Vector3.Distance(defaultPosition, transform.position) < pullDistance && MultiplayerPlayerInput.OwnerInstance.isInteracting)
+        while (Vector3.Distance(defaultPosition, transform.position) < pullDistance && PlayerInput_Multiplayer.OwnerInstance.isInteracting)
         {
-            Debug.Log("CordPull");
-            transform.position = MultiplayerPlayerController.OwnerInstance.grabPosition.position;
+            transform.position = PlayerController_Multiplayer.OwnerInstance.grabPosition.position;
             transform.LookAt(defaultPosition);
             yield return null;
         }
 
-        if (!MultiplayerPlayerInput.OwnerInstance.isInteracting)
+        if (!PlayerInput_Multiplayer.OwnerInstance.isInteracting)
         {
             transform.SetPositionAndRotation(defaultPosition, defaultRotation);
         }

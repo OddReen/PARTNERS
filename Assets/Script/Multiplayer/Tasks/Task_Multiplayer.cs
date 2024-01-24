@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class Task_Multiplayer : MonoBehaviour
+public class Task_Multiplayer : NetworkBehaviour
 {
     //Make tasks inherit from NetworkBehaviour its probably for the best but no time gota go fast
     public bool IsRepeatable;
@@ -23,11 +23,15 @@ public class Task_Multiplayer : MonoBehaviour
         activeTasksList.Add(taskInfo);
         //Coloca codigo que determina que a atividade é possivel aqui
     }
-
+    [ServerRpc(RequireOwnership = false)]
+    public void CompleteTask_ServerRpc()
+    {
+        CompleteTask();
+    }
     protected virtual void CompleteTask()
     {
         //Delivery Objects dont despawn
-        if (isTaskActive==false)
+        if (isTaskActive == false)
         {
             return;
         }
@@ -37,6 +41,7 @@ public class Task_Multiplayer : MonoBehaviour
     public virtual void FailTask()
     {
         TaskManager_Multiplayer.Instance.TaskFailed_ServerRpc(activeTasksList[0].TaskIndex);
+
         Debug.Log("Task Failed");
     }
     //Called trough ClientRpc so its deleted in both players

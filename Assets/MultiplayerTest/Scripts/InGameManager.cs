@@ -44,13 +44,13 @@ public class InGameManager : NetworkBehaviour
         {
             Cursor.lockState = CursorLockMode.Confined;
             pauseMenu.Show();
-            MultiplayerPlayerInput.OwnerInstance.SwitchToPauseMap();
+            PlayerInput_Multiplayer.OwnerInstance.SwitchToPauseMap();
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
             pauseMenu.Hide();
-            MultiplayerPlayerInput.OwnerInstance.SwitchToGameplayMap();
+            PlayerInput_Multiplayer.OwnerInstance.SwitchToGameplayMap();
         }
     }
 
@@ -77,6 +77,6 @@ public class InGameManager : NetworkBehaviour
     [ClientRpc]
     private void PlayerInitializationClientRpc()
     {
-        MultiplayerPlayerInput.OwnerInstance.PauseAction += MultiplayerPlayerInput_PauseAction;
+        PlayerInput_Multiplayer.OwnerInstance.PauseAction += MultiplayerPlayerInput_PauseAction;
     }
 }
