@@ -19,6 +19,7 @@ public class Menu : MonoBehaviour
     {
         Debug.Log("Menu Virtual Start Starting...");
         Instance = this;
+
         if (firstMenu != null)
         {
             firstMenu.gameObject.SetActive(true);
