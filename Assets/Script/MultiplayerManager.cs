@@ -42,10 +42,15 @@ public class MultiplayerManager : NetworkBehaviour
     //Começar como host
     public void StartHost()
     {
+        Debug.Log("Starting Host");
         NetworkManager.Singleton.ConnectionApprovalCallback += NetworkManager_ConectionApprovalCallback;
+        Debug.Log("Registering Conection Approval Callback");
         NetworkManager.Singleton.OnClientConnectedCallback += NetworkManager_Server_OnClientConnectedCallback;
+        Debug.Log("Registering Server On Client Connected Callback");
         NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_Server_OnClientDisconnectCallback;
+        Debug.Log("Registering Server On Client Disconnect Callback");
         NetworkManager.Singleton.StartHost();
+        Debug.Log("Host Started");
     }
     //Começar como client
     public void StartClient()

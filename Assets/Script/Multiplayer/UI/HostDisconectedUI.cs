@@ -9,6 +9,7 @@ public class HostDisconectedUI : MonoBehaviour
     [SerializeField] Button quit_BT;
     private void Start()
     {
+        Debug.Log("Host Disconected UI Starting...");
         NetworkManager.Singleton.OnClientDisconnectCallback += NetworkManager_OnClientDisconnectCallback;
         quit_BT.onClick.AddListener(() =>
         {
@@ -17,6 +18,7 @@ public class HostDisconectedUI : MonoBehaviour
         });
 
         Hide();
+        Debug.Log("Host Disconected UI Complete");
     }
 
 

@@ -28,6 +28,11 @@ public class MenuLAN : Menu
     }
     private void AddButtonListeners()
     {
+        createHost_BT.onClick.AddListener(() =>
+        {
+            MultiplayerManager.Instance.StartHost();
+            Loader.LoadNetwork(Loader.Scene.MenuLobby);
+        });
         createClient_BT.onClick.AddListener(() =>
         {
             NetworkManager.Singleton.GetComponent<UnityTransport>().ConnectionData.Address = ipv4Input.text;
@@ -37,11 +42,6 @@ public class MenuLAN : Menu
         {
             Loader.Load(Loader.Scene.MainMenu);
         });
-    }
-    public void StartHosting()
-    {
-        MultiplayerManager.Instance.StartHost();
-        Loader.LoadNetwork(Loader.Scene.MenuLobby);
     }
     private void OnDestroy()
     {

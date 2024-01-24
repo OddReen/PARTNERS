@@ -14072,7 +14072,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e236199cdaaa7a4285f28930b529c66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstMenu: {fileID: 83041563}
+  firstMenu: {fileID: 0}
   playerReady_BT: {fileID: 1450809010}
   quitToMainMenu_BT: {fileID: 1685908751}
 --- !u!1 &1738677136

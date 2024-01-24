@@ -13,16 +13,22 @@ public class MenuLobby : Menu
         VirtualStart();
     }
     protected override void VirtualStart()
-    {      
+    {
+        Debug.Log("Menu Lobby Starting...");
+        Debug.Log("Player Ready Button adding Listeners...");
         playerReady_BT.onClick.AddListener(() =>
         {
             LobbyManager.Instance.SetPlayerReadyStatus();
         });
+        Debug.Log("Player Ready Button Listeners Added"); 
+        Debug.Log("Quit to main menu Button adding Listeners...");
         quitToMainMenu_BT.onClick.AddListener(() =>
         {
             MultiplayerManager.Instance.Shutdown();
             Loader.Load(Loader.Scene.MainMenu);
         });
+        Debug.Log("Quit to main menu Button Listeners Added");
         base.VirtualStart();
+        Debug.Log("Menu Lobby Start Complete");
     }
 }

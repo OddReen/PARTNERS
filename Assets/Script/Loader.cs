@@ -1,4 +1,5 @@
 using Unity.Netcode;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class Loader
@@ -26,8 +27,9 @@ public static class Loader
     //Da load a scenes multiplayer
     public static void LoadNetwork(Scene targetScene)
     {
+        Debug.Log("Loading Scene" + targetScene.ToString());
         NetworkManager.Singleton.SceneManager.LoadScene(targetScene.ToString(),LoadSceneMode.Single);
-        //Debug.Log("Loaded Scene" + targetScene.ToString());
+        Debug.Log("Scene Loaded" + targetScene.ToString());
     }
     public static void LoaderCallback()
     {

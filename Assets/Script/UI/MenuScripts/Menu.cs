@@ -17,12 +17,14 @@ public class Menu : MonoBehaviour
     }
     protected virtual void VirtualStart()
     {
+        Debug.Log("Menu Virtual Start Starting...");
         Instance = this;
         if (firstMenu != null)
         {
             firstMenu.gameObject.SetActive(true);
             navigationStack.Push(firstMenu);
         }
+        Debug.Log("Menu Virtual Start Complete");
     }
     public void GoToPreviousMenu()
     {
