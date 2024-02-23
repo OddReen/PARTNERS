@@ -18,8 +18,8 @@ public class DeliveringTask_Multiplayer : Task_Multiplayer
     {
         base.ActivateTask(taskInfo);
         DeliverObject_Multiplayer temp = Instantiate(deliverObjectPrefab);
-        temp.GetComponent<NetworkObject>().Spawn(true);
         temp.transform.position = deliverSpawnLocation.position;
+        temp.GetComponent<NetworkObject>().Spawn(true);
         temp.AssignDeliveryDestination(deliveryLocation);
     }
     public void Deliver()

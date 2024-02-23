@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/MultiplayerTest.unity
     guid: b447b036e1dc6504c9b825a4ee7a2dcd
-  - enabled: 0
-    path: Assets/Scenes/Leonardo/Test.unity
-    guid: 1491c45feb57a4f4a86781fe6ac4e6ae
   - enabled: 1
     path: Assets/Scenes/LoadingScene.unity
     guid: 5a26bf0e45ad74446a6b7fb66b467131
@@ -32,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FMOD_Testing/FmodTest.unity
     guid: 166ff66c13eba744f85703a7637324d2
+  - enabled: 1
+    path: Assets/Scenes/Menus/MenuRelay.unity
+    guid: 72042e0906c8ae847acbeca7cc909478
   m_configObjects: {}

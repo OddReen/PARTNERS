@@ -33,5 +33,6 @@ public class BlackOutTutorial : Tutorial_Multiplayer
     private void EndVoice2()
     {
         SFX_Manager_Multiplayer.Instance.PlaySound_ServerRpc(voiceLines.DayCompleted2_TutorialPath);
+        CompleteTutorial();
     }
 }

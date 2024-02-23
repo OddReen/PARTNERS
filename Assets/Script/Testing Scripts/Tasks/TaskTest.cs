@@ -7,7 +7,6 @@ public class TaskTest : Task_Multiplayer
     public override void ActivateTask(TaskStatus_Multiplayer taskInfo)
     {
         base.ActivateTask(taskInfo);
-        isTaskActive = true;
     }
     public void ButtonPressed()
     {

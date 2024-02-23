@@ -19,7 +19,7 @@ public class Task_Multiplayer : NetworkBehaviour
     protected bool isTaskActive = false;
     public virtual void ActivateTask(TaskStatus_Multiplayer taskInfo)
     {
-        isTaskActive = true;
+        IsTaskActive_ClientRpc(true);
         activeTasksList.Add(taskInfo);
         //Coloca codigo que determina que a atividade é possivel aqui
     }
@@ -50,7 +50,12 @@ public class Task_Multiplayer : NetworkBehaviour
         activeTasksList.RemoveAt(0);
         if (ActiveTaskCount == 0)
         {
-            isTaskActive = false;
+            IsTaskActive_ClientRpc(false);
         }
+    }
+    [ClientRpc]
+    protected void IsTaskActive_ClientRpc(bool isTaskActive)
+    {
+        this.isTaskActive = isTaskActive;
     }
 }

@@ -38,8 +38,9 @@ public class PlayerController_Multiplayer : NetworkBehaviour
     [SerializeField] Transform cameraTarget;
     [SerializeField] Transform cameraCrouchTarget;
     [SerializeField] PlayerCamera playerCameraPrefab;
-    Camera playerCamera;
-    CinemachineVirtualCamera cinemachineCamera;
+    [HideInInspector] public Camera playerCamera;
+    [HideInInspector] public CinemachineVirtualCamera cinemachineCamera;
+    [HideInInspector] public CinemachineVirtualCamera animationCamera;
 
     float _cinemachineTargetPitch;
     const float _threshold = 0.01f;
@@ -79,7 +80,7 @@ public class PlayerController_Multiplayer : NetworkBehaviour
 
     GameObject hitInfoGameObject;
 
-    bool isSpawned = false;
+    [HideInInspector] public bool isActive = false;
 
     [Header("DEBUG")]
     [SerializeField] int materialIndex = 1;
@@ -103,15 +104,17 @@ public class PlayerController_Multiplayer : NetworkBehaviour
             PlayerCamera camera = Instantiate(playerCameraPrefab);
             playerCamera = camera.playerCamera;
             cinemachineCamera = camera.virtualCamera;
+            animationCamera = camera.animationCamera;
+            animationCamera.Follow = cameraTarget;
             OwnerInstance = this;
-            isSpawned = true;
+            isActive = true;
         }
     }
 
     void FixedUpdate()
     {
         //Se não for o dono de este object não executar o codigo
-        if (!IsOwner && !isSpawned) return;
+        if (!IsOwner || !isActive) return;
 
         MoveStates();
         Jump();
@@ -121,11 +124,14 @@ public class PlayerController_Multiplayer : NetworkBehaviour
     }
     void LateUpdate()
     {
-        if (!IsOwner && !isSpawned) return;
+        if (!IsOwner || !isActive) return;
 
         CameraRotation();
     }
-
+    public void Freeze()
+    {
+        rb.velocity = Vector3.zero;
+    }
     //Movement
     private void Move()
     {

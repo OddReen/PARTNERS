@@ -13,6 +13,8 @@ public class MultiplayerManager : NetworkBehaviour
 
     public static MultiplayerManager Instance;
 
+    public string joinCode = "";
+
     public int MaxPlayers { get; private set; } = 2;
 
     //Events

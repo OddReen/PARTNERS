@@ -21,7 +21,7 @@ public class SnapshotManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        snapshot = RuntimeManager.CreateInstance(corridorSnapshot);
+        snapshot = RuntimeManager.CreateInstance(cameraRoomSnapshot);
         snapshot.start();
     }
     public void ChangeSpapshot(Snapshot choosenSnapshot)

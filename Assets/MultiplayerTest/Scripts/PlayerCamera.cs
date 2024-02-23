@@ -8,4 +8,5 @@ public class PlayerCamera : MonoBehaviour
 {
     public Camera playerCamera;
     public CinemachineVirtualCamera virtualCamera;
+    public CinemachineVirtualCamera animationCamera;
 }
